@@ -1,0 +1,289 @@
+%!TEX root = main.tex
+\titleformat{\section}{\normalfont\large\bfseries}{Exercise \thesection\ --- }{1pt}{}
+\renewcommand{\chaptername}{Assignment}
+\chapter{Orthogonal Polynomials and Interpolation}
+
+\section{Legendre polynomials}
+Let \((Q_n)_{n\in\N}\) be the sequence of polynomials defined by \(Q_n(x) = \frac{1}{2^n n!} \left((x^2-1)^n\right)^{(n)} \).
+This sequence defines the Legendre polynomials.
+\begin{enumerate}
+	\item Using the constant weight function \(w(x) = 1\) over \((-1, 1)\), show that \((Q_n)_{n\in\N}\) defines a sequence of orthogonal polynomials.
+	\begin{proof}
+	First, we want to prove the inner product of any Legendre polynomials with themselves are non-zero.
+	Define
+	\[ I_n=\int_{-1}^{1}Q_n^2(x)\ud x \]
+	We can easily get the first Legendre polynomial
+	\[ Q_0(x)=1, \quad I_0=\int_{-1}^{1}\ud x=2 \]
+	So \(I_0\neq0\) trivially hols for \(n=0\).
+	By integration by parts,
+	\begin{align*}
+	I_n&=\frac{1}{2^{2n}(n!)^2} \int_{-1}^{1} \D{n}{x}\left[\left(x^2-1\right)^n \right] \cdot \D{n}{x}\left[\left(x^2-1\right)^n \right] \ud x\\
+	&=\frac{1}{2^{2n}(n!)^2} \int_{-1}^{1} \D{n}{x}\left[\left(x^2-1\right)^n \right] \cdot \ud \left\{\D{n-1}{x}\left[\left(x^2-1\right)^n \right]\right\}\\
+	&=\frac{1}{2^{2n}(n!)^2} \left\{ \left.\D{n}{x}\left[\left(x^2-1\right)^n \right]\D{n-1}{x}\left[\left(x^2-1\right)^n \right]\right|_{-1}^{1}\right. \\
+	& \left. - \int_{-1}^{1} \D{n-1}{x}\left[\left(x^2-1\right)^n \right] \cdot \D{n+1}{x}\left[\left(x^2-1\right)^n \right] \ud x \right\}
+	\end{align*}
+	Since the \(\D{k}{x}\left[\left(x^2-1\right)^n \right]\) always has a factor \(\left(x^2-1\right)\) for \(0\leq k\leq n\), the first term is always zero, which means
+	\[ I_n=\frac{-1}{2^{2n}(n!)^2} \int_{-1}^{1} \D{n-1}{x}\left[\left(x^2-1\right)^n \right] \cdot \D{n+1}{x}\left[\left(x^2-1\right)^n \right] \ud x \]
+	By repeating $n$ times of integration by part, we get
+	\[ I_n=\frac{(-1)^n}{2^{2n}(n!)^2} \int_{-1}^{1} \left[\left(x^2-1\right)^n \right] \cdot \D{2n}{x}\left[\left(x^2-1\right)^n \right] \ud x \]
+	Expand \(\left(x^2-1\right)^n\) by binomial theorem, and only \(x^{2n}\) has a nonzero \(2n^\textrm{th}\) derivative.
+	\[ \D{2n}{x}\left[\left(x^2-1\right)^n \right]=(2n)! \]
+	Plug in this result and
+	\[ I_n=\frac{(2n)!}{2^{2n}(n!)^2} \int_{-1}^{1} \left(1-x^2\right)^n \ud x \]
+	Define the integral part as
+	\[ K_n=\int_{-1}^{1} \left(1-x^2\right)^n \ud x \]
+	Integration by parts (taking a factor 1 as the second part) gives
+	\[ K_n=\int_{-1}^{1} 2nx^2\left(1-x^2\right)^{n-1}\ud x \]
+	Writing \(2nx^2\) as \(2n-2n\left(1-x^2\right)\) we obtain
+	\begin{align*}
+	K_n&=2n\int_{-1}^{1} \left(1-x^2\right)^{n-1} \ud x -2n\int_{-1}^{1} \left(1-x^2\right)^n \ud x\\
+	&=2n K_{n-1} -2n K_{n}
+	\end{align*}
+	So we get the recursive relation
+	\[ (2n+1)K_n = 2n K_{n-1} \]
+	Expend this relation down to $K_0$, we have
+	\[ K_n=\frac{2n}{2n+1}\cdot\frac{2n-2}{2n-1}\cdots\frac{2}{3}\cdot K_0 \]
+	It is easy to get \(K_0=2\), and reorganizing the terms,
+	\[ K_n=\frac{2^{2n+1}(n!)^2}{(2n+1)!} \]
+	By substitution and some simple calculation,
+	\[ I_n=K_n\cdot\frac{(2n)!}{2^{2n}(n!)^2}=\frac{2}{2n+1} \]
+
+	Then, we need to prove the Legendre polynomials are mutually orthogonal.
+	We introduce the following property of Legendre polynomials
+	\begin{theorem}[Legendre differential equation]
+	Legendre polynomials are solutions to the Legendre differential equation
+	\[ \left[\left(1-x^2\right)Q_n'(x)\right]'+n(n+1)Q_n(x)=0 \]
+	\end{theorem}
+	\begin{proof}
+	To prove that Legendre polynomials solve the Legendre differential equation, we need the differential rule for a product of two factors.
+	\begin{theorem}[General Leibniz rule]
+	$f$ and $g$ are $n$-times differentiable functions, then the product $fg$ is also $n$-times differentiable and its \(n^\textrm{th}\) derivative is given by
+	\[ \D{n}{x}[f(x)g(x)]=\sum_{i=0}^{n}\binom{n}{i}\D{n-i}{x}f(x)\cdot \D{i}{x}g(x) \]
+	where the zeroth derivative is defined to be the function itself.
+	\end{theorem}
+	\begin{proof}
+	We prove by induction.
+	At \(n=1\), we get
+	\[ (fg)'(x)=f'(x)g(x)+f(x)g'(x) \]
+	This is the basic Leibniz rule, so the equality holds for \(n=1\).
+	We assume that the equality
+	\[(fg)^{(m)}(x)=\sum_{k=0}^m{\binom{m}{k}}f^{(m-k)}(x)g^{(k)}(x)\]
+	Therefore, at $m+1$ we get:
+	\begin{align*}
+		(fg)^{(m+1)}(x)&=\frac{\text{d}}{\text{d}x}\sum_{k=0}^{m}{\binom{m}{k}}f^{(m-k)}(x)g^{(k)}(x)\\
+		&=\sum_{k=0}^{m}{\binom{m}{k}}f^{(m-k)}(x)g^{(k+1)}(x)+\sum_{k=0}^{m}{\binom{m}{k}}f^{(m+1-k)}(x)g^{(k)}(x)\\
+		&=\sum_{k=1}^{m+1}{\binom{m}{k-1}}f^{(m+1-k)}(x)g^{(k)}(x)+\sum_{k=0}^{m}{\binom{m}{k}}f^{(m+1-k)}(x)g^{(k)}(x)\\
+		&={\binom{m}{m}}f(x)g^{(m+1)}(x)+\sum_{k=1}^{m}{\binom{m}{k-1}}f^{(m+1-k)}(x)g^{(k)}(x)\\
+		&+\sum_{k=1}^{m}{\binom{m}{k}}f^{(m+1-k)}(x)g^{(k)}(x)+{\binom{m}{0}}f^{(m+1)}(x)g(x)\\
+		&={\binom{m}{m}}f(x)g^{(m+1)}(x)+\sum_{k=1}^{m}\left[{\binom{m}{k-1}}+{\binom{m}{k}}\right]f^{(m+1-k)}(x)g^{(k)}(x)\\
+		&+{\binom{m}{0}}f^{(m+1)}(x)g(x)\\
+		&={\binom{m+1}{m+1}}f(x)g^{(m+1)}(x)+\sum_{k=1}^m{\binom{m+1}{k}}f^{(m+1-k)}(x)g^{(k)}(x)\\
+		&+{\binom{m+1}{0}}f^{(m+1)}(x)g(x)\\
+		&=\sum_{k=0}^{m+1}{\binom{m+1}{k}}f^{(m+1-k)}(x)g^{(k)}(x).
+	\end{align*}
+	By principle of mathematical induction, this holds for all \(n\in\N^*\).
+	\end{proof}
+	To prove that Legendre polynomials are solution to Legendre differential equation, let \(y=\left(x^2-1\right)^n\), so that \(y'=2nx\left(x^2-1\right)^{n-1}\), and 
+	\[ \left(x^2-1\right)y'-2nxy=0 \]
+	Differentiate this expression \(n+1\) times using the general leibniz rule, we obtain
+	\[ \left(x^2-1\right)\D{n+2}{x}y+2x(n+1)\D{n+1}{x}y+n(n+1)\D{n}{x}y-2n\left[x\D{n+1}{x}y+(x+1)\D{n}{x}y\right]=0 \]
+	which reduces to 
+	\[ \left(x^2-1\right)\D{n+2}{x}y+2x\D{n+1}{x}y-n(n+1)\D{n}{x}y=0 \]
+	Dividing each side by \(-2^n(n!)\), we get
+	\[ \left(1-x^2\right)\D{n+2}{x}\frac{y}{2^n(n!)}+2x\D{n+1}{x}\frac{y}{2^n(n!)}-n(n+1)\D{n}{x}\frac{y}{2^n(n!)}=0 \]
+	Notice that
+	\[ Q_n(x)=\D{n}{x}\frac{y}{2^n(n!)} \]
+	Apply the substitution, we obtain
+	\[ \left(1-x^2\right)Q_n''(x)+2xQ_n'(x)-n(n+1)Q_n(x)=0 \]
+	which is exactly
+	\[ \left[\left(1-x^2\right)Q_n'(x)\right]'+n(n+1)Q_n(x)=0 \]
+	\end{proof}
+	Now we can prove that two different Legendre polynomials are mutually orthgonal.
+	With the Legendre differential equation, we multiply both sides by \(Q_k(x)\), where \(n\neq k\), and integrate it in \([-1,1]\).
+	\[ \int_{-1}^{1} Q_k(x)\left[\left(1-x^2\right)Q_n'(x)\right]'\ud x + \int_{-1}^{1}Q_k(x)n(n+1)Q_n(x)\ud x=0 \tag{*} \]
+	We also have the Legendre differential equation for \(Q_k(x)\):
+	\[ \left[\left(1-x^2\right)Q_k'(x)\right]'+k(k+1)Q_k(x)=0 \]
+	Multiply both sides by \(Q_n(x)\), where \(n\neq k\), and integrate it in \([-1,1]\), we get a dual form
+	\[ \int_{-1}^{1} Q_n(x)\left[\left(1-x^2\right)Q_k'(x)\right]'\ud x + \int_{-1}^{1}Q_n(x)k(k+1)Q_k(x)\ud x=0 \tag{**} \]
+	Integrate by part on first term of both (*) and (**), we get
+	\[\begin{cases}
+	-\int_{-1}^{1}Q_k'(x)\left[\left(1-x^2\right)Q_n'(x)\right]\ud x+\int_{-1}^{1}Q_k(x)n(n+1)Q_n(x)\ud x=0\\
+	-\int_{-1}^{1}Q_n'(x)\left[\left(1-x^2\right)Q_k'(x)\right]\ud x+\int_{-1}^{1}Q_n(x)k(k+1)Q_k(x)\ud x=0
+	\end{cases}\] 
+	Notice that the first terms of the two equations are equal, we have the second terms equal, which means
+	\[ n(n+1)\int_{-1}^{1}Q_k(x)Q_n(x)\ud x=k(k+1)\int_{-1}^{1}Q_n(x)Q_k(x)\ud x \]
+	Since we are considering different Legendre polynomials, we have \(n\neq k\), so \(n(n+1)\neq k(k+1)\).
+	Then we conclude that
+	\[ \int_{-1}^{1}Q_n(x)Q_k(x)\ud x=0 \]
+	So the mutual orthogonality is also proved.
+	\end{proof}
+	\item Show that \(Q_n(-x)=(-1)^n Q_n(x)\).
+	\begin{proof}
+	We expand \(\left(x^2-1\right)^n\) by binomial theorem.
+	\[ \left(x^2-1\right)^n=\sum_{i=0}^{n}\binom{n}{i}x^{2n}(-1)^{n-i} \]
+	Split the cases where $n$ is even and $n$ is odd.
+	\begin{align*}
+	\D{2m+1}{x}\left(x^2-1\right)^{2m+1}&=\sum_{i=m+1}^{2m+1}\binom{2m+1}{i}\frac{(2i)!}{(2i-2m-2)!}x^{2i-2m-1}(-1)^{2m+1-i}\\
+	\D{2m}{x}\left(x^2-1\right)^{2m}&=\sum_{i=m}^{2m}\binom{2m}{i}\frac{(2i)!}{(2i-2m)!}x^{2i-2m}(-1)^{2m-i}
+	\end{align*}
+	Combine these two results,
+	\[ Q_n(x)=\begin{cases} \frac{1}{2^{2m+1}(2m+1)!} \sum_{i=m+1}^{2m+1}\binom{2m+1}{i}\frac{(2i)!}{(2i-2m-2)!}x^{2(i-m)-1}(-1)^{2m+1-i} & n=2m+1 \\
+	\frac{1}{2^{2m}(2m)!}\sum_{i=m}^{2m}\binom{2m}{i}\frac{(2i)!}{(2i-2m)!}x^{2(i-m)}(-1)^{2m-i} & n=2m \end{cases} \]
+	We can see that when \(n=2m\), \(Q_n(x)\) is a sum of \(x^{2k}\) with some coefficients, which means it is an even function.
+	when \(n=2m+1\), \(Q_n(x)\) is a sum of \(x^{2k+1}\) with some coefficients, which means it is an odd function.
+	Since \(Q_n(x)\) is even when $n$ is even, and is odd when $n$ is odd, we have
+	\[ Q_n(-x)=(-1)^n Q_n(x) \]
+	\end{proof}
+	\item Show that for any \(x \in [-1, 1]\), the Legendre polynomials obey the recurrence relation
+	\[ (n + 1)Q_{n+1}(x) = (2n + 1)x Q_n(x) - n Q_{n-1}(x) \]
+	\begin{proof}
+	This can be proved with pure calculation, with the application of general Leibniz rule.
+	\begin{align*}
+		(n+1)Q_{n+1}(x)&=\frac{n+1}{2^{n+1}(n+1)!}\D{n+1}{x}\left[\left(x^2-1\right)^{n+1}\right]\\
+		&=\frac{1}{2^{n+1}n!}\D{n}{x}\left[2x(n+1)\left(x^2-1\right)^{n}\right]\\
+		&=\frac{n+1}{2^{n}n!}\D{n}{x}\left[x\left(x^2-1\right)^{n}\right]
+	\end{align*}
+	Apply the general Leibniz rule on the differential,
+	\[ \D{n}{x}\left[x\left(x^2-1\right)^{n}\right]=x\D{n}{x}\left[\left(x^2-1\right)^{n}\right]+n\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right] \tag{***} \]
+	Apply the substitution to get
+	\begin{align*}
+	(n+1)Q_{n+1}(x)&=\frac{n+1}{2^{n}n!}x\D{n}{x}\left[\left(x^2-1\right)^{n}\right]+\frac{n+1}{2^{n}n!}\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right]\\
+	&=x(n+1)Q_n(x)+\frac{n(n+1)}{2^{n}n!}\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right]\\
+	&=x(2n+1)Q_n(x)-nxQ_n(x)-\frac{n}{2^n n!}x\D{n}{x}\left[\left(x^2-1\right)^{n}\right]
+	\end{align*}
+	The last term without its coefficient is already in (***), so
+	\[ x\D{n}{x}\left[\left(x^2-1\right)^{n}\right]=\D{n}{x}\left[x\left(x^2-1\right)^{n}\right]-n\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right] \]
+	Apply substitution,
+	\begin{align*}
+	(n+1)Q_{n+1}(x)&=x(2n+1)Q_n(x)+\frac{n+1}{2^(n-1)!}\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right]\\
+	&-\frac{n}{2^n n!}\D{n}{x}\left[x\left(x^2-1\right)^{n}\right]+\frac{n}{2^n n!}\D{n-1}{x}\left[n\left(x^2-1\right)^{n}\right]\\
+	&=x(2n+1)Q_n(x)+\frac{1}{2^n(n-1)!}\\
+	&\cdot\D{n-1}{x}\left\{(n-1)\left(x^2-1\right)^{n}-\frac{\ud}{\ud x}\left[x\left(x^2-1\right)^{n}\right]+n\left(x^2-1\right)^{n} \right\}\\
+	&=x(2n+1)Q_n(x)\\
+	&+\frac{1}{2^n(n-1)!}\D{n-1}{x}\left[2n\left(x^2-1\right)\left(x^2-1\right)^{n-1}-2x^2n\left(x^2-1\right)^{n-1} \right]\\
+	&=x(2n+1)Q_n(x)-\frac{2n}{2^n(n-1)!}\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right]\\
+	&=x(2n+1)Q_n(x)-nQ_{n-1}(x)
+	\end{align*}
+	This proves the recurrence relation of Legendre polynomials.
+	\end{proof}
+	\item Prove that
+	\[ Q_n(x)=\sum_{i=0}^{n}(-1)^i \binom{n}{i}^2 \left(\frac{1+x}{2}\right)^{n-i} \left(\frac{1-x}{2}\right)^{i} \]
+	\begin{proof}
+	This is a direct result from the general Leibniz rule.
+	\[ Q_n(x)=\frac{1}{2^nn!}\D{n}{x}\left[\left(x-1\right)^n\left(x+1\right)^n\right] \]
+	Apply the general Leibniz rule, where
+	\[ f(x)=(x-1)^n \quad g(x)=(x+1)^n \]
+	And their higher order derivatives are
+	\begin{align*}
+	\D{n-i}{x}f(x)&=n(n-1)\cdots(i+1)(x-1)^i=\frac{n!}{i!}(x-1)^i\\
+	\D{i}{x}g(x)&=n(n-1)\cdots(n-i+1)(x-1)^i=\frac{n!}{(n-i)!}(x+1)^i
+	\end{align*}
+	Plug these two results in the binomial expansion of Legendre polynomials,
+	\begin{align*}
+	Q_n(x)&=\frac{1}{2^nn!}\sum_{i=0}^{n}\binom{n}{i}\frac{n!}{i!}(x-1)^i\frac{n!}{(n-i)!}(x+1)^{n-i}\\
+	&=2^{-n}\sum_{i=0}^{n}\binom{n}{i}^2(x-1)^i(x+1)^{n-i}\\
+	&=\sum_{i=0}^{n}(-1)^i \binom{n}{i}^2 \left(\frac{1+x}{2}\right)^{n-i} \left(\frac{1-x}{2}\right)^{i}
+	\end{align*}
+	This proves the result.
+	\end{proof}
+\end{enumerate}
+
+
+\section{Interpolation}
+Let $f$ be a continuous function for which we know the eight points defined in the following table.
+\begin{center}
+	\begin{tabular}{ccccccccc}
+	\hline
+	$x$ & $-5$ & $-1$ & 0 & 1 & 3 & 5 & 10 & 10 \\ \hline
+	$f(x)$ & 781 & 5 & 1 & 1 & 61 & 521 & 9091 & 19141 \\ \hline
+	\end{tabular}
+\end{center}
+Determine $f(2)$.
+\begin{proof}[Answer]
+We apply polynomial interpolation.
+Since there are 8 distinct points to pass through, we need a plynomial with degree at least 7.
+Assume the polynomial has form
+\[ p(x)=a_0 + a_1 x + a_2 x^2 + a_3 x^3 + a_4 x^4 + a_5 x^5 + a_6 x^6 + a_7 x^7 \]
+Then with the given points we have the following system of linear equations
+\[\begin{bmatrix}
+x_1^0 & x_1^1 & x_1^2 & x_1^3 & x_1^4 & x_1^5 & x_1^6 & x_1^7 \\
+x_2^0 & x_2^1 & x_2^2 & x_2^3 & x_2^4 & x_2^5 & x_2^6 & x_2^7 \\
+x_3^0 & x_3^1 & x_3^2 & x_3^3 & x_3^4 & x_3^5 & x_3^6 & x_3^7 \\
+x_4^0 & x_4^1 & x_4^2 & x_4^3 & x_4^4 & x_4^5 & x_4^6 & x_4^7 \\
+x_5^0 & x_5^1 & x_5^2 & x_5^3 & x_5^4 & x_5^5 & x_5^6 & x_5^7 \\
+x_6^0 & x_6^1 & x_6^2 & x_6^3 & x_6^4 & x_6^5 & x_6^6 & x_6^7 \\
+x_7^0 & x_7^1 & x_7^2 & x_7^3 & x_7^4 & x_7^5 & x_7^6 & x_7^7 \\
+x_8^0 & x_8^1 & x_8^2 & x_8^3 & x_8^4 & x_8^5 & x_8^6 & x_8^7
+\end{bmatrix}
+\begin{bmatrix}
+a_0 \\ a_1 \\ a_2 \\ a_3 \\ a_4 \\ a_5 \\ a_6 \\ a_7
+\end{bmatrix}=
+\begin{bmatrix}
+f(x_0) \\ f(x_1) \\ f(x_2) \\ f(x_3) \\ f(x_4) \\ f(x_5) \\ f(x_6) \\ f(x_7)
+\end{bmatrix}\]
+With numerical value,
+\[\begin{bmatrix}
+1 &	-5	&	25	&	-125	&	625		&	-3125	&	15625	&	-78125	\\
+1 &	-1	&	1	&	-1		&	1		&	-1		&	1		&	-1		\\
+1 &	0	&	0	&	0		&	0		&	0		&	0		&	0		\\
+1 &	1	&	1	&	1		&	1		&	1		&	1		&	1		\\
+1 &	3	&	9	&	27		&	81		&	243		&	729		&	2187	\\
+1 &	5	&	25	&	125		&	625		&	3125	&	15625	&	78125	\\
+1 &	10	&	100	&	1000	&	10000	&	100000	&	1000000	&	10000000\\
+1 &	12	&	144	&	1728	&	20736	&	248832	&	2985984	&	35831808
+\end{bmatrix}
+\begin{bmatrix}
+a_0 \\ a_1 \\ a_2 \\ a_3 \\ a_4 \\ a_5 \\ a_6 \\ a_7
+\end{bmatrix}=
+\begin{bmatrix}
+781 \\ 5 \\ 1 \\ 1 \\ 61 \\ 521 \\ 9091 \\ 19141
+\end{bmatrix}\]
+Write it in the matrix form,
+\[ Xa=f \]
+Then, we can solve for $a$ as
+\[ a=X^{-1}f, \quad \textrm{or in MATLAB\texttrademark\ syntax, } a=X\backslash f \]
+By MATLAB\texttrademark, we get
+\[ a=(1,-1,1,-1,1,0,0,0)^T \]
+So the interpolating polynomial is
+\[ p(x)=1-x+x^2-x^3+x^4 \]
+Plug in $x=2$, we get the estimate
+\[ f(2) \approx p(2) = 11 \]
+The MATLAB\texttrademark\ code is attached here.
+\begin{lstlisting}
+	x = [-5 -1 0 1 3 5 10 12];
+	X = [x.^0;x.^1;x.^2;x.^3;x.^4;x.^5;x.^6;x.^7]';
+	y = [781 5 1 1 61 521 9091 19141]';
+	X\y
+\end{lstlisting}
+\end{proof}
+
+
+\section{Newton's form of the interpolation polynomial}
+Let $f$ be a continuous function and $P^n$ be its interpolation polynomial in the points \(x_0,\cdots,x_n\).
+\begin{enumerate}
+	\item Let \(P^0(x)=f(x_0)\) be the interpolation polynomial in a single point $x_0$.
+	\begin{enumerate}[(a)]
+		\item Show that for two points $x_0$ and $x_1$, \(P^1(x)=P^0(x)+\frac{f(x_1)-f(x_0)}{x_1-x_0}(x-x_0)\).
+		\item Determine a polynomial $R$ of degree at most two, such that \( P^2(x)=P^1(x)+R(x) \), for three nodes $x_0$, $x_1$ and $x_2$.
+		\item Prove by induction that
+		\[ P^j(x)=P^{j-1}(x)+a_j\prod_{k=0}^{j-1}(x-x_k), \quad \textrm{where } a_j \textrm{ only depends on } x_0,\cdots x_j \]
+	\end{enumerate}
+	\item Denoting $a_j$ by \(f[x_0,\cdots, x_j]\), show that
+	\[ P^n(x)=f(x_0)+\sum_{j=1}^{n} f[x_0,\cdots, x_j] \prod_{k=0}^{j-1}(x-x_k) \]
+	\item Prove that for any \(k > 0\),
+	\[ \begin{cases} f[x_k] =f(x_k) \\ f[x_0,\cdots, x_k]=\frac{f[x_1,\cdots, x_k]-f[x_0,\cdots, x_{k-1}]}{x_k-x_0} \end{cases} \]
+	\item Write the pseudocode of a clear algorithm to compute \(P^n(x)\) when given $n+1$ nodes \(x_0,\cdots,x_n\) and the value of $f$ at those nodes.
+\end{enumerate}
+
+We now consider the case of equidistant nodes, \textit{i.e.}, \(x_i = x_0 + ih\), for any \(0\leq i\leq n\), and some \(h\in\R^+\).
+Denoting \(f[x_i]\) by $f_i$ , \(0\leq i\leq n\), we recursively define the operator $\nabla$ such that
+\[ \begin{cases} \nabla^0 f_i=f_i \\ \nabla^{k+1}f_i=\nabla^{k}f_{i+1}-\nabla^{k}f_{i} \end{cases} \]
+
+\begin{enumerate}
+	\setcounter{enumi}{4}
+	\item Show that \(\forall i,k,\in\N, f[x_i,\cdots,x_{i+k}]=\frac{1}{k!h^k}\nabla^{k}f_i\).
+	\item Observing that \(\binom{s}{k}=\frac{1}{k!}\prod_{j=0}^{k-1}(s-j)\), prove that 
+	\[ P^n(x)=f_0 + \sum_{k=1}^{n}\binom{s}{k}\nabla^{k} f_0, \quad \textrm{where } s=\frac{x-x_0}{h} \]
+	\item Write the pseudocode of an algorithm which takes a step $h$ as input, a number of nodes, the value of $f$ at each of those nodes, and a value $x$.
+	The algorithm should return \(P^{n}(x)\approx f(x)\).
+\end{enumerate}

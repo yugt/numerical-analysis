@@ -1,0 +1,297 @@
+%!TEX root = main.tex
+\titleformat{\section}{\normalfont\large\bfseries}{Exercise \thesection --- }{1pt}{}
+\renewcommand{\chaptername}{Assignment}
+\chapter{Introduction}
+
+
+\section{Metric space}
+Let $X$ be a metric space
+\begin{enumerate}
+	\item Show that $\varnothing$ and $X$ are closed in $X$.
+    \begin{proof}
+    According to the definition of openness, a subset $U$ of $X$ is \emph{open} if 
+    \[\forall x\in U, \exists \varepsilon>0 \textrm{ such that } (y\in X, d(x,y)<\varepsilon)\implies y\in U \]
+    And the definition of closed set is a complement of an open set.
+    Since $\varnothing$ does not have any elements, all statements with \(x\in\varnothing\) is trivially true.
+    Thus, $\varnothing$ is open, which implies its complement
+    \[X\backslash\varnothing=X\]
+    is closed.
+    Then, we prove $X$ is also open.
+    According to the definition,
+    \[\forall x\in X, \exists \varepsilon>0 \textrm{ such that } (y\in X, d(x,y)<\varepsilon)\implies y\in X \]
+    This is also trivially true since we have \(y\in X\implies y\in X\).
+    So $X$ is open, and its complement
+    \[X\backslash X=\varnothing\]
+    is closed.
+    \end{proof}
+    \item Prove that the intersection of a collection of closed subsets of $X$ is closed in $X$.
+    \begin{proof}
+    By theorem, a metric space is a topological space, so we can directly apply the property that 
+    \begin{quote}
+    	Any union, finite or not, of open subsets of $X$ is open.
+    \end{quote}
+    Then we take the complement and apply de Morgan's law to get:
+    any intersection, finite or not, of closed subsets of $X$ is closed.
+    \end{proof}
+    \item Prove that the union of a finite collection of closed subsets of $X$ is closed in $X$.
+    \begin{proof}
+    Similarly, we quote another property of topological spaces
+   \begin{quote}
+    	Any intersection of finitely many open subsets of $X$ is open.
+    \end{quote}
+    Then we take the complement and apply de Morgan's law to get:
+   the union of finitely many closed subsets of $X$ is closed.
+    \end{proof}
+\end{enumerate}
+
+
+\section{Continuity}
+For each of the following question prove your result.
+\begin{enumerate}
+	\item Give an example of function which is continuous but not uniformly continuous;
+    \paragraph{Example:} \(f(x)=x^2\).
+    \begin{proof}
+    Continuity can be proved by choosing \(\delta=\frac{\varepsilon}{1+|x+x_0|}\) in the \(\varepsilon-\delta\) definition.
+    \begin{align*}
+    	&\forall\varepsilon>0,\exists\delta=\frac{\varepsilon}{1+|x+x_0|}>0\textrm{ such that } |x-x_0|<\delta\\
+        &\implies |f(x)-f(x_0)|=|x-x_0|\cdot|x+x_0|<\frac{\varepsilon}{1+|x+x_0|}\cdot|x+x_0|<\varepsilon
+    \end{align*}
+	And the property of uniform continuous can be violated by choosing \(x=\frac{\varepsilon}{\delta},y=x+\frac{\delta}{2}\), which produces
+	\[ |x-y|=\frac{\delta}{2}<\delta \textrm{ while } |f(y)-f(x)|=\left|x\delta+\frac{\delta^2}{4}\right|=\left|\varepsilon+\frac{\delta^2}{4}\right|>\varepsilon \]
+	So this is a continuous but not a uniformly continuous function.
+    \end{proof}
+	\item Give an example of function which is uniformly continuous but not Lipschitz continuous.
+	\paragraph{Example:} \(f(x)=\sqrt{x}\) on its domain $\R^+$.
+	\begin{proof}
+    Uniform continuity can be proved by choosing \(\delta=\varepsilon^2\) in the \(\varepsilon-\delta\) definition.
+    \begin{align*}
+    	&\forall\varepsilon>0,\exists\delta=\varepsilon^2>0\textrm{ such that } |x-y|<\delta\\
+        &\implies |f(x)-f(y)|=|\sqrt{x}-\sqrt{y}|\\
+        &\leq \sqrt{|\sqrt{x}-\sqrt{y}|\cdot|\sqrt{x}+\sqrt{y}|}\\
+        &=\sqrt{|x-y|}=\sqrt{\varepsilon^2}=\varepsilon
+    \end{align*}
+	And the property of Lipschitz continuous can be violated by writing
+	\[ |f(x)-f(y)|=|\sqrt{x}-\sqrt{y}|=\frac{1}{\sqrt{x}+\sqrt{y}}|x-y| \]
+	By choosing \(y=0\), we need the Lipschitz constant to be the supreme 
+	\[ K\geq \sup_{x>0}\frac{1}{\sqrt{x}} \]
+	However, 
+	\[ \lim_{x\to0^+}=+\infty \]
+	which means we can't find such a Lipschitz constant.
+	So this is a uniformly continuous but not a Lipschitz continuous function.
+    \end{proof}
+\end{enumerate}
+
+
+\section{Cardinality}
+\begin{enumerate}
+	\item Prove that $\N$, $\Z$, and $\Q$ have the same number of elements.
+	\begin{proof}
+	We can construct a bijective function from $\N$ to $\Z$:
+	\[f(n)=(-1)^n\lfloor \frac{n+1}{2}\rfloor\quad n\in\N \]
+	Injectivity is trivial because this function only returns an integer.
+	Surjectivity is proved by
+	\[n=\begin{cases} 4k &\to 2k \\ 4k+1 &\to -(2k+1) \\ 4k+2 &\to 2k+1 \\ 4k+3 &\to -2(k+1) \end{cases} \]
+	which covers the positive even numbers, negative odd numbers, positive add numbers, negative even numbers and zero, whose union is $\Z$ and are disjoint.
+	Thus, the mapping is both injective and surjective, which is bijective.
+	Then, we can construct a bijective mapping \(f:\N^*\times\N^*\to\Q^+\)
+	\begin{center}
+	\begin{tabular}{ccccc}
+	1/1 & 1/2 & 1/3 & 1/4 & $\cdots$\\
+	2/1 & 2/2 & 2/3 & 2/4 & $\cdots$\\
+	3/1 & 3/2 & 3/3 & 3/4 & $\cdots$\\
+	4/1 & 4/2 & 4/3 & 4/4 & $\cdots$\\
+	$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$
+	\end{tabular}
+	\end{center}
+	This mapping is trivially injective since it returns a fraction of two natural numbers.
+	It is also surjective because every positive rational number can be written as a ratio of two integers.
+	Then we can count diagonally to construct the bijective mapping \(g:\N^*\to\Q^+\).
+	And the negative integers can use the same mapping with negative signs on the range, so that all the negative rational numbers are mapped.
+	Finally, we map the zero in $\Z$ to the zero in $\Q$ to construct the whole map, which gets the surjectivity.
+	Thus, this map is also bijective.
+	The first mapping concludes \(\mathrm{Card}(\N)=\mathrm{Card}(\Z)\), and the second mapping concludes \(\mathrm{Card}(\Z)=\mathrm{Card}(\Q)\).
+	The combined result is
+	\[\mathrm{Card}(\N)=\mathrm{Card}(\Z)=\mathrm{Card}(\Q)\]
+	\end{proof}
+    \item Prove that $\R$ has more elements than $\N$.
+	\begin{proof}
+	We prove that the subset \([0,1]\subset\R\) has more elements than $\N$.
+	Suppose we can construct a bijective map from $\N$ to \([0,1]\), then
+	\begin{align*}
+	n_1 &\to 0.a_{11}a_{12}a_{13}a_{14}\cdots\\
+	n_2 &\to 0.a_{21}a_{22}a_{23}a_{24}\cdots\\
+	n_3 &\to 0.a_{31}a_{32}a_{33}a_{34}\cdots\\
+	&\vdots
+	\end{align*}
+	where \(a_{ij}\in\{0,1,2,3,4,5,6,7,8,9\}\).
+	Then we can always find an element from \([0,1]\) that is not mapped to.
+	Take \(b_1\neq a_{11},b_2\neq a_{22},\cdots,b_i\neq a_{ii},\cdots\), \(0.b_1 b_2 \cdots b_i\cdots\in[0,1]\) differs from all the elements in the range of the mapping, so the mapping is not surjective.
+	This contradicts to the bijection assumption.
+	Thus the bijection does not exist, and \([0,1]\) has more elements than $\N$, which implies $\R$ has more elements than $\N$.
+	\end{proof}
+    \item Prove that \([0, 1]\) has as many elements as $\R$.
+	\begin{proof}
+	We find a bijective mapping \(f:\R\to(0,1)\):
+	\[f(x)=\frac{1}{2}+\frac{1}{\pi}\arctan(x) \]
+	This mapping is monotone so that its inverse exists, which is clearly bijective.
+	This implies \((0,1)\) has as many elements as $\R$, and adding two more elements \(\{0,1\}\) to infinite set does not change the cardinality.
+	Thus,
+	\[\mathrm{Card}([0,1])=\mathrm{Card}(\R)\]
+	\end{proof}
+\end{enumerate}
+
+
+\section{Slides}
+\begin{enumerate}
+	\item In the lecture the Cauchy-Schwartz inequality (1.20) was proven for real numbers, prove it for the complex numbers.
+	\begin{proof}
+	If \(v=0\), both sides are zeros, so the equality is trivially true.
+	If \(v\neq0\), we define
+	\[\lambda=\frac{\langle u,v\rangle}{||v||^2}  \]
+	Then,
+	\begin{align*}
+	0&\leq ||u-\lambda v||^2\\
+	&=\langle u,u \rangle-\langle u,\lambda v\rangle-\langle\lambda v,u \rangle+\langle \lambda v,\lambda v\rangle\\
+	&=\langle u,u \rangle-\lambda\bar{\langle u,v \rangle}-\bar\lambda\langle u,v \rangle+\lambda\bar\lambda \langle v,v \rangle\\
+	&=||u||^2-\frac{|\langle u,v \rangle|^2}{||v||^2}-\frac{|\langle u,v \rangle|^2}{||v||^2}+\frac{|\langle u,v \rangle|^2}{||v||^2}\\
+	&=||u||^2-\frac{|\langle u,v \rangle|^2}{||v||^2}\\
+	&\implies ||u||^2\geq\frac{|\langle u,v \rangle|^2}{||v||^2} 
+	\end{align*}
+	Since all the squares are nonnegative, we get
+	\[||u||||v||\geq |\langle u,v \rangle|^2 \]
+	\end{proof}
+    \item Show that a distance is always positive.
+	\begin{proof}
+	This is directly deduced from the definition:
+	\begin{quote}
+		A distance on $X$ is a function \(d: X\times X\to\R^+\) such that ...
+	\end{quote}
+	which already indicates that the distance is always positive.
+	\end{proof}
+\end{enumerate}
+
+
+\section{Linear algebra}
+\begin{enumerate}
+	\item Let $f$ be a linear map from a vector space $V_1$ into a vector space $V_2$.
+    Show that the dimension of $V_1$ is the sum of the dimensions of the kernel and of the image of $f$.
+	This result is called the rank nullity theorem.
+	\begin{proof}
+	Suppose \(\{{u}_{1},\ldots ,{u}_{m}\}\) forms a basis of \(\ker f\).
+	We can extend this to form a basis of $V_1$: \(\{{u}_{1},\ldots ,{u}_{m},{w}_{1},\ldots,{w}_{n}\}\).
+	Since the dimension of $\ker f$ is $m$ and the dimension of $V_1$ is \(m + n\), it suffices to show that the dimension of image of $f$ ($V_2$) is $n$.
+	We can show that \(\{f({w}_{1}),\ldots,f({w}_{n})\}\) forms a basis form a basis of $V_2$.
+	There exist unique scalars such that
+	\begin{align*}
+		v&=a_1u_1+\cdots a_m u_m+b_1 w_1+\cdots+ b_n w_n\\
+		&\implies f(v)=a_1 f(u_1)+\cdots+ a_m f(u_m)+b_1 f(w_1)+\cdots+ b_n f(w_n)\\
+		&\implies f(v)=b_1 f(w_1)+\cdots+ b_n f(w_n)
+	\end{align*}
+	Thus, \(\{f(w_1),\cdots, f(w_n)\} \) spans $V_2$.
+	Then, we have to show these vectors are linearly independent to ba a basis of $V_2$.
+	\begin{align*}
+		c_1 f(w_1)+\cdots+c_n f(w_n)=0 \iff f(c_1w_1+\cdots+c_n w_n)=0\\
+		\implies c_1w_1+\cdots+c_n w_n\in \ker f
+	\end{align*}
+	Then since $u_i$ span $\ker f$, there exists a set of scalars $d_i$ such that
+	\[ c_1w_1+\cdots+c_n w_n=d_1u_1+\cdots+d_m u_m \]
+	But since \(\{{u}_{1},\ldots ,{u}_{m},{w}_{1},\ldots,{w}_{n}\}\) form a basis of $V_1$, all $c_i,d_i$ must be zeros.
+	Therefore, \(\{f({w}_{1}),\ldots,f({w}_{n})\}\) is linearly independent and forms a basis of $V_2$.
+	This proves that the dimension of $V_2$ is $n$ as desired.
+	\end{proof}
+    \item Prove that the composition of two linear maps is a linear map.
+	\begin{proof}
+	Suppose the two linear maps are $f$ and $g$, and a scalar \(a\in\mathbb{K}\)
+	\begin{align*}
+		f(x+ay)&=f(x)+a f(y)\\
+		g(f(x+ay))&=g(f(x)+a f(y))=g(f(x))+a g(f(y))
+	\end{align*}
+	This is exactly the linearity of the composition $g(f)$.
+	\end{proof}
+    \item Prove that the inverse of a linear map is a linear map.
+	\begin{proof}
+	Suppose the linear map is $f$ and its inverse is $f^{-1}$, and a scalar \(a\in\mathbb{K}\).
+	\begin{align*}
+	f(x+ay)&=f(x)+a f(y)\\
+	f^{-1}(f(x+ay))&=f^{-1}(f(x)+a f(y))\\
+	x+ay&=f^{-1}(f(x)+a f(y)
+	\end{align*}
+	But we can write $x$ as \(f^{-1}(f(x))\), and $y$ as \(f^{-1}(f(y))\).
+	\[f^{-1}(f(x))+af^{-1}(f(y))=f^{-1}(f(x)+a f(y)) \]
+	This is exactly the linearity of $f^{-1}$.
+	\end{proof}
+    \item Consider \(\mathcal{C}^\infty(\R)\), the set of the functions that are infinitely differentiable over $\R$. We equip \(\mathcal{C}^\infty(\R)\) of the supremum norm.
+    \begin{enumerate}[(a)]
+    	\item Show that \(f(x) = \sin(nx)/n \in \mathcal{C}^\infty(\R)\).
+		\begin{proof}
+		We find the first four differentials
+		\begin{align*}
+		\mathrm{d}f&=\cos(nx)\\
+		\mathrm{d}^2f&=-n\sin(nx)\\
+		\mathrm{d}^3f&=-n^2\cos(nx)\\
+		\mathrm{d}^4f&=n^3\sin(nx)\\
+		\end{align*}
+		Thus we get the recursive relation between the differentials.
+		\[\mathrm{d}^{k+4}f=n^4\mathrm{d}^{k}f \]
+		Since the first four are all differentiable, all differentials are differentiable.
+		\end{proof}
+        \item Determine the differential of $f$.
+		\begin{proof}[Answer]
+		According to the recursive relation,
+		\begin{align*}
+		\mathrm{d}^{4k+1}f&=n^{4k}\cos(nx) \\
+		\mathrm{d}^{4k+2}f&=-n^{4k+1}\sin(nx)\\
+		\mathrm{d}^{4k+3}f&=-n^{4k+2}\cos(nx)\\
+		\mathrm{d}^{4k+4}f&=n^{4k+3}\sin(nx)\\
+		\end{align*}
+		\end{proof}
+        \item Prove that differentiation, viewed as a linear map, is not continuous.
+		\begin{proof}
+		Take $x=0$ and $y=\frac{\pi}{n}$, when $n\to\infty$, $|f(x)-f(y)|=2n$ which goes to infinity.
+		This contradicts to the continuity.
+		\end{proof}
+        \item How does this relate to theorem 1.28?
+        \begin{proof}[Answer]
+		This implies the differentiation does not have a finite norm.
+        \end{proof}
+    \end{enumerate}
+\end{enumerate}
+
+\section{Pi}
+\begin{enumerate}
+	\item Write the pseudocode for
+    \begin{enumerate}
+		\item The approximation of $\pi$ using polygons;
+        \begin{proof}
+        \[\pi=\lim_{n\to\infty}\frac{n}{2}\sin\frac{2\pi}{n} \]
+        \end{proof}
+        \item The approximation of $\pi$ using Machin's formula \(\frac{\pi}{4}=4\arctan\frac{1}{5}-\arctan\frac{1}{239}\) and Taylor series;
+		\begin{proof}
+			\[\pi=4\sum_{k=0}^{\infty}\frac{(-1)^k}{2k+1}\left[4\cdot5^{-(2k+1)}-239^{-(2k+1)} \right] \]
+		\end{proof}
+	\end{enumerate}
+    \item Implement the two previous algorithms in MATLAB.
+	\begin{lstlisting}
+    function [ p ] = PiApproximation1( n )
+    	p=4;
+    	t=(sqrt(2)-1); %t0
+        a=t^2; %a0
+    	t=t/(1+sqrt(1+t^2)); %t1
+    	p=p-4*a; %p1
+    	for i=1:n
+        	a=2*t^3/(1-t^2);
+        	t=t/(1+sqrt(1+t^2));
+        	p=p-4*a*2^i;
+    	end
+	end
+
+	function [ p ] = PiApproximation2( n )
+		p=0;
+		for k=0:n
+			p=p+(-1)^k/(2*k+1)
+            *(4*5^(-2*k-1)-239^(-2*k-1));
+		end
+		p=p*4;
+	end
+	\end{lstlisting}
+\end{enumerate}

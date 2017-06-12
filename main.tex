@@ -1,0 +1,43 @@
+\documentclass[12pt,oneside]{book}
+\usepackage[a4paper, margin=1in, headheight=105pt]{geometry}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{calligra}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xparse}
+\usepackage{amsthm}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{reference.bib}
+
+\pagestyle{fancy}
+\lhead{{\chaptername\/} \thechapter}
+\chead{\href{www-personal.umich.edu/~yugtmath}{\calligra{Guangting Yu}}}
+\rhead{\href{https://mcommunity.umich.edu/\#search:yugtmath}{5133709016}}
+\lfoot{\href{http://umji.sjtu.edu.cn/}{\textbf{UM-SJTU Joint Institute}}}
+\rfoot{\href{https://umji.famousedu.com/courses/38}{\textbf{VV570 Numerical Analysis}}}
+
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}[2]{\frac{\ud^{#1}}{\ud{#2}^{#1}}}
+\NewDocumentCommand\Set{mg}{\ensuremath{\bigl\{#1\IfNoValueTF{#2}{}{\bigm|#2}\bigr\}}}
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+
+\begin{document}
+\input{assignment1.tex}
+\input{assignment2.tex}
+\input{assignment3.tex}
+\input{assignment4.tex}
+% \input{project1.tex}
+% \printbibliography
+\end{document}
