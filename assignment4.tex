@@ -1,5 +1,6 @@
 %!TEX root = main.tex
 \titleformat{\section}{\normalfont\large\bfseries}{Exercise \thesection\ --- }{1pt}{}
+% \setcounter{chapter}{3}
 \renewcommand{\chaptername}{Assignment}
 \chapter{Orthogonal Polynomials and Interpolation}
 
@@ -265,7 +266,7 @@ Let $f$ be a continuous function and $P^n$ be its interpolation polynomial in th
 	\begin{enumerate}[(a)]
 		\item Show that for two points $x_0$ and $x_1$, \(P^1(x)=P^0(x)+\frac{f(x_1)-f(x_0)}{x_1-x_0}(x-x_0)\).
 		\begin{proof}
-		We evaluate \(P^1(x)\) at $x_0$ nd $x_1$.
+		We evaluate \(P^1(x)\) at $x_0$ and $x_1$.
 		\begin{align*}
 		P^1(x_0)&=f(x_0)+\frac{f(x_1)-f(x_0)}{x_1-x_0}(x_0-x_0)=f(x_0)\\
 		P^1(x_1)&=f(x_0)+\frac{f(x_1)-f(x_0)}{x_1-x_0}(x_1-x_0)=f(x_0)+f(x_1)-f(x_0)=f(x_1)
