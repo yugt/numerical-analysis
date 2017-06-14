@@ -130,7 +130,7 @@ This sequence defines the Legendre polynomials.
 	\[ Q_n(x)=\begin{cases} \frac{1}{2^{2m+1}(2m+1)!} \sum_{i=m+1}^{2m+1}\binom{2m+1}{i}\frac{(2i)!}{(2i-2m-2)!}x^{2(i-m)-1}(-1)^{2m+1-i} & n=2m+1 \\
 	\frac{1}{2^{2m}(2m)!}\sum_{i=m}^{2m}\binom{2m}{i}\frac{(2i)!}{(2i-2m)!}x^{2(i-m)}(-1)^{2m-i} & n=2m \end{cases} \]
 	We can see that when \(n=2m\), \(Q_n(x)\) is a sum of \(x^{2k}\) with some coefficients, which means it is an even function.
-	when \(n=2m+1\), \(Q_n(x)\) is a sum of \(x^{2k+1}\) with some coefficients, which means it is an odd function.
+	When \(n=2m+1\), \(Q_n(x)\) is a sum of \(x^{2k+1}\) with some coefficients, which means it is an odd function.
 	Since \(Q_n(x)\) is even when $n$ is even, and is odd when $n$ is odd, we have
 	\[ Q_n(-x)=(-1)^n Q_n(x) \]
 	\end{proof}
@@ -299,12 +299,34 @@ Let $f$ be a continuous function and $P^n$ be its interpolation polynomial in th
 		\[ a_{n+1}=\frac{f(x_{n+1})-P^{n}(x_{n+1})}{\prod_{k=0}^{n}(x_{n+1}-x_k)} \]
 		This only depends on \(x_0,\cdots,x_{n+1}\).
 		So we have
-		\[ P^{n+1} \]
+		\[ P^{n+1}(x):=P^n(x)+\frac{f(x_{n+1})-P^{n}(x_{n+1})}{\prod_{k=0}^{n}(x_{n+1}-x_k)}\prod_{k=0}^{n}(x-x_k) \]
+		which interpolates \(f(x)\) in \(x_0,\cdots,x_{n+1}\).
+		This is a polynomial with degree at most $n+1$.
+		By invertibility of Vandermonde matrix, we know that $n+1$ distinct points can uniquely determine a polynomial with degree at most $n+1$.
+		So this definition exactly define the interpolation polynomial of \(f(x)\).
+		By the principle of mathmatical induction, we have it true for all \(j\in\N^*\).
 		\end{proof}
 	\end{enumerate}
 	\item Denoting $a_j$ by \(f[x_0,\cdots, x_j]\), show that
 	\[ P^n(x)=f(x_0)+\sum_{j=1}^{n} f[x_0,\cdots, x_j] \prod_{k=0}^{j-1}(x-x_k) \]
-	\item Prove that for any \(k > 0\),
+	\begin{proof}
+	From the prervious proof, we have already proved that
+	\[ P^n(x)=P^{n-1}(x)+a_n\prod_{k=0}^{n-1}(x-x_k) \]
+	With this recursive relation, we can prove the proposition by induction.
+	For $j=0$, it has been proved that
+	\[ P^0(x)=f(x_0) \]
+	Assume it is true for \(j=n\), then for $n+1$,
+	\[ P^{n+1}(x)=P^{n}(x)+a_{n+1}\prod_{k=0}^{n}(x-x_k) \]
+	By induction assumption,
+	\[ P^n(x)=f(x_0)+\sum_{j=1}^{n} f[x_0,\cdots, x_j] \prod_{k=0}^{j-1}(x-x_k) \]
+	Apply the substitution,
+	\begin{align*}
+	P^{n+1}(x)&=f(x_0)+\sum_{j=1}^{n} f[x_0,\cdots, x_j]\prod_{k=0}^{j-1}(x-x_k)+a_{n+1}\prod_{k=0}^{n}(x-x_k)\\
+	&=f(x_0)+\sum_{j=1}^{n+1} f[x_0,\cdots, x_j]\prod_{k=0}^{j-1}(x-x_k)
+	\end{align*}
+	By the principle of mathmatical induction, we have it true for all \(j\in\N^*\).
+	\end{proof}
+	\item Prove that for any \(k\in\N^*\),
 	\[ \begin{cases} f[x_k] =f(x_k) \\ f[x_0,\cdots, x_k]=\frac{f[x_1,\cdots, x_k]-f[x_0,\cdots, x_{k-1}]}{x_k-x_0} \end{cases} \]
 	\item Write the pseudocode of a clear algorithm to compute \(P^n(x)\) when given $n+1$ nodes \(x_0,\cdots,x_n\) and the value of $f$ at those nodes.
 \end{enumerate}
