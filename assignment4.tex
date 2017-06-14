@@ -264,9 +264,43 @@ Let $f$ be a continuous function and $P^n$ be its interpolation polynomial in th
 	\item Let \(P^0(x)=f(x_0)\) be the interpolation polynomial in a single point $x_0$.
 	\begin{enumerate}[(a)]
 		\item Show that for two points $x_0$ and $x_1$, \(P^1(x)=P^0(x)+\frac{f(x_1)-f(x_0)}{x_1-x_0}(x-x_0)\).
+		\begin{proof}
+		We evaluate \(P^1(x)\) at $x_0$ nd $x_1$.
+		\begin{align*}
+		P^1(x_0)&=f(x_0)+\frac{f(x_1)-f(x_0)}{x_1-x_0}(x_0-x_0)=f(x_0)\\
+		P^1(x_1)&=f(x_0)+\frac{f(x_1)-f(x_0)}{x_1-x_0}(x_1-x_0)=f(x_0)+f(x_1)-f(x_0)=f(x_1)
+		\end{align*}
+		Obviously, \(P^1(x)\) is a polynomial with degree of at most 1, so it represents a straight line, and two distinct points are enough to determine a unique \(P^1(x)\).
+		\end{proof}
 		\item Determine a polynomial $R$ of degree at most two, such that \( P^2(x)=P^1(x)+R(x) \), for three nodes $x_0$, $x_1$ and $x_2$.
+		\begin{proof}
+		Since \(P^2(x)\) is an interpolation polynomial in the points \(x_0,x_1,x_2\), we have \(P^2(x_2)=f(x_2)\).
+		Since \(P^1(x)\) has already satisfied \(P^1(x_0)=f(x_0)\) and \(P^1(x_1)=f(x_1)\), we need \(R(x_0)=R(x_1)=0\).
+		Thus, we construct \(R(x)\) to have zeros at $x_0$ and $x_1$, with an undetermined coefficient $a_2$ to pass through \((x_2,f(x_2))\).
+		\[ P^2(x)=P^1(x)+a_2(x-x_0)(x-x_1) \]
+		With boundary condition, we have
+		\[ f(x_2)=P^1(x_2)+a_2(x_2-x_0)(x_2-x_1) \]
+		So we can solve for $a_2$
+		\[ a_2=\frac{f(x_2)-P^1(x_2)}{(x_2-x_0)(x_2-x_1)} \]
+		Hence, we obtain
+		\[ R(x)=\frac{f(x_2)-P^1(x_2)}{(x_2-x_0)(x_2-x_1)}(x_2-x_0)(x_2-x_1) \]
+		\end{proof}
 		\item Prove by induction that
-		\[ P^j(x)=P^{j-1}(x)+a_j\prod_{k=0}^{j-1}(x-x_k), \quad \textrm{where } a_j \textrm{ only depends on } x_0,\cdots x_j \]
+		\[ P^j(x)=P^{j-1}(x)+a_j\prod_{k=0}^{j-1}(x-x_k), \quad \textrm{ where } a_j \textrm{ only depends on } x_0,\cdots x_j \]
+		\begin{proof}
+		For \(j=1\) and \(j=2\), we have already proved in the previous steps.
+		Assume this holds for \(j=n\), which means for all $m$ such that \(0\leq m\leq n, P^n(x_m)=f(x_m)\).
+		We need to prove
+		\[ \forall m \textrm{ such that } 0\leq m\leq n+1, P^{n}(x_m)+a_{n+1}\prod_{k=0}^{n}(x_m-x_k) = f(x_m)  \]
+		This is obvious for \(0\leq m\leq n\), since the product always contains a zero factor and is zero.
+		So we just need the condition for \(m=n+1\).
+		\[ P^{n}(x_{n+1})+a_{n+1}\prod_{k=0}^{n}(x_{n+1}-x_k) = f(x_{n+1}) \]
+		Then we obtain the coefficient
+		\[ a_{n+1}=\frac{f(x_{n+1})-P^{n}(x_{n+1})}{\prod_{k=0}^{n}(x_{n+1}-x_k)} \]
+		This only depends on \(x_0,\cdots,x_{n+1}\).
+		So we have
+		\[ P^{n+1} \]
+		\end{proof}
 	\end{enumerate}
 	\item Denoting $a_j$ by \(f[x_0,\cdots, x_j]\), show that
 	\[ P^n(x)=f(x_0)+\sum_{j=1}^{n} f[x_0,\cdots, x_j] \prod_{k=0}^{j-1}(x-x_k) \]
