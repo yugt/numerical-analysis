@@ -86,7 +86,7 @@ This sequence defines the Legendre polynomials.
 	\end{proof}
 	To prove that Legendre polynomials are solution to Legendre differential equation, let \(y=\left(x^2-1\right)^n\), so that \(y'=2nx\left(x^2-1\right)^{n-1}\), and 
 	\[ \left(x^2-1\right)y'-2nxy=0 \]
-	Differentiate this expression \(n+1\) times using the general leibniz rule, we obtain
+	Differentiate this expression \(n+1\) times using the general Leibniz rule, we obtain
 	\[ \left(x^2-1\right)\D{n+2}{x}y+2x(n+1)\D{n+1}{x}y+n(n+1)\D{n}{x}y-2n\left[x\D{n+1}{x}y+(x+1)\D{n}{x}y\right]=0 \]
 	which reduces to 
 	\[ \left(x^2-1\right)\D{n+2}{x}y+2x\D{n+1}{x}y-n(n+1)\D{n}{x}y=0 \]
@@ -99,7 +99,7 @@ This sequence defines the Legendre polynomials.
 	which is exactly
 	\[ \left[\left(1-x^2\right)Q_n'(x)\right]'+n(n+1)Q_n(x)=0 \]
 	\end{proof}
-	Now we can prove that two different Legendre polynomials are mutually orthgonal.
+	Now we can prove that two different Legendre polynomials are mutually orthogonal.
 	With the Legendre differential equation, we multiply both sides by \(Q_k(x)\), where \(n\neq k\), and integrate it in \([-1,1]\).
 	\[ \int_{-1}^{1} Q_k(x)\left[\left(1-x^2\right)Q_n'(x)\right]'\ud x + \int_{-1}^{1}Q_k(x)n(n+1)Q_n(x)\ud x=0 \tag{*} \]
 	We also have the Legendre differential equation for \(Q_k(x)\):
@@ -202,7 +202,7 @@ Let $f$ be a continuous function for which we know the eight points defined in t
 Determine $f(2)$.
 \begin{proof}[Answer]
 We apply polynomial interpolation.
-Since there are 8 distinct points to pass through, we need a plynomial with degree at least 7.
+Since there are 8 distinct points to pass through, we need a polynomial with degree at least 7.
 Assume the polynomial has form
 \[ p(x)=a_0 + a_1 x + a_2 x^2 + a_3 x^3 + a_4 x^4 + a_5 x^5 + a_6 x^6 + a_7 x^7 \]
 Then with the given points we have the following system of linear equations
@@ -305,13 +305,13 @@ Let $f$ be a continuous function and $P^n$ be its interpolation polynomial in th
 		This is a polynomial with degree at most $n+1$.
 		By invertibility of Vandermonde matrix, we know that $n+1$ distinct points can uniquely determine a polynomial with degree at most $n+1$.
 		So this definition exactly define the interpolation polynomial of \(f(x)\).
-		By the principle of mathmatical induction, we have it true for all \(j\in\N^*\).
+		By the principle of mathematical induction, we have it true for all \(j\in\N^*\).
 		\end{proof}
 	\end{enumerate}
 	\item Denoting $a_j$ by \(f[x_0,\cdots, x_j]\), show that
 	\[ P^n(x)=f(x_0)+\sum_{j=1}^{n} f[x_0,\cdots, x_j] \prod_{k=0}^{j-1}(x-x_k) \]
 	\begin{proof}
-	From the prervious proof, we have already proved that
+	From the previous proof, we have already proved that
 	\[ P^n(x)=P^{n-1}(x)+a_n\prod_{k=0}^{n-1}(x-x_k) \]
 	With this recursive relation, we can prove the proposition by induction.
 	For $j=0$, it has been proved that
@@ -325,7 +325,7 @@ Let $f$ be a continuous function and $P^n$ be its interpolation polynomial in th
 	P^{n+1}(x)&=f(x_0)+\sum_{j=1}^{n} f[x_0,\cdots, x_j]\prod_{k=0}^{j-1}(x-x_k)+a_{n+1}\prod_{k=0}^{n}(x-x_k)\\
 	&=f(x_0)+\sum_{j=1}^{n+1} f[x_0,\cdots, x_j]\prod_{k=0}^{j-1}(x-x_k)
 	\end{align*}
-	By the principle of mathmatical induction, we have it true for all \(j\in\N^*\).
+	By the principle of mathematical induction, we have it true for all \(j\in\N^*\).
 	\end{proof}
 	\item Prove that for any \(k\in\N^*\),
 	\[ \begin{cases} f[x_k] =f(x_k) \\ f[x_0,\cdots, x_k]=\frac{f[x_1,\cdots, x_k]-f[x_0,\cdots, x_{k-1}]}{x_k-x_0} \end{cases} \]
@@ -344,7 +344,7 @@ Let $f$ be a continuous function and $P^n$ be its interpolation polynomial in th
 	So this is indeed the interpolating polynomial of these $n+2$ points.
 	And the coefficient of \(x^{n+1}\) is
 	\[ \frac{f[x_1,\cdots, x_{n+1}]-f[x_0,\cdots, x_n]}{x_{n+1}-x_0} \]
-	By the principle of mathmatical induction, we have it true for all \(k\in\N^*\).
+	By the principle of mathematical induction, we have it true for all \(k\in\N^*\).
 	\end{proof}
 	\item Write the pseudocode of a clear algorithm to compute \(P^n(x)\) when given $n+1$ nodes \(x_0,\cdots,x_n\) and the value of $f$ at those nodes.
 	\begin{algorithm}[h]
@@ -389,7 +389,7 @@ Denoting \(f[x_i]\) by $f_i$ , \(0\leq i\leq n\), we recursively define the oper
 	&=\frac{\frac{\nabla^mf_{i+1}}{m!h^m}-\frac{\nabla^mf_{i}}{m!h^m}}{(m+1)h}\\
 	&=\frac{\nabla^{m+1}f_i}{(m+1)!h^{m+1}}
 	\end{align*}
-	By the principle of mathmatical induction, we have it true for all \(i,k\in\N\).
+	By the principle of mathematical induction, we have it true for all \(i,k\in\N\).
 	\end{proof}
 	\item Observing that \(\binom{s}{k}=\frac{1}{k!}\prod_{j=0}^{k-1}(s-j)\), prove that 
 	\[ P^n(x)=f_0 + \sum_{k=1}^{n}\binom{s}{k}\nabla^{k} f_0, \quad \textrm{where } s=\frac{x-x_0}{h} \]
