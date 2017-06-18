@@ -1,0 +1,51 @@
+%!TEX root = main.tex
+\titleformat{\section}{\normalfont\large\bfseries}{Exercise \thesection\ --- }{1pt}{}
+% \setcounter{chapter}{3}
+\renewcommand{\chaptername}{Assignment}
+\chapter{Numerical Quadrature}
+
+\section{Lebesgue constant for Chebyshev nodes}
+We recall that the Lebesgue number is defined by \(\Lambda_n=\max_{x\in[a,b]}\sum_{i=0}^{n}|l_i(x)|\) and the Chebyshev polynomials by \(T_n(x)=\cos(n\arccos(x))\).
+The roots \(x_i,0\leq i\leq n\), of Chebyshev polynomials are given by \(x_i=\cos\theta\), with \(\theta_i=\frac{2i+1}{2n+1}\pi\).
+\begin{enumerate}
+	\item Denoting by $L_i$ the Lagrange polynomials associated to the node $x_i$ , prove that
+	\[ \sum_{i=0}^n|L_i(1)|\geq\frac{1}{n+1}\sum_{i=0}^n\cot g\left(\frac{\theta_i}{2}\right) \]
+	\textit{Hint:} observe that for \(x\neq x_i\)
+	\[ L_i(x)=\frac{T_{n+1}(x)}{(x-x_i)T'_{n+1}(x)} \]
+	\item Show that
+	\[ \frac{1}{n+1}\sum_{i=0}^n\cot g\left(\frac{\theta_i}{2}\right)\geq\frac{2}{\pi}\int_{\frac{\theta_0}{2}}^{\frac{\pi}{2}}\cot g(t)\ud t \]
+	\item Using question 2, conclude that \(\Lambda_n\geq\frac{2}{\pi}\ln n\).
+\end{enumerate}
+
+\section{Interpolation}
+Let \(\mathcal{C}[a,b], a,b\in\R\), be the set of the continuous functions over \([a,b]\), endowed with the usual norm for uniform convergence, \(||u||_\infty=\max_{x\in[a,b]}|u(x)|\).
+For some \(n\in\N\) we define the collection of points \((x_k,y_k), k\in\{0,\cdots,n\}\), such that \(a\leq x_0<y_0<x_1<y_1<\cdots<x_n<y_n\leq b\) and consider the following application
+\begin{align*}
+	\phi&:\mathcal{C}[a,b]\to\R^{n+1}\\
+	f&\to(m_0(f),m_1(f),\cdots,m_n(f))
+\end{align*}
+with for all \(k\in\{0,\cdots,n\},m_k(f)=\frac{f(x_k)+f(y_k)}{2}\).
+\begin{enumerate}
+	\item Let \(f\in\mathcal{C}[a,b]\) such tat \(\phi(f)=0\).
+	Show that \(\forall k,\exists\xi_k\in[x_k,y_k]\) such that \(f(\xi_k)=0\).
+	\item Prove that if $\phi$ is restricted to \(\R_n[x]\), then $\phi$ is injective.
+	Conclude on the existence of a unique polynomial \(P_n\in\R_n[x]\) such that \(\phi(P_n)=\phi(f)\).
+	\item Assuming \(f\in\mathcal{C}^{n+1}[a,b]\), prove that
+	\[ ||f-P_n||_\infty=\frac{(b-a)^{n+1}}{(n+1)!}\sup_{x\in[a,b]}|f^{(n+1)}(x)| \]
+\end{enumerate}
+
+\section{Trigonometric polynomials}
+Let \(x\in[0,1]\) and \(\theta\in[-\pi,\pi]\).
+For \(n\in\N\), we denote by
+\[T_n=\Sets{Q_n}{Q_n(\theta)=\frac{a_0}{\sqrt{2}}+\sum_{k=1}^n a_k\cos(k\theta)} \]
+the set of the trigonometric  polynomials of degree less than $n$.
+\begin{enumerate}
+	\item Prove that for any \(0\leq k\leq n, (\cos\theta)^k\in T_n\).
+	Conclude that $\phi$, which maps \(P_n(x)\) into \(Q_n(\theta)=P_n(\cos\theta)\) is a linear bijection from \(\R_n[x]\) into $T_n$.
+	\item For \(f\in\mathcal{C}^{n+1}[−1,1]\), we define \(F(\theta)=f(\cos\theta)\).
+	Show the existence of \(Q_n\in T_n\), such that \(Q_n(\theta_i)=F(\theta_i)\), where \(\theta_i=\frac{2i+1}{2n+1}\pi,0\leq i\leq\pi\).
+	\item Prove that finding \(Q_n\in T_n\) in the previous question is equivalent to solving the linear system \(La=b\), with \(a=(a_0,\cdots,a_n)^T\) such that
+	\[ Q_n(\theta)=\frac{a_0}{\sqrt{2}}+\sum_{k=1}^n a_k\cos(k\theta) \]
+	\item Show that for any \(\theta\in(-\pi,\pi)\), there exists \(\xi\in(-1,1)\), such that
+	\[ F(\theta)-Q_n(\theta)=\frac{\cos(n+1)\theta}{2^n(n+1)!}f^{(n+1)}(\xi) \]
+\end{enumerate}
