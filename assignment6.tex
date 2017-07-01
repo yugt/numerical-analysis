@@ -1,0 +1,26 @@
+%!TEX root = main.tex
+\titleformat{\section}{\normalfont\large\bfseries}{Exercise \thesection\ --- }{1pt}{}
+% \setcounter{chapter}{5}
+\renewcommand{\chaptername}{Assignment}
+\chapter{Numerical Integration}
+
+\section{Richardson Extrapolation}
+In this exercise we investigate Richardson extrapolation, a sequence acceleration method which can be used to improve the rate of convergence of a quadrature formula.
+
+Let \(a_0\in\R\) be a value to be computed and \(A(t), t > 0\) be such that
+\begin{enumerate}
+	\item \(\lim_{t\to0}A(t)=a_0\)
+	\item For all \(a\leq0\), there exists \(a_1,\cdots,a_n\), and \(c_{n+1}\) such that
+	\[ A(t)=a_0+\sum_{i=1}^{n}a_i t^i+R_{n+1}(t),\quad\text{with } |R_{n+1}(t)|\leq c_{n+1}(t);  \]
+\end{enumerate}
+Let \((A_n)_{n\in\N}\) be the sequence defined by
+\[ \begin{cases} A_0(t)&= A(t) \\ A_n(t)&=\frac{r^nA_{i-1}(t)-A_{i-1}(rt)}{r^n-1},\quad n\geq1 \text{ and } r>1 \text{ a constant.} \end{cases} \]
+\begin{enumerate}
+	\item Prove that for all \(n\in\N\), \(A_n(t)= a_0 + O(t^{n+1})\).
+	\item Fixing \(t_0 > 0\) and \(r_0 > 1\), we define a sequence \((t_m)_{m\geq0}\) such that \(t_m = r_0^{-m} t_0\).
+	\begin{enumerate}
+		\item Show that when n is fixed then
+	\end{enumerate}
+
+
+\end{enumerate}
