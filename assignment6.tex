@@ -19,8 +19,41 @@ Let \((A_n)_{n\in\N}\) be the sequence defined by
 	\item Prove that for all \(n\in\N\), \(A_n(t)= a_0 + O(t^{n+1})\).
 	\item Fixing \(t_0 > 0\) and \(r_0 > 1\), we define a sequence \((t_m)_{m\geq0}\) such that \(t_m = r_0^{-m} t_0\).
 	\begin{enumerate}
-		\item Show that when n is fixed then
+		\item Show that when $n$ is fixed then \(\lim_{m\to\infty}A_n(t_m)=a_0\).
+		\item Show that \(A_n(t_m)=a_0+O(r_0^{-m(n+1)}) \)
 	\end{enumerate}
+	\item For $m$ and $n$ two integers, we define a matrix $M$ whose entry at column $n$ and row $m$ is \(A_{m,n}=A_n(t_m)\).
+	Write the pseudocode of a clear algorithm generating the matrix $M$ and returning $a_0$.
+\end{enumerate}
+
+\section{Integration}
+We consider the quadrature formula
+\[ \int_a^b f(x)\ud x\approx(b-a)f\left(\frac{a+b}{2}\right). \]
+\begin{enumerate}
+	\item Why does this formula fall under Peano's method?
+	\item Determine Peano kernel for this formula, and show that it keeps a constant sign.
+	\item Conclude on the existance of \(\xi\in[a,b]\), such that for any \(f\in\mathcal{C}^2[a,b]\), the error is expressed as
+	\[ E(f)=\frac{1}{24}f''(\xi)(b-a)^3. \]
+\end{enumerate}
 
 
+\section{Gauss' Method}
+Let \((q_k)_{k\in\N}\) be a sequence of polynomials such that
+\[ q_k(x)=\frac{\sin(k+1)\theta}{\sin\theta}, \quad\text{with } x=\cos\theta. \]
+\begin{enumerate}
+	\item Let \(w(x)=\sqrt{1-x^2}\) be a function over \((-1,1\).
+	\begin{enumerate}
+		\item Show that $w$ is a weight function.
+		\item Show that the \((q_k)_{k\in\N}\) define a sequence of orthogonal polynomials for the weight function $w$.
+		\item Determine the orthonormal polynomials \((p_k)_k\) associated to \((q_k)_k\).
+	\end{enumerate}
+	\item We consider the Gauss' method of order \(2n+1\) defined by
+	\[ \int_{-1}^{1}f(x)w(x)\ud x\approx \sum_{k=0}^{n}A_kf(x_k) \]
+	\begin{enumerate}
+		\item Determine all the \(x_k,0\leq k\leq n\).
+		\item Show that for all \(0\leq k\leq n\),
+		\[ A_k=\frac{\pi}{n+2}\sin^2\frac{(k+1)\pi}{n+2} \]
+		\item Assuming \(f\in\mathcal{C}^{2n+2}[−1, 1]\), show that there exists \(\xi(−1,1)\), such that the error of the method is given by
+		\[ E_n(f)=c\cdot\frac{f^{(2n+2)}(\xi)}{(2n+2)!},\quad \text{where }c\text{ is a constant to be determined.} \]
+	\end{enumerate}
 \end{enumerate}
