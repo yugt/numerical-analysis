@@ -6,14 +6,66 @@
 
 \section{Lebesgue constant for Chebyshev nodes}
 We recall that the Lebesgue number is defined by \(\Lambda_n=\max_{x\in[a,b]}\sum_{i=0}^{n}|l_i(x)|\) and the Chebyshev polynomials by \(T_n(x)=\cos(n\arccos(x))\).
-The roots \(x_i,0\leq i\leq n\), of Chebyshev polynomials are given by \(x_i=\cos\theta\), with \(\theta_i=\frac{2i+1}{2n+1}\pi\).
+The roots \(x_i,0\leq i\leq n\), of Chebyshev polynomials are given by \(x_i=\cos\theta_i\), with \(\theta_i=\frac{2i+1}{2(n+1)}\pi\).
 \begin{enumerate}
-	\item Denoting by $L_i$ the Lagrange polynomials associated to the node $x_i$ , prove that
-	\[ \sum_{i=0}^n|L_i(1)|\geq\frac{1}{n+1}\sum_{i=0}^n\cot g\left(\frac{\theta_i}{2}\right) \]
-	\textit{Hint:} observe that for \(x\neq x_i\)
-	\[ L_i(x)=\frac{T_{n+1}(x)}{(x-x_i)T'_{n+1}(x)} \]
+	\item Let $L_i$ be the Lagrange polynomials associated to the node $x_i$.
+	\begin{enumerate}
+		\item Prove that
+		\[ L_i(x)=\frac{T_{n+1}(x)}{(x-x_i)T'_{n+1}(x)}. \]
+		\begin{proof}
+		Since the Chebyshev polynomials have roots $x_i$, we can rewrite it as
+		\[ T_{n+1}(x)=c\cdot\prod_{k=0}^{n}(x-x_k). \]
+		Then its derivative is
+		\[ T'_{n+1}=c\cdot\sum_{j=0}^{n}\left[\prod_{\substack{k=0\\k\neq j}}^n(x-x_k) \right]. \]
+		At \(x=x_i\), the products are zero, so only the term without \(x-x_i\) remains, \textit{i.e.},
+		\[ T'_{n+1}=c\cdot\prod_{\substack{k=0\\k\neq i}}^n(x-x_k). \]
+		Then it is easy to get
+		\[ \frac{T_{n+1}(x)}{(x-x_i)T'_{n+1}(x_i)}=\frac{c\cdot\prod_{k=0}^n(x-x_k)}{(x-x_i)\cdot c\cdot\prod_{\substack{k=0\\k\neq i}}^n(x-x_k)}=\prod_{\substack{k=0\\k\neq i}}^n\frac{x-x_k}{x_i-x_k}, \]
+		which is \(L_i(x)\), by definition.
+		\end{proof}
+		\item Show that
+		\[ T'_{n+1}=\frac{n+1}{\sqrt{1-\cos^2\theta}}\sin(n+1)\theta, \]
+		and
+		\[ T'_{n+1}(x_k)=(-1)^k\frac{n+1}{\sin\theta_k}. \]
+		\begin{proof}
+		Apply chain rule on differentiation,
+		\begin{align*}
+			T'_{n+1}(x)&=\D{}{x}{\cos[(n+1)\arccos x]}=\frac{\ud\cos t}{\ud t}\cdot\frac{\ud[(n+1)\arccos x]}{\ud x}\\
+			&=-\sin[(n+1)\arccos x]\cdot\frac{-(n+1)}{\sqrt{1-x^2}}\\
+			&=\frac{n+1}{\sqrt{1-x^2}}\cdot\sin[(n+1)\arccos x].
+		\end{align*}
+		Plug in \(x_k=\cos\theta_k\),
+		\begin{align*}
+			T'_{n+1}(x_k)&=\frac{n+1}{\sin\theta_k}\cdot\sin\left[(n+1)\cdot\frac{2k+1}{2(n+1)}\cdot\pi \right]\\
+			&=\frac{n+1}{\sin\theta_k}\cdot\sin\left[(2k+1)\cdot\frac{\pi}{2}\right]\\
+			&=(-1)^k\frac{n+1}{\sin\theta_k}.
+		\end{align*}
+		\end{proof}
+		\item Conclude that
+		\[ \sum_{i=0}^n|L_i(1)|\geq\frac{1}{n+1}\sum_{i=0}^n\cot \frac{\theta_i}{2}. \]
+		\begin{proof}
+		We apply the substitution from the result of previous questions.
+		\begin{align*}
+		L_i(1)&=\frac{T_{n+1}(1)}{(1-x_i)T'_{n+1}(x_i)}\\
+		&=\frac{1}{(1-\cos\theta_i)\cdot(-1)^i\frac{n+1}{\sin\theta_i}}\\
+		&=\frac{(-1)^{-i}}{n+1}\cdot\frac{\sin\theta_i}{1-\cos\theta_i}	=\frac{(-1)^{-i}}{n+1}\cdot\cot\frac{\theta_i}{2}.
+		\end{align*}
+		So the sum of their absolute values has
+		\[ \sum_{i=0}^n|L_i(1)|=\sum_{i=0}^n\left|\frac{(-1)^{-i}}{n+1}\cot\frac{\theta_i}{2}\right|=\frac{1}{n+1}\sum_{i=0}^{n}\left|\cot\frac{\theta_i}{2} \right|\geq\frac{1}{n+1}\sum_{i=0}^{n}\cot\frac{\theta_i}{2}. \]
+		\end{proof}
+	\end{enumerate}	
 	\item Show that
-	\[ \frac{1}{n+1}\sum_{i=0}^n\cot g\left(\frac{\theta_i}{2}\right)\geq\frac{2}{\pi}\int_{\frac{\theta_0}{2}}^{\frac{\pi}{2}}\cot g(t)\ud t \]
+	\[ \frac{1}{n+1}\sum_{i=0}^n\cot \frac{\theta_i}{2}\geq\frac{2}{\pi}\int_{\frac{\theta_0}{2}}^{\frac{\pi}{2}}\cot t \ud t. \]
+	\begin{proof}
+	By the property of the definite integral, we can split the integral to several integrals,
+	\[ \frac{2}{\pi}\int_{\frac{\theta_0}{2}}^\frac{\pi}{2}\cot t\ud t=\sum_{i=0}^{n-1}\frac{2}{\pi}\int_{\frac{\theta_i}{2}}^\frac{\theta_{i+1}}{2}\cot t\ud t+\frac{2}{\pi}\int_{\frac{\theta_n}{2}}^\frac{\pi}{2}\cot t\ud t. \]
+	Since the cotangent function is monotonically decreasing on the interval \(\left(0,\frac{\pi}{2}\right)\), the integral can be telescoped to have the left value on the whole interval,
+	\[ \int_{\frac{\theta_i}{2}}^\frac{\theta_{i+1}}{2}\cot t\ud t\leq\cot\frac{\theta_i}{2}\cdot\left(\frac{\theta_{i+1}}{2}-\frac{\theta_{i}}{2}\right)=\frac{\pi}{2(n+1)}\cdot\cot\frac{\theta_i}{2}, \]
+	while the last term is
+	\[ \frac{2}{\pi}\int_{\frac{\theta_n}{2}}^\frac{\pi}{2}\cot t\ud t\leq\cot\frac{\theta_n}{2}\left(\frac{\pi}{2}-\frac{\theta_n}{2}\right)=\frac{\pi}{4(n+1)}\cot\frac{\theta_n}{2}\leq\frac{\pi}{2(n+1)}\cot\frac{\theta_n}{2}. \]
+	Combine these two results together,
+	\[ \frac{2}{\pi}\int_{\frac{\theta_0}{2}}^\frac{\pi}{2}\cot t\ud t\leq\sum_{i=0}^{n-1}\frac{2}{\pi}\cdot\frac{\pi}{2(n+1)}\cdot\cot\frac{\theta_i}{2}+\frac{2}{\pi}\cdot\frac{\pi}{2(n+1)}\cot\frac{\theta_n}{2}=\frac{1}{n+1}\sum_{i=0}^{n}\cot\frac{\theta_i}{2} \]
+	\end{proof}
 	\item Using question 2, conclude that \(\Lambda_n\geq\frac{2}{\pi}\ln n\).
 \end{enumerate}
 
@@ -22,7 +74,7 @@ Let \(\mathcal{C}[a,b], a,b\in\R\), be the set of the continuous functions over 
 For some \(n\in\N\) we define the collection of points \((x_k,y_k), k\in\{0,\cdots,n\}\), such that \(a\leq x_0<y_0<x_1<y_1<\cdots<x_n<y_n\leq b\) and consider the following application
 \begin{align*}
 	\phi&:\mathcal{C}[a,b]\to\R^{n+1}\\
-	f&\to(m_0(f),m_1(f),\cdots,m_n(f))
+	f&\to(m_0(f),m_1(f),\cdots,m_n(f)),
 \end{align*}
 with for all \(k\in\{0,\cdots,n\},m_k(f)=\frac{f(x_k)+f(y_k)}{2}\).
 \begin{enumerate}
@@ -31,7 +83,7 @@ with for all \(k\in\{0,\cdots,n\},m_k(f)=\frac{f(x_k)+f(y_k)}{2}\).
 	\item Prove that if $\phi$ is restricted to \(\R_n[x]\), then $\phi$ is injective.
 	Conclude on the existence of a unique polynomial \(P_n\in\R_n[x]\) such that \(\phi(P_n)=\phi(f)\).
 	\item Assuming \(f\in\mathcal{C}^{n+1}[a,b]\), prove that
-	\[ ||f-P_n||_\infty=\frac{(b-a)^{n+1}}{(n+1)!}\sup_{x\in[a,b]}|f^{(n+1)}(x)| \]
+	\[ ||f-P_n||_\infty=\frac{(b-a)^{n+1}}{(n+1)!}\sup_{x\in[a,b]}|f^{(n+1)}(x)|. \]
 \end{enumerate}
 
 \section{Trigonometric polynomials}
@@ -47,5 +99,5 @@ the set of the trigonometric  polynomials of degree less than $n$.
 	\item Prove that finding \(Q_n\in T_n\) in the previous question is equivalent to solving the linear system \(La=b\), with \(a=(a_0,\cdots,a_n)^T\) such that
 	\[ Q_n(\theta)=\frac{a_0}{\sqrt{2}}+\sum_{k=1}^n a_k\cos(k\theta) \]
 	\item Show that for any \(\theta\in(-\pi,\pi)\), there exists \(\xi\in(-1,1)\), such that
-	\[ F(\theta)-Q_n(\theta)=\frac{\cos(n+1)\theta}{2^n(n+1)!}f^{(n+1)}(\xi) \]
+	\[ F(\theta)-Q_n(\theta)=\frac{\cos(n+1)\theta}{2^n(n+1)!}f^{(n+1)}(\xi). \]
 \end{enumerate}
