@@ -24,7 +24,7 @@ The excitation signal is either created by the opening and closing of the vocal 
 Introduced in the early 1960s by Fant, \textit{the source-filter} model assumes that the glottis and vocal tract are fully uncoupled.\cite{corless}
 This initial idea was reused to develop the \textit{Linear Predictive} (LP) model for speech production.\cite{tam39}
 
-In this model the speech signal is the output \(y[n]\) of an \textit{all-pole filter}\footnote{A filer whose frequency response function goes infinite at specific frequencies} \(1/A(z)\) excited by \(x[n]\).\cite{golan}
+In this model the speech signal is the output \(y[n]\) of an \textit{all-pole filter}\footnote{A filter whose frequency response function goes infinite at specific frequencies} \(1/A(z)\) excited by \(x[n]\).\cite{golan}
 Calling \(Y(z)\) and \(X(z)\) the Z-transform of the speech and excitation, respectively, the model is described by\cite{utm}
 \[ Y(z)=\frac{X(z)}{1-\sum_{i=0}^p a_i z^{-i}}=\frac{X(z)}{A_p} \]
 Applying the inverse Z-transform to this equation we observe that the speech can be linearly predicted from the previous $p$ samples and some excitation:
