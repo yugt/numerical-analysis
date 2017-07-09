@@ -5,7 +5,6 @@
 
 
 
-
 \chapter{Linear Prediction of Speech}
 \begin{center}
 Guangting Yu, University of Michigan - Shanghai Jiao Tong University Joint Institute， Minhang, Shanghai, 200135, China
@@ -26,33 +25,95 @@ This initial idea was reused to develop the \textit{Linear Predictive} (LP) mode
 
 In this model the speech signal is the output \(y[n]\) of an \textit{all-pole filter}\footnote{A filter whose frequency response function goes infinite at specific frequencies} \(1/A(z)\) excited by \(x[n]\).\cite{golan}
 Calling \(Y(z)\) and \(X(z)\) the Z-transform of the speech and excitation, respectively, the model is described by\cite{utm}
-\[ Y(z)=\frac{X(z)}{1-\sum_{i=0}^p a_i z^{-i}}=\frac{X(z)}{A_p} \]
+\begin{equation}
+Y(z)=\frac{X(z)}{1-\sum_{i=0}^p a_i z^{-i}}=\frac{X(z)}{A_p}.
+\end{equation}
+
 Applying the inverse Z-transform to this equation we observe that the speech can be linearly predicted from the previous $p$ samples and some excitation:
-\[ y[n] = x[n]+\sum_{i=1}^p a_i y[n-i] \]
+\begin{equation}
+y[n] = x[n]+\sum_{i=1}^p a_i y[n-i].
+\end{equation}
+
+
 Our goal is to explain as much as possible of \(y[n]\) through the $a_i$ , \textit{i.e.}, we look at \(x[n]\) as an error, and we strive at rendering it as small and simple as possible.\cite{gtm135}
 For the sake of clarity we therefore rename \(x[n]\) into \(e[n]\).\cite{cc12}
 The question we want to answer is how to select the $a_i$ such as to minimize the energy
-\[ E=\sum_{m=-\infty}^\infty e^2[m] \]
+\begin{equation}
+E=\sum_{m=-\infty}^\infty e^2[m].
+\end{equation}
+
 
 \begin{enumerate}
 	\item Show that
-	\[ \sum_{m=-\infty}^{\infty} y[m]y[m-i]=\sum_{i=1}^p a_i\sum_{m=-\infty}^{\infty} y[m-i]y[m-i], \quad i=1,\cdots,p  \]
+	\begin{equation}
+	\sum_{m=-\infty}^{\infty} y[m]y[m-i]=\sum_{i=1}^p a_i\sum_{m=-\infty}^{\infty} y[m-i]y[m-i], \quad i=1,\cdots,p.
+	\end{equation}
 	Since those sums are infinite they cannot be computed, and as such need to be truncated.\cite{karris}
 	This can be achieved by applying the covariance method, which consists in windowing the error
-	\[ E_n=\sum_{m=n}^{n+N-1}\left(y[m]-\sum_{i=1}^p a_i y[m-k] \right)^2 \]
+	\begin{equation}
+	E_n=\sum_{m=n}^{n+N-1}\left(y[m]-\sum_{i=1}^p a_i y[m-k] \right)^2.
+	\end{equation}
 	\item Prove that
 	\begin{align*}
-	\phi_n(k,0)&=\sum_{i=0}^p a_i\phi_n(k,i) \\
-	\phi_n(k,i)&=\sum_{m=n}^{n+N-1} y[m-k]y[m-k]
+	\phi_n(k,0)&=\sum_{i=0}^p a_i\phi_n(k,i), \\
+	\phi_n(k,i)&=\sum_{m=n}^{n+N-1} y[m-k]y[m-k].
 	\end{align*}
 	\item Conclude that
-	\[ \begin{pmatrix} \phi(1,0)\\ \vdots \\ \phi(p,0) \end{pmatrix}=\begin{pmatrix} \phi(1,1) & \cdots & \phi(1,p) \\ \vdots & & \vdots \\ \phi(p,1) & \cdots & \phi(p,p) \end{pmatrix}\begin{pmatrix} a_1 \\ \vdots \\ a_p \end{pmatrix} \]
+	\begin{equation}
+	\begin{pmatrix} \phi(1,0)\\ \vdots \\ \phi(p,0) \end{pmatrix}=\begin{pmatrix} \phi(1,1) & \cdots & \phi(1,p) \\ \vdots & & \vdots \\ \phi(p,1) & \cdots & \phi(p,p) \end{pmatrix}\begin{pmatrix} a_1 \\ \vdots \\ a_p \end{pmatrix}.
+	\end{equation}
 	Determining the optimal value for the \(a_i, 1\leq i\leq p\), implies inverting the matrix $\Phi$.
 	This can be achieved through Cholesky decomposition.\cite{gtm216,gtm135}
 \end{enumerate}
 
 
-
 \section{Linear algebra}
 
-\subsection{Remainders}
+
+
+
+\begin{definition}[Hermitian matrix]
+A Matrix \(A\in\C^{n\times n}\) is \emph{Hermitian} if it is equal to the conjugate transpose of itself, \textit{i.e.},
+\begin{equation}
+A=\bar{A}^T.
+\end{equation}
+\end{definition}
+
+
+\begin{definition}[Eigenvalues ad eigenvectors]
+A number \(\lambda\in\C\) is called an \emph{eigenvalue} of \(A\in\C^{n\times n}\) if there exists \(v\in\C^n\) such that \(v\neq0\) and
+\begin{equation}
+Av=\lambda v.
+\end{equation}
+Such a vector $v$ is called an \emph{eigenvector}.
+\end{definition}
+
+
+\begin{definition}[Spectrum]
+The \emph{spectrum} of \(A\in\C^{n\times n}\), denoted as \(\sigma_A\), is the set of all the eigenvalues of $A$, \textit{i.e.},
+\begin{equation}
+\sigma_A\coloneqq\Set{\lambda}{\lambda \text{ is a eigenvalue of }A}
+\end{equation}
+\end{definition}
+
+
+\begin{definition}[Spectrum radius]
+The \emph{spectrum radius} of \(A\in\C^{n\times n}\), denoted as \(\rho(A)\), is the largest absolute value of all its eigenvalues, \textit{i.e.},
+\begin{equation}
+\rho(A)\coloneqq\max_{\lambda\in\sigma_A}|\lambda|
+\end{equation}
+\end{definition}
+
+
+\begin{theorem}
+If a matrix \(A\in\C^{n\times n}\) is Hermitian, then \(\sigma_A\subset\R\).
+\end{theorem}
+\begin{proof}
+Take any eigenvalue \(\lambda\in\sigma_A\) and its corresponding eigen vector \(v\in\C^n\).
+By definition,
+\begin{equation}
+	Av=\lambda v.
+\end{equation}
+Multiply both sides by the conjugate transpose of $v$,
+
+\end{proof}
