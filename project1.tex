@@ -100,7 +100,7 @@ The \emph{spectrum} of \(A\in\C^{n\times n}\), denoted as \(\sigma_A\), is the s
 \begin{definition}[Spectrum radius]
 The \emph{spectrum radius} of \(A\in\C^{n\times n}\), denoted as \(\rho(A)\), is the largest absolute value of all its eigenvalues, \textit{i.e.},
 \begin{equation}
-\rho(A)\coloneqq\max_{\lambda\in\sigma_A}|\lambda|
+\rho(A)\coloneqq\max_{\lambda\in\sigma_A}|\lambda|.
 \end{equation}
 \end{definition}
 
@@ -112,8 +112,26 @@ If a matrix \(A\in\C^{n\times n}\) is Hermitian, then \(\sigma_A\subset\R\).
 Take any eigenvalue \(\lambda\in\sigma_A\) and its corresponding eigen vector \(v\in\C^n\).
 By definition,
 \begin{equation}
-	Av=\lambda v.
+Av=\lambda v.
 \end{equation}
 Multiply both sides by the conjugate transpose of $v$,
-
+\begin{equation}\label{hermitianproof}
+\bar{v}^T Av=\lambda \bar{v}^T v.
+\end{equation}
+The left handside of the equation has the conjugate transpose
+\begin{equation}
+\overline{\bar{v}^T Av}^T=\bar{v}^T\bar{A}^T v.
+\end{equation}
+Since $A$ is Hermitian, we plug in \(\bar{A}^T=A\) on the right handside and
+\begin{equation}
+\overline{\bar{v}^T Av}^T=\bar{v}^TA v,
+\end{equation}
+which implies that \(\bar{v}^T Av\) is also Hermitian.
+Furthurmore, \(\bar{v}^T Av\in\C^{1\times1}\) implies that it is a real number.
+Then, according to equation \ref{hermitianproof}
+\begin{equation}
+\lambda=\frac{\bar{v}^T Av}{\bar{v}^T v}
+\end{equation}
+The denominator is the inner product of $v$ with itself defined on \(\C^n\), so \(\bar{v}^T v\in\R_*^+\) since \(v\neq0\).
+Both the numerator and the denominator are real, so the quotient is also real.
 \end{proof}
