@@ -41,28 +41,6 @@ E=\sum_{m=-\infty}^\infty e^2[m].
 \end{equation}
 
 
-\begin{enumerate}
-	\item Show that
-	\begin{equation}
-	\sum_{m=-\infty}^{\infty} y[m]y[m-i]=\sum_{i=1}^p a_i\sum_{m=-\infty}^{\infty} y[m-i]y[m-i], \quad i=1,\cdots,p.
-	\end{equation}
-	Since those sums are infinite they cannot be computed, and as such need to be truncated.\cite{karris}
-	This can be achieved by applying the covariance method, which consists in windowing the error
-	\begin{equation}
-	E_n=\sum_{m=n}^{n+N-1}\left(y[m]-\sum_{i=1}^p a_i y[m-k] \right)^2.
-	\end{equation}
-	\item Prove that
-	\begin{align*}
-	\phi_n(k,0)&=\sum_{i=0}^p a_i\phi_n(k,i), \\
-	\phi_n(k,i)&=\sum_{m=n}^{n+N-1} y[m-k]y[m-k].
-	\end{align*}
-	\item Conclude that
-	\begin{equation}
-	\begin{pmatrix} \phi(1,0)\\ \vdots \\ \phi(p,0) \end{pmatrix}=\begin{pmatrix} \phi(1,1) & \cdots & \phi(1,p) \\ \vdots & & \vdots \\ \phi(p,1) & \cdots & \phi(p,p) \end{pmatrix}\begin{pmatrix} a_1 \\ \vdots \\ a_p \end{pmatrix}.
-	\end{equation}
-	Determining the optimal value for the \(a_i, 1\leq i\leq p\), implies inverting the matrix $\Phi$.
-	This can be achieved through Cholesky decomposition.\cite{gtm216,gtm135}
-\end{enumerate}
 
 
 \section{Linear algebra}
@@ -194,3 +172,35 @@ The property 3 is called the triangle inequality and will be proved by two famou
 \begin{theorem}[Minkowski inequality]
 
 \end{theorem}
+
+
+
+
+
+
+\begin{enumerate}
+	\item Show that
+	\begin{equation}
+	\sum_{m=-\infty}^{\infty} y[m]y[m-i]=\sum_{i=1}^p a_i\sum_{m=-\infty}^{\infty} y[m-i]y[m-i], \quad i=1,\cdots,p.
+	\end{equation}
+	Since those sums are infinite they cannot be computed, and as such need to be truncated.\cite{karris}
+	This can be achieved by applying the covariance method, which consists in windowing the error
+	\begin{equation}
+	E_n=\sum_{m=n}^{n+N-1}\left(y[m]-\sum_{i=1}^p a_i y[m-k] \right)^2.
+	\end{equation}
+	\item Prove that
+	\begin{align*}
+	\phi_n(k,0)&=\sum_{i=0}^p a_i\phi_n(k,i), \\
+	\phi_n(k,i)&=\sum_{m=n}^{n+N-1} y[m-k]y[m-k].
+	\end{align*}
+	\item Conclude that
+	\begin{equation}
+	\begin{pmatrix} \phi(1,0)\\ \vdots \\ \phi(p,0) \end{pmatrix}=\begin{pmatrix} \phi(1,1) & \cdots & \phi(1,p) \\ \vdots & & \vdots \\ \phi(p,1) & \cdots & \phi(p,p) \end{pmatrix}\begin{pmatrix} a_1 \\ \vdots \\ a_p \end{pmatrix}.
+	\end{equation}
+	Determining the optimal value for the \(a_i, 1\leq i\leq p\), implies inverting the matrix $\Phi$.
+	This can be achieved through Cholesky decomposition.\cite{gtm216,gtm135}
+\end{enumerate}
+
+
+
+
