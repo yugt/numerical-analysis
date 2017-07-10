@@ -132,19 +132,24 @@ Then, according to equation \ref{hermitianproof}
 The denominator is the inner product of $v$ with itself defined on \(\C^n\), so \(\bar{v}^T v\in\R_*^+\) since \(v\neq0\).
 Both the numerator and the denominator are real, so the quotient $\lambda$ is also real.
 Since $\lambda$ is arbitrarily selected from \(\sigma_A\), all elements in \(\sigma_A\) are real.
-Furthermore, \(sigma_A\) has at most $n$ elements, so it is a proper subset of 
+Furthermore, \(\sigma_A\) has at most $n$ elements, so it is a proper subset of 
 \end{proof}
 
 \begin{theorem}
-If \(A,B\in\C^{n\times n}\), then \(sigma_{AB}=\sigma_{BA}\).
+If \(A,B\in\C^{n\times n}\), then \(\sigma_{AB}=\sigma_{BA}\).
 \end{theorem}
 \begin{proof}
 Select \(\lambda\in\sigma_{AB}\).
-\item If \(\lambda=0\), then there exists \(v\in\C^n,v\neq0\) such that \(ABv=\lambda x=0\).
+\item If \(\lambda=0\), then there exists \(v\in\C^n,v\neq0\) such that \(ABv=\lambda v=0\).
 So the matrix $AB$ is not full rank, and thus \(\det(AB)=0\).
 Then \(\det(BA)=\det(AB)=0\), which implies $BA$ is not full rank either.
 Thus, there exists a nonzero vector \(u\in\C^n\) such that \(BAu=0\).
 This means 0 is also an eigenvalue of $BA$.
-\item If \(\lambda\neq0\),
+\item If \(\lambda\neq0\), then there exists \(v\in\C^n,v\neq0\) such that \(ABv=\lambda v\).
+Then, multiply both sides by $B$,
+\begin{equation}
+BABv=\lambda Bv
+\end{equation}
+This also means $BA$ has $\lambda$ as its eigenvalue with corresponding eigenvector \(Bv\).
 
 \end{proof}
