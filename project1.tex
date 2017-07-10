@@ -159,8 +159,8 @@ This directly implies \(\rho(AB)=\rho(BA)\).
 \end{proof}
 
 \begin{definition}[Norm]
-Given a vector space $V$ over a subfield \(\mathcal{F}\subseteq\C\), a \emph{norm} on $V$ is a function \(||\cdot||:V\to\R\) with the following properties:
-\item for all \(c\in\mathcal{F}\) and all \(u,v\in V\),
+Given a vector space $V$ over a subfield \(\mathbb{F}\subseteq\C\), a \emph{norm} on $V$ is a function \(||\cdot||:V\to\R\) with the following properties:
+\item For all \(c\in\mathbb{F}\) and all \(u,v\in V\),
 \begin{enumerate}
 	\item \(||v||\geq0\);
 	\item \(||cv||=|c|\cdot||v||\);
@@ -169,3 +169,14 @@ Given a vector space $V$ over a subfield \(\mathcal{F}\subseteq\C\), a \emph{nor
 \end{enumerate}
 \end{definition}
 
+\begin{theorem}
+The set of functions on \(A\in\C^{n\times n}\) with \(a_{ij}\in A,1\leq i,j\leq n\),
+\begin{equation}
+||A||_p\coloneqq
+\begin{cases} 
+\left(\sum_{1\leq i,j\leq n}|a_{ij}|^p\right)^{\frac{1}{p}} & p\in\N^*\\
+\max_{1\leq i,j\leq n}|a_{ij}| & p=+\infty
+\end{cases}
+\end{equation}
+define a set of matrix norms.
+\end{theorem}
