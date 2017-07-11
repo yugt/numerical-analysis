@@ -149,7 +149,7 @@ Given a vector space $V$ over a subfield \(\mathbb{F}\subseteq\C\), a \emph{norm
 
 \begin{theorem}
 The set of functions on \(A\in\C^{n\times n}\) with \(a_{ij}\in A,1\leq i,j\leq n\),
-\begin{equation}
+\begin{equation}\label{matrixnorm}
 ||A||_p\coloneqq
 \begin{cases} 
 \left(\sum_{1\leq i,j\leq n}|a_{ij}|^p\right)^{\frac{1}{p}} & p\in\N^*\\
@@ -176,7 +176,7 @@ We separate the cases where \(p=+\infty\) and \(p\in\N^*\).
 		\[||A||_\infty=0\implies\max_{1\leq i,j\leq n}|a_{ij}|=0\implies |a_{ij}|=0\implies A=0. \]
 	\end{enumerate}
 	\item For \(p\in\N^*\), only property 1,2 and 4 of the definition will be proved.
-	The property 3 is called the triangle inequality and will be proved in the following context by two famous theorems: H\"{o}lder inequality and Minkowski inequality.
+	The property 3 is called the triangle inequality and will be proved in the following context by three famous theorems: Young's inequality, H\"{o}lder's inequality and Minkowski's inequality.
 	\begin{enumerate}
 		\item Trivially,
 		\[ ||A||_p=\left(\sum_{1\leq i,j\leq n}|a_{ij}|^p\right)^{\frac{1}{p}}\ge0. \]
@@ -189,18 +189,81 @@ We separate the cases where \(p=+\infty\) and \(p\in\N^*\).
 \end{itemize}
 \end{proof}
 
-\begin{theorem}[H\"{o}lder inequality]
 
+
+
+\begin{theorem}[Young's inequality]
+Let \(p,q\in\R_*^+\) be strictly positive real numbers such that \(\frac{1}{p}+\frac{1}{q}=1\).
+Then, for any \(a,b\in\R^+\),
+\[ ab\leq\frac{a^p}{p}+\frac{b^q}{q}. \]
+Equality occurs if and only if
+\[ b=a^{p-1}. \]
 \end{theorem}
+\begin{proof}
+We write the left hand side of the inequality as
+\[ ab=\exp\left(\frac{1}{p}\ln a^p+\frac{1}{q}\ln b^q\right). \]
+Since the exponential function is strictly positive, we apply Jensen's inequality,
+\[ \exp\left(\frac{1}{p}\ln a^p+\frac{1}{q}\ln b^q\right)\leq\frac{1}{p}\exp\left(\ln a^p\right)+\frac{1}{q}\exp\left(\ln b^q\right). \]
+Apply the substitbution and simplification, we get
+\[ ab\leq\frac{a^p}{p}+\frac{b^q}{q}. \]
+\end{proof}
 
 
 
-\begin{theorem}[Minkowski inequality]
 
+\begin{theorem}[H\"{o}lder's inequality]
+Let \(p,q\in(1,+\infty)\) be strictly positive real numbers such that \(\frac{1}{p}+\frac{1}{q}=1\).
+Two sequences of positive real numbers \(a_i,b_i\in\R^+,\forall i\in[1,n]\cap\N\) satisfies
+\[ \sum_{i=1}^n a_ib_i\leq\left(\sum_{i=1}^n a_i^p\right)^{\frac{1}{p}}\left(\sum_{i=1}^n b_i^q\right)^{\frac{1}{q}}. \]
+Equality occurs if and only if \((\forall i, a_i=0)\) or \((\forall i, b_i=0)\) or \((\exists c_1,c_2\in\R_*^+\forall i,c_1a_i^p=c_2b_i^q)\).
 \end{theorem}
+\begin{proof}
+If \(\forall i, a_i=0\) or \(\forall i, b_i=0\), both sides of the inequality are zero, and equality occurs trivially.
+So we consider the case where the right hand side of the inequality is greater than 0.
+Then it is equivalent to prove
+\[ \frac{\sum_{i=1}^n a_ib_i}{\left(\sum_{i=1}^n a_i^p\right)^{\frac{1}{p}}\left(\sum_{i=1}^n b_i^q\right)^{\frac{1}{q}}}\leq1. \]
+Then, we define
+\[ x_j\coloneqq\frac{a_j}{\left(\sum_{i=1}^n a_i^p\right)^{\frac{1}{p}}}, \quad y_j\coloneqq\frac{b_j}{\left(\sum_{i=1}^n b_i^q\right)^{\frac{1}{q}}}, \quad \forall j\in[1,n]\cap\N. \]
+Then it is equivalent to prove
+\[ \sum_{j=1}^n x_jy_j\leq1. \]
+Apply Young's inequality, we have
+\[ x_jy_j\leq\frac{x_j^p}{p}+\frac{y_j^q}{q}, \quad \forall j\in[1,n]\cap\N. \]
+So their sum satisfies
+\[ \sum_{j=1}^n x_jy_j\leq \sum_{j=1}^n\left(\frac{x_j^p}{p}+\frac{y_j^q}{q}\right)=\frac{1}{p}\sum_{j=1}^n x_j^p+\frac{1}{q}\sum_{j=1}^n y_j^q. \]
+According to the definition,
+\[ \sum_{j=1}^n x_j^p=\frac{\sum_{j=1}^n a_j^p}{\sum_{i=1}^n a_i^p}=1. \]
+Similarly,
+\[ \sum_{j=1}^n y_j^q=\frac{\sum_{j=1}^n b_j^q}{\sum_{i=1}^n b_i^q}=1. \]
+Therefore,
+\[ \frac{\sum_{i=1}^n a_ib_i}{\left(\sum_{i=1}^n a_i^p\right)^{\frac{1}{p}}\left(\sum_{i=1}^n b_i^q\right)^{\frac{1}{q}}}=\sum_{j=1}^n x_jy_j\leq\frac{1}{p}+\frac{1}{q}=1. \]
+\end{proof}
 
 
 
+\begin{theorem}[Minkowski's inequality]
+Let \(p\in(1,+\infty)\) be strictly positive real number.
+Two sequences of positive real numbers \(a_i,b_i\in\R^+,\forall i\in[1,n]\cap\N\) satisfies
+\[ \left[\sum_{i=1}^n (a_i+b_i)^p\right]^\frac{1}{p}\leq\left(\sum_{i=1}^n a_i^p\right)^\frac{1}{p}+\left(\sum_{i=1}^n b_i^p\right)^\frac{1}{p}. \]
+\end{theorem}
+\begin{proof}
+Define
+\[ q\coloneqq\frac{p}{p-1} \]
+such that \(\frac{1}{p}+\frac{1}{q}=1\) is satisfied.
+It follows from the H\"{o}lder's inequality that
+\begin{align*}
+\sum_{i=1}^n(a_i+b_i)^p&=\sum_{i=1}^na_i(a_i+b_i)^{p-1}+\sum_{i=1}^nb_i(a_i+b_i)^{p-1}\\
+&\leq \left(\sum_{i=1}^na_i^p\right)^\frac{1}{p}\left[\sum_{i=1}^n(a_i+b_i)^{p}\right]^\frac{1}{q}
++\left(\sum_{i=1}^nb_i^p\right)^\frac{1}{p}\left[\sum_{i=1}^n(a_i+b_i)^{p}\right]^\frac{1}{q}\\
+&=\left[\left(\sum_{i=1}^na_i^p\right)^\frac{1}{p}+\left(\sum_{i=1}^nb_i^p\right)^\frac{1}{p}\right]\left[\sum_{i=1}^n(a_i+b_i)^{p}\right]^\frac{1}{q}
+\end{align*}
+If \(\sum_{i=1}^n (a_i+b_i)^p=0\), the equality occurs trivially.
+So we consider the case where \(\sum_{i=1}^n (a_i+b_i)^p>0\), where we can divide both sides by \(\left[\sum_{i=1}^n (a_i+b_i)^p\right]^{1/q}\) without changing the direction of the inequality.
+Notice that \(1-\frac{1}{q}=\frac{1}{p}\), we get
+\[ \left[\sum_{i=1}^n(a_i+b_i)^p\right]^\frac{1}{p}\leq\left(\sum_{i=1}^n a_i^p\right)^\frac{1}{p}+\left(\sum_{i=1}^n b_i^p\right)^\frac{1}{p}. \]
+\end{proof}
+
+
+With Minkowski's inequality, it is obvious that equation (\ref{matrixnorm}) defines a family of matrix norm, since the triangle inequality required by the norm is a special case of Minkowski's inequality.
 
 
 
@@ -226,7 +289,3 @@ We separate the cases where \(p=+\infty\) and \(p\in\N^*\).
 	Determining the optimal value for the \(a_i, 1\leq i\leq p\), implies inverting the matrix $\Phi$.
 	This can be achieved through Cholesky decomposition.\cite{gtm216,gtm135}
 \end{enumerate}
-
-
-
-
