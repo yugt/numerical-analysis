@@ -159,8 +159,34 @@ The set of functions on \(A\in\C^{n\times n}\) with \(a_{ij}\in A,1\leq i,j\leq 
 define a set of matrix norms.
 \end{theorem}
 \begin{proof}
-The property 1,2 and 4 are trivial.
-The property 3 is called the triangle inequality and will be proved by two famous theorems: H\"{o}lder inequality and Minkowski inequality.
+We separate the cases where \(p=+\infty\) and \(p\in\N^*\).
+\begin{itemize}
+	\item For \(p=+\infty\):
+	\begin{enumerate}%[Property 1]
+		\item Trivially,
+		\[||A||_\infty=\max_{1\leq i,j\leq n}|a_{ij}|\ge0. \]
+		\item Obviously,
+		\[ ||cA||_\infty=\max_{1\leq i,j\leq n}|c\cdot a_{ij}|=\max_{1\leq i,j\leq n}|c|\cdot|a_{ij}|=|c|\max_{1\leq i,j\leq n}|a_{ij}|=|c|\cdot||A||_\infty. \]
+		\item Clearly,
+		\begin{align*}
+		||A+B||_\infty&=\max_{1\leq i,j\leq n}|a_{ij}+b_{ij}|\leq\max_{1\leq i,j\leq n}(|a_{ij}|+|b_{ij}|)\\
+		&\leq\max_{1\leq i,j\leq n}|a_{ij}|+\max_{1\leq i,j\leq n}|b_{ij}|=||A||_\infty+||B||_\infty.
+		\end{align*}
+		\item Apparently,
+		\[||A||_\infty=0\implies\max_{1\leq i,j\leq n}|a_{ij}|=0\implies |a_{ij}|=0\implies A=0. \]
+	\end{enumerate}
+	\item For \(p\in\N^*\), only property 1,2 and 4 of the definition will be proved.
+	The property 3 is called the triangle inequality and will be proved in the following context by two famous theorems: H\"{o}lder inequality and Minkowski inequality.
+	\begin{enumerate}
+		\item Trivially,
+		\[ ||A||_p=\left(\sum_{1\leq i,j\leq n}|a_{ij}|^p\right)^{\frac{1}{p}}\ge0. \]
+		\item Obviously,
+		\[ ||cA||_p=\left(\sum_{1\leq i,j\leq n}|c\cdot a_{ij}|^p\right)^{\frac{1}{p}}=\left(|c|^p\cdot\sum_{1\leq i,j\leq n}|a_{ij}|^p\right)^{\frac{1}{p}}=|c|\cdot||A||_p. \]
+		\setcounter{enumi}{3}
+		\item Clearly,
+		\[||A||_p=0\implies\sum_{1\leq i,j\leq n}|a_{ij}|^p=0\implies |a_{ij}|=0\implies A=0. \]
+	\end{enumerate}
+\end{itemize}
 \end{proof}
 
 \begin{theorem}[H\"{o}lder inequality]
