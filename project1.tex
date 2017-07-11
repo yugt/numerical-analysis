@@ -150,7 +150,7 @@ Given a vector space $V$ over a subfield \(\mathbb{F}\subseteq\C\), a \emph{norm
 \begin{theorem}
 The set of functions on \(A\in\C^{n\times n}\) with \(a_{ij}\in A,1\leq i,j\leq n\),
 \begin{equation}\label{matrixnorm}
-||A||_p\coloneqq
+N_p(A)\coloneqq
 \begin{cases} 
 \left(\sum_{1\leq i,j\leq n}|a_{ij}|^p\right)^{\frac{1}{p}} & p\in\N^*\\
 \max_{1\leq i,j\leq n}|a_{ij}| & p=+\infty
@@ -164,27 +164,33 @@ We separate the cases where \(p=+\infty\) and \(p\in\N^*\).
 	\item For \(p=+\infty\):
 	\begin{enumerate}%[Property 1]
 		\item Trivially,
-		\[||A||_\infty=\max_{1\leq i,j\leq n}|a_{ij}|\ge0. \]
+		\[N_\infty(A)=\max_{1\leq i,j\leq n}|a_{ij}|\ge0. \]
 		\item Obviously,
-		\[ ||cA||_\infty=\max_{1\leq i,j\leq n}|c\cdot a_{ij}|=\max_{1\leq i,j\leq n}|c|\cdot|a_{ij}|=|c|\max_{1\leq i,j\leq n}|a_{ij}|=|c|\cdot||A||_\infty. \]
+		\[ N_\infty(cA)=\max_{1\leq i,j\leq n}|c\cdot a_{ij}|=\max_{1\leq i,j\leq n}|c|\cdot|a_{ij}|=|c|\max_{1\leq i,j\leq n}|a_{ij}|=|c|\cdot N_\infty(A). \]
 		\item Clearly,
 		\begin{align*}
-		||A+B||_\infty&=\max_{1\leq i,j\leq n}|a_{ij}+b_{ij}|\leq\max_{1\leq i,j\leq n}(|a_{ij}|+|b_{ij}|)\\
-		&\leq\max_{1\leq i,j\leq n}|a_{ij}|+\max_{1\leq i,j\leq n}|b_{ij}|=||A||_\infty+||B||_\infty.
+		N_\infty(A+B)&=\max_{1\leq i,j\leq n}|a_{ij}+b_{ij}|\leq\max_{1\leq i,j\leq n}(|a_{ij}|+|b_{ij}|)\\
+		&\leq\max_{1\leq i,j\leq n}|a_{ij}|+\max_{1\leq i,j\leq n}|b_{ij}|=N_\infty(A)+N_\infty(B).
 		\end{align*}
 		\item Apparently,
-		\[||A||_\infty=0\implies\max_{1\leq i,j\leq n}|a_{ij}|=0\implies |a_{ij}|=0\implies A=0. \]
+		\[N_\infty(A)=0\implies\max_{1\leq i,j\leq n}|a_{ij}|=0\implies \forall i,j\in[1,n]\cap\N,|a_{ij}|=0\implies A=0. \]
 	\end{enumerate}
 	\item For \(p\in\N^*\), only property 1,2 and 4 of the definition will be proved.
-	The property 3 is called the triangle inequality and will be proved in the following context by three famous theorems: Young's inequality, H\"{o}lder's inequality and Minkowski's inequality.
+	The property 3 is called the triangle inequality and will be proved in the following context by three famous theorems: Young's inequality \ref{young}, H\"{o}lder's inequality \ref{holder} and Minkowski's inequality \ref{minkowski}.
 	\begin{enumerate}
 		\item Trivially,
-		\[ ||A||_p=\left(\sum_{1\leq i,j\leq n}|a_{ij}|^p\right)^{\frac{1}{p}}\ge0. \]
+		\[ N_p(A)=\left(\sum_{1\leq i,j\leq n}|a_{ij}|^p\right)^{\frac{1}{p}}\ge0. \]
 		\item Obviously,
-		\[ ||cA||_p=\left(\sum_{1\leq i,j\leq n}|c\cdot a_{ij}|^p\right)^{\frac{1}{p}}=\left(|c|^p\cdot\sum_{1\leq i,j\leq n}|a_{ij}|^p\right)^{\frac{1}{p}}=|c|\cdot||A||_p. \]
-		\setcounter{enumi}{3}
-		\item Clearly,
-		\[||A||_p=0\implies\sum_{1\leq i,j\leq n}|a_{ij}|^p=0\implies |a_{ij}|=0\implies A=0. \]
+		\[ N_p(cA)=\left(\sum_{1\leq i,j\leq n}|c\cdot a_{ij}|^p\right)^{\frac{1}{p}}=\left(|c|^p\cdot\sum_{1\leq i,j\leq n}|a_{ij}|^p\right)^{\frac{1}{p}}=|c|\cdot N_p(A). \]
+		\item We need to prove
+		\[ N_p(A+B)\leq N_p(A)+N_p(B), \]
+		which can be explicitly expressed as
+		\[ \left(\sum_{1\leq i,j\leq n}|a_{ij}+b_{ij}|^p\right)^{\frac{1}{p}}\leq\left(\sum_{1\leq i,j\leq n}|a_{ij}|^p\right)^{\frac{1}{p}}+\left(\sum_{1\leq i,j\leq n}|b_{ij}|^p\right)^{\frac{1}{p}}. \]
+		The dimension of the matrix does not matter here, so that we can compress it to sequences,
+		\[ \left[\sum_{i=1}^n|a_i+b_i|^p\right]^\frac{1}{p}\leq\left(\sum_{i=1}^n |a_i|^p\right)^\frac{1}{p}+\left(\sum_{i=1}^n |b_i|^p\right)^\frac{1}{p}. \]
+		This is the discrete sum case of Minkowski's inequality , which will be proved in the following context, with the support of H\"{o}lder's inequality.
+		\item Apparently,
+		\[N_p(A)=0\implies\sum_{1\leq i,j\leq n}|a_{ij}|^p=0\implies \forall i,j\in[1,n]\cap\N,|a_{ij}|=0\implies A=0. \]
 	\end{enumerate}
 \end{itemize}
 \end{proof}
@@ -192,7 +198,7 @@ We separate the cases where \(p=+\infty\) and \(p\in\N^*\).
 
 
 
-\begin{theorem}[Young's inequality]
+\begin{theorem}[Young's inequality]\label{young}
 Let \(p,q\in\R_*^+\) be strictly positive real numbers such that \(\frac{1}{p}+\frac{1}{q}=1\).
 Then, for any \(a,b\in\R^+\),
 \[ ab\leq\frac{a^p}{p}+\frac{b^q}{q}. \]
@@ -211,7 +217,7 @@ Apply the substitbution and simplification, we get
 
 
 
-\begin{theorem}[H\"{o}lder's inequality]
+\begin{theorem}[H\"{o}lder's inequality]\label{holder}
 Let \(p,q\in(1,+\infty)\) be strictly positive real numbers such that \(\frac{1}{p}+\frac{1}{q}=1\).
 Two sequences of positive real numbers \(a_i,b_i\in\R^+,\forall i\in[1,n]\cap\N\) satisfies
 \[ \sum_{i=1}^n a_ib_i\leq\left(\sum_{i=1}^n a_i^p\right)^{\frac{1}{p}}\left(\sum_{i=1}^n b_i^q\right)^{\frac{1}{q}}. \]
@@ -240,7 +246,7 @@ Therefore,
 
 
 
-\begin{theorem}[Minkowski's inequality]
+\begin{theorem}[Minkowski's inequality]\label{minkowski}
 Let \(p\in(1,+\infty)\) be strictly positive real number.
 Two sequences of positive real numbers \(a_i,b_i\in\R^+,\forall i\in[1,n]\cap\N\) satisfies
 \[ \left[\sum_{i=1}^n (a_i+b_i)^p\right]^\frac{1}{p}\leq\left(\sum_{i=1}^n a_i^p\right)^\frac{1}{p}+\left(\sum_{i=1}^n b_i^p\right)^\frac{1}{p}. \]
