@@ -126,7 +126,7 @@ This means 0 is also an eigenvalue of $BA$.
 \item If \(\lambda\neq0\), then there exists \(v\in\C^n,v\neq0\) such that \(ABv=\lambda v\).
 Then, multiply both sides by $B$,
 \begin{equation*}
-BABv=\lambda Bv
+BABv=\lambda Bv.
 \end{equation*}
 This also means \(BA\) has $\lambda$ as its eigenvalue with corresponding eigenvector \(Bv\).
 Combine both cases, \(\lambda\in\sigma_{BA}\).
@@ -136,16 +136,53 @@ Therefore, \(\sigma_{AB}=\sigma_{BA}\).
 This directly implies \(\rho(AB)=\rho(BA)\).
 \end{proof}
 
+\begin{definition}[Positive definite]
+Let \(A\in\R^{n\times n}\) be a symmetrix matrix, \textit{i.e.}, \(A=A^T\).
+It is \emph{positive definite} if and only if
+\[ \forall x\in\R^n,x\neq0 \qquad x^TAx>0.  \]
+\end{definition}
+
+\begin{theorem}
+Let \(A\in\R^{n\times n}\) be a symmetrix matrix, \textit{i.e.}, \(A=A^T\).
+Then $A$ is positive definite if and only if \(\sigma_A\subset\R_*^+\), \textit{i.e.}, all its eigenvalues are positive.
+\end{theorem}
+\begin{proof}
+Select \(\lambda\in\sigma_{A}\) and its corresponding eigenvector \(v\in\R^n,v\neq0\).
+The equation (\ref{hermitianproof}) for \(\R^{n\times n}\) deduces
+\[ \lambda=\frac{v^T Av}{v^Tv} \]
+Since \(v\neq0\), its inner product of itself \(v^Tv>0\).
+Then,
+\[ v^TAv>0 \iff \lambda=\frac{v^TAv}{v^Tv}>0. \]
+\end{proof}
+
+
+
+\subsection{Functional Analysis}
 \begin{definition}[Norm]
 Given a vector space $V$ over a subfield \(\mathbb{F}\subseteq\C\), a \emph{norm} on $V$ is a function \(||\cdot||:V\to\R\) with the following properties:
 \item For all \(c\in\mathbb{F}\) and all \(u,v\in V\),
 \begin{enumerate}
 	\item \(||v||\geq0\);
+	\item \(||v||=0\implies v=0\);
 	\item \(||cv||=|c|\cdot||v||\);
-	\item \(||u+v||\leq||u||+||v||\);
-	\item \(||v||=0\implies v=0\).
+	\item \(||u+v||\leq||u||+||v||\).
 \end{enumerate}
 \end{definition}
+
+
+\begin{definition}[Matrix norm]
+A \emph{matrix norm} is a function \(||\cdot||:\C^{n\times n}\to\R\) if for all \(A,B\in\C^{n\times n}\), it satisfies the following five properties.
+\begin{enumerate}
+	\item \(||A||\geq0\); \hfill Nonnegative
+	\item \(||A||=0\implies A=0\); \hfill Positive
+	\item \(||cA||=|c|\cdot||A||\); \hfill Homogeneous
+	\item \(||A+B||\leq||A||+||B||\); \hfill Subadditive
+	\item \(||AB||\leq||A||\cdot||B||\). \hfill Submultiplicative
+\end{enumerate}
+\cite{horn}
+\end{definition}
+
+
 
 \begin{theorem}
 The set of functions on \(A\in\C^{m\times n}\) with \(a_{ij}\in A,\forall i\in[1,m]\cap\N,j\in[1,n]\cap\N\),
@@ -163,27 +200,30 @@ We separate the cases where \(p=+\infty\) and \(p\in\N^*\).
 \begin{itemize}
 	\item For \(p=+\infty\):
 	\begin{enumerate}%[Property 1]
-		\item Trivially,
+		\item Nonnegative:
 		\[N_\infty(A)=\max_{\substack{1\leq i\leq m\\ 1\leq j\leq n}}|a_{ij}|\ge0. \]
-		\item Obviously,
+		\item Positive:
+		\[N_\infty(A)=0\implies\max_{\substack{1\leq i\leq m\\ 1\leq j\leq n}}|a_{ij}|=0\implies \forall i\in[1,m]\cap\N,j\in[1,n]\cap\N,|a_{ij}|=0, \]
+		which means all the entries of $A$ are 0 and thus \(A=0\).
+		\item Homogeneous:
 		\[ N_\infty(cA)=\max_{\substack{1\leq i\leq m\\ 1\leq j\leq n}}|c\cdot a_{ij}|=\max_{\substack{1\leq i\leq m\\ 1\leq j\leq n}}|c|\cdot|a_{ij}|=|c|\max_{\substack{1\leq i\leq m\\ 1\leq j\leq n}}|a_{ij}|=|c|\cdot N_\infty(A). \]
-		\item Clearly,
+		\item Subadditive:
 		\begin{align*}
 		N_\infty(A+B)&=\max_{\substack{1\leq i\leq m\\ 1\leq j\leq n}}|a_{ij}+b_{ij}|\leq\max_{\substack{1\leq i\leq m\\ 1\leq j\leq n}}(|a_{ij}|+|b_{ij}|)\\
 		&\leq\max_{\substack{1\leq i\leq m\\ 1\leq j\leq n}}|a_{ij}|+\max_{\substack{1\leq i\leq m\\ 1\leq j\leq n}}|b_{ij}|=N_\infty(A)+N_\infty(B).
 		\end{align*}
-		\item Apparently,
-		\[N_\infty(A)=0\implies\max_{\substack{1\leq i\leq m\\ 1\leq j\leq n}}|a_{ij}|=0\implies \forall i\in[1,m]\cap\N,j\in[1,n]\cap\N,|a_{ij}|=0, \]
-		which means all the entries of $A$ are 0 and thus \(A=0\).
 	\end{enumerate}
-	\item For \(p\in\N^*\), only property 1,2 and 4 of the definition will be proved.
-	The property 3 is called the triangle inequality and will be proved in the following context by three famous theorems: Young's inequality \ref{young}, H\"{o}lder's inequality \ref{holder} and Minkowski's inequality \ref{minkowski}.
+	\item For \(p\in\N^*\), only property 1,2 and 3 of the definition will be proved.
+	The property 4 will be proved in the following context by three famous theorems: Young's inequality \ref{young}, H\"{o}lder's inequality \ref{holder} and Minkowski's inequality \ref{minkowski}.
 	\begin{enumerate}
-		\item Trivially,
+		\item Nonnegative:
 		\[ N_p(A)=\left(\sum_{i=1}^m\sum_{j=1}^n|a_{ij}|^p\right)^{\frac{1}{p}}\ge0. \]
-		\item Obviously,
+		\item Positive:
+		\[N_p(A)=0\implies\sum_{i=1}^m\sum_{j=1}^n|a_{ij}|^p=0\implies \forall i\in[1,m]\cap\N,j\in[1,n]\cap\N,|a_{ij}|=0, \]
+		which means all the entries of $A$ are 0 and thus \(A=0\).
+		\item Homogeneous:
 		\[ N_p(cA)=\left(\sum_{i=1}^m\sum_{j=1}^n|c\cdot a_{ij}|^p\right)^{\frac{1}{p}}=\left(|c|^p\cdot\sum_{i=1}^m\sum_{j=1}^n|a_{ij}|^p\right)^{\frac{1}{p}}=|c|\cdot N_p(A). \]
-		\item We need to prove
+		\item As for subadditivity, we need to prove
 		\[ N_p(A+B)\leq N_p(A)+N_p(B), \]
 		which can be explicitly expressed as
 		\[ \left(\sum_{i=1}^m\sum_{j=1}^n|a_{ij}+b_{ij}|^p\right)^{\frac{1}{p}}\leq\left(\sum_{i=1}^m\sum_{j=1}^n|a_{ij}|^p\right)^{\frac{1}{p}}+\left(\sum_{i=1}^m\sum_{j=1}^n|b_{ij}|^p\right)^{\frac{1}{p}}. \]
@@ -194,16 +234,13 @@ We separate the cases where \(p=+\infty\) and \(p\in\N^*\).
 		where \(k\in\N^*\).
 		And we can also extend the domain to \(p\in(1,+\infty)\), without the constraint of being an integer.
 		This is the discrete sum case of Minkowski's inequality , which will be proved in the following context, with the support of H\"{o}lder's inequality.
-		\item Apparently,
-		\[N_p(A)=0\implies\sum_{i=1}^m\sum_{j=1}^n|a_{ij}|^p=0\implies \forall i\in[1,m]\cap\N,j\in[1,n]\cap\N,|a_{ij}|=0, \]
-		which means all the entries of $A$ are 0 and thus \(A=0\).
 	\end{enumerate}
 \end{itemize}
 \end{proof}
 
 
 
-\subsection{Functional Analysis}
+
 \begin{theorem}[Young's inequality]\label{young}
 Let \(p,q\in\R_*^+\) be strictly positive real numbers such that \(\frac{1}{p}+\frac{1}{q}=1\).
 Then, for any \(a,b\in\R^+\),
@@ -250,6 +287,7 @@ Similarly,
 \[ \sum_{j=1}^n y_j^q=\frac{\sum_{j=1}^n b_j^q}{\sum_{i=1}^n b_i^q}=1. \]
 Therefore,
 \[ \frac{\sum_{i=1}^n a_ib_i}{\left(\sum_{i=1}^n a_i^p\right)^{\frac{1}{p}}\left(\sum_{i=1}^n b_i^q\right)^{\frac{1}{q}}}=\sum_{j=1}^n x_jy_j\leq\frac{1}{p}+\frac{1}{q}=1. \]
+\cite{utx}
 \end{proof}
 
 
@@ -275,12 +313,13 @@ If \(\sum_{i=1}^n (a_i+b_i)^p=0\), the equality occurs trivially.
 So we consider the case where \(\sum_{i=1}^n (a_i+b_i)^p>0\), where we can divide both sides by \(\left[\sum_{i=1}^n (a_i+b_i)^p\right]^{1/q}\) without changing the direction of the inequality.
 Notice that \(1-\frac{1}{q}=\frac{1}{p}\), we get
 \[ \left[\sum_{i=1}^n(a_i+b_i)^p\right]^\frac{1}{p}\leq\left(\sum_{i=1}^n a_i^p\right)^\frac{1}{p}+\left(\sum_{i=1}^n b_i^p\right)^\frac{1}{p}. \]
+\cite{utx}
 \end{proof}
 
 
 With Minkowski's inequality, it is easy to prove (\ref{minkowskii}), and thus equation (\ref{matrixnorm}) defines a family of matrix norm, since the triangle inequality required by the norm is a special case of Minkowski's inequality.
 
-\begin{definition}[Matrix norm]
+\begin{definition}[Induced matrix norm]
 The \emph{matrix norm induced by \(N_i\)} with \(i\in\N^*\) for real matrices \(||\cdot||_i:\R^{m\times n}\to\R^+\) is defined to be
 \begin{equation}
 ||A||_i\coloneqq\sup_{\substack{x\neq0\\ x\in\R^n}}\frac{N_i(Ax)}{N_i(x)}=\sup_{\substack{N_i(x)=1 \\ x\in\R^n}}N_i(Ax)
@@ -323,6 +362,28 @@ b_1 \\ b_2 \\ \vdots \\ b_n
 with a simplified experssion
 \[ AX=B \]
 
+\begin{theorem}
+The solution to the system of linear equations 
+\[ AX=B \]
+where \(A\in\R^{n\times n}, X,B\in\R^n\) is unique if nad only if $A$ is invertible.
+\end{theorem}
+\begin{proof}
+If $A$ is invertible, we can find $X$ by multiplying both sides by its inverse,
+\[ A^{-1}AX=A^{-1}B \implies X=A^{-1}B, \]
+which is unique.
+If $A$ is not invertible, then the kernel (null space) of $A$ has nonzero dimension, and its range is proper subspace of \(\R^n\).
+\begin{itemize}
+	\item \(B\in\text{range}(A)\), then the solution exists by definition, but it is not unique.
+	If $X$ is a solution to the system of equations, then we can select a nontrivial element \(v\in\text{null}(A)\) with \(v\neq0\) and a nontrivial scalar \(c\in\R,c\neq0\) so that
+	\[ A(X+cv)=AX+cAv=AX+0=B, \]
+	which means \(X+cv\) is also a solution, and uniqness is violated.
+	\item \(B\notin\text{range}(A)\), then the solution doesn't exist by definition.
+\end{itemize}
+
+
+
+
+\end{proof}
 
 \begin{enumerate}
 	\item Show that
