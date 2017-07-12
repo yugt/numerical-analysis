@@ -218,7 +218,7 @@ We write the left hand side of the inequality as
 \[ ab=\exp\left(\frac{1}{p}\ln a^p+\frac{1}{q}\ln b^q\right). \]
 Since the exponential function is strictly positive, we apply Jensen's inequality,
 \[ \exp\left(\frac{1}{p}\ln a^p+\frac{1}{q}\ln b^q\right)\leq\frac{1}{p}\exp\left(\ln a^p\right)+\frac{1}{q}\exp\left(\ln b^q\right). \]
-Apply the substitbution and simplification, we get
+Apply the substitution and simplification, we get
 \[ ab\leq\frac{a^p}{p}+\frac{b^q}{q}. \]
 \end{proof}
 
@@ -289,11 +289,39 @@ The \emph{matrix norm induced by \(N_i\)} with \(i\in\N^*\) for real matrices \(
 
 \begin{definition}[Condition number]
 If a matrix \(A\in\R^{n\times n}\) is invertible, then we can define the \emph{condition number} of $A$ denoted by \(\kappa_i(A)\) as
-\[ \kappa_i(A)\coloneqq||A||_i||A^{-1}||_i. \]
+\begin{equation}
+\kappa_i(A)\coloneqq||A||_i||A^{-1}||_i.
+\end{equation}
 \end{definition}
 
 
-\subsection{System of Linear Equaitons}
+\subsection{System of Linear Equations}
+The system of linear equations
+\begin{equation}
+\begin{cases}
+a_{11}x_1+\cdots+a_{1n}x_n=b_1\\
+\qquad\qquad\vdots \\
+a_{n1}x_1+\cdots+a_{nn}x_n=b_n
+\end{cases}
+\end{equation}
+can be written in matrix form
+\begin{equation}
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn} \\
+\end{pmatrix}
+\begin{pmatrix}
+x_1 \\ x_2 \\ \vdots \\ x_n
+\end{pmatrix}
+=
+\begin{pmatrix}
+b_1 \\ b_2 \\ \vdots \\ b_n
+\end{pmatrix}
+\end{equation}
+with a simplified experssion
+\[ AX=B \]
 
 
 \begin{enumerate}
