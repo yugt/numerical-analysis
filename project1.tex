@@ -32,6 +32,8 @@ Applying the inverse Z-transform to this equation we observe that the speech can
 y[n] = x[n]+\sum_{i=1}^p a_i y[n-i].
 \end{equation}
 
+
+\section{Model Construction and Simplification}
 Our goal is to explain as much as possible of \(y[n]\) through the $a_i$ , \textit{i.e.}, we look at \(x[n]\) as an error, and we strive at rendering it as small and simple as possible.\cite{gtm135}
 For the sake of clarity we therefore rename \(x[n]\) into \(e[n]\).\cite{cc12}
 The question we want to answer is how to select the $a_i$ such as to minimize the energy
@@ -78,9 +80,10 @@ This can be achieved through Gauss elimination.
 However, we will use Cholesky decomposition \ref{cholesky} in this paper instead.
 
 
-\section{Linear algebra}
-\subsection{Remainder}
+\section{Mathematical Basis}
 
+
+\subsection{Linear Algebra}
 \begin{definition}[Hermitian matrix]
 A Matrix \(A\in\C^{n\times n}\) is \emph{Hermitian} if it is equal to the conjugate transpose of itself, \textit{i.e.},
 \begin{equation*}
@@ -187,6 +190,113 @@ The equation (\ref{hermitianproof}) for \(\R^{n\times n}\) deduces
 Since \(v\neq0\), its inner product of itself \(v^Tv>0\).
 Then,
 \[ v^TAv>0 \iff \lambda=\frac{v^TAv}{v^Tv}>0. \]
+\end{proof}
+
+
+\begin{definition}[Lower triangular matrix]
+A matrix \(A\in\C^{n\times n}\) is \emph{lower triangular} if all the elements above its main diagonal are zero, \textit{i.e.},
+\[ \forall a_{ij}\in A, i<j\implies a_{ij}=0. \]
+\end{definition}
+
+
+\begin{theorem}[Determinant of lower triangular matrix]\label{lowertriangle}
+The determinant of a lower triangular matrix \(A\in\C^{n\times n}\) is the product of its main diagonal elements, \textit{i.e.},
+\[ \det(A)=\prod_{i=1}^n a_{ii} \]
+\end{theorem}
+\begin{proof}
+This is a direct result from cofactor expansion of determinant.
+And Gauss elimination also gives the same result.
+\end{proof}
+
+
+\subsection{System of Linear Equations}
+The system of linear equations
+\begin{equation}
+\begin{cases}
+a_{11}x_1+\cdots+a_{1n}x_n=b_1\\
+\qquad\qquad\vdots \\
+a_{n1}x_1+\cdots+a_{nn}x_n=b_n
+\end{cases}
+\end{equation}
+can be written in matrix form
+\begin{equation}
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn} \\
+\end{pmatrix}
+\begin{pmatrix}
+x_1 \\ x_2 \\ \vdots \\ x_n
+\end{pmatrix}
+=
+\begin{pmatrix}
+b_1 \\ b_2 \\ \vdots \\ b_n
+\end{pmatrix}
+\end{equation}
+with a simplified experssion
+\[ AX=B \]
+
+\begin{theorem}
+The solution to the system of linear equations 
+\[ AX=B \]
+where \(A\in\R^{n\times n}, X,B\in\R^n\) is unique if nad only if $A$ is invertible.
+\end{theorem}
+\begin{proof}
+If $A$ is invertible, we can find $X$ by multiplying both sides by its inverse,
+\[ A^{-1}AX=A^{-1}B \implies X=A^{-1}B, \]
+which is unique.
+If $A$ is not invertible, then the kernel (null space) of $A$ has nonzero dimension, and its range is proper subspace of \(\R^n\).
+\begin{itemize}
+	\item \(B\in\text{range}(A)\), then the solution exists by definition, but it is not unique.
+	If $X$ is a solution to the system of equations, then we can select a nontrivial element \(v\in\text{null}(A)\) with \(v\neq0\) and a nontrivial scalar \(c\in\R,c\neq0\) so that
+	\[ A(X+cv)=AX+cAv=AX+0=B, \]
+	which means \(X+cv\) is also a solution, and uniqness is violated.
+	\item \(B\notin\text{range}(A)\), then the solution doesn't exist by definition.
+\end{itemize}
+\end{proof}
+
+
+\begin{theorem}[Cholesky decomposition]
+\label{cholesky}
+Let \(A\in\R^{n\times n}\) be a symmetric and positive definite matrix.
+Then, there exists a unique lower triangular matrix $L$ with positive diagonal entries such that
+\[ A=LL^T, \]
+where the entries \(l_{ij}\) can be computed as follows: \(l_{11}=\sqrt{a_{11}}\), and for \(i=2\cdots n\),
+\begin{align}
+l_{ij}&=\frac{a_{ij}-\sum_{k=1}^{j-1}l_{ik}l_{jk}}{l_{jj}}, \quad j=1\cdots,i-1, \label{cho1}\\
+l_{ii}&=\sqrt{a_{ii}-\sum_{k=1}^{i-1}l_{ik}^2} \label{cho2}.
+\end{align}
+\end{theorem}
+\begin{proof}
+We prove this by induction on the dimension of the matrix $A$.
+For \(n=1\), the result is trivially true, since a positive scalar has a positive square root.
+Assume this statement holds for \(n=k\), then there exists an lower triangular matrix \(L_k\) such that
+\[ A_k=L_k L_k^T. \]
+Since \(A_{k+1}\) is symmetric, we can partition it as
+\[ A_{k+1}=\begin{pmatrix} A_k & v \\ v^T & \alpha \end{pmatrix} \]
+with \(\alpha\in\R_*^{+},v\in\R^k\).
+We need a lower trianglar factorization in the form
+\[ A_{k+1}=L_{k+1}L_{k+1}^T=\begin{pmatrix} L_k & 0 \\  l^T & \beta \end{pmatrix}\begin{pmatrix} L_k^T & l \\  0 & \beta \end{pmatrix}. \]
+Then we get two equations to satisfy
+\begin{align*}
+	L_k l&=v\\
+	l^T l+\beta^2&=\alpha,
+\end{align*}
+which directly gives the solution
+\begin{align}
+l&=L_k^{-1}v, \label{cho3}\\
+\beta&=\sqrt{\alpha-l^Tl} \label{cho4}.
+\end{align}
+Here, we also need to prove that \(L_k\) is invertible and \(\beta\in\R_*^+\).
+According to Theorem \ref{lowertriangle}, we know that the determinant of \(L_k\) is the product of its diagonal elements, and according to the induction hypothesis, they are all positive.
+So the product is also positive, which means \(L_k\) is invertible, and thus (\ref{cho3}) gives a well defined vector.
+Furthermore, the determinant of the product of two matrices is the product of the determinants of these two matrices, \textit{i.e.},
+\[ \det(A_{k+1})=\det(L_{k+1})\cdot\det(L_{k+1}^T)=\beta^2\det(L_k)^2>0, \]
+where the positiveness of \(\det(A_{k+1})\) comes from the induction hypothesis that it is positive definite, so that its determinant is the product of all its eigenvalues.
+With \(\det(L_k)>0\), we obtain \(\beta^2>0\), which proves that (\ref{cho4}) defines a positive real number.
+So the existance of the Cholesky decomposition is already proved, and it is easy to observe that (\ref{cho2}) is equivalent to (\ref{cho4}), and (\ref{cho1}) is equivalent to (\ref{cho3}).
+\cite{tam37}
 \end{proof}
 
 
@@ -368,67 +478,38 @@ If a matrix \(A\in\R^{n\times n}\) is invertible, then we can define the \emph{c
 \end{definition}
 
 
-\subsection{System of Linear Equations}
-The system of linear equations
-\begin{equation}
-\begin{cases}
-a_{11}x_1+\cdots+a_{1n}x_n=b_1\\
-\qquad\qquad\vdots \\
-a_{n1}x_1+\cdots+a_{nn}x_n=b_n
-\end{cases}
-\end{equation}
-can be written in matrix form
-\begin{equation}
-\begin{pmatrix}
-a_{11} & a_{12} & \cdots & a_{1n} \\
-a_{21} & a_{22} & \cdots & a_{2n} \\
-\vdots & \vdots & \ddots & \vdots \\
-a_{n1} & a_{n2} & \cdots & a_{nn} \\
-\end{pmatrix}
-\begin{pmatrix}
-x_1 \\ x_2 \\ \vdots \\ x_n
-\end{pmatrix}
-=
-\begin{pmatrix}
-b_1 \\ b_2 \\ \vdots \\ b_n
-\end{pmatrix}
-\end{equation}
-with a simplified experssion
-\[ AX=B \]
-
-\begin{theorem}
-The solution to the system of linear equations 
-\[ AX=B \]
-where \(A\in\R^{n\times n}, X,B\in\R^n\) is unique if nad only if $A$ is invertible.
-\end{theorem}
-\begin{proof}
-If $A$ is invertible, we can find $X$ by multiplying both sides by its inverse,
-\[ A^{-1}AX=A^{-1}B \implies X=A^{-1}B, \]
-which is unique.
-If $A$ is not invertible, then the kernel (null space) of $A$ has nonzero dimension, and its range is proper subspace of \(\R^n\).
-\begin{itemize}
-	\item \(B\in\text{range}(A)\), then the solution exists by definition, but it is not unique.
-	If $X$ is a solution to the system of equations, then we can select a nontrivial element \(v\in\text{null}(A)\) with \(v\neq0\) and a nontrivial scalar \(c\in\R,c\neq0\) so that
-	\[ A(X+cv)=AX+cAv=AX+0=B, \]
-	which means \(X+cv\) is also a solution, and uniqness is violated.
-	\item \(B\notin\text{range}(A)\), then the solution doesn't exist by definition.
-\end{itemize}
-\end{proof}
 
 
-\begin{theorem}[Cholesky decomposition]
-\label{cholesky}
-Let \(A\in\R^{n\times n}\) be a symmetric and positive definite matrix.
-Then, there exists a unique lower triangular matrix $L$ with positive diagonal entries such that
-\[ A=LL^T, \]
-where the entries \(l_{ij}\) can be computed as follows: \(h_{11}=\sqrt{a_{11}}\), and for \(i=2\cdots n\),
-\begin{align}
-l_{ij}&=\frac{a_{ij}-\sum_{k=1}^{j-1}l_{ik}l_{jk}}{l_{jj}}, \quad j=1\cdots,i-1, \label{cho1}\\
-l_{ii}&=\sqrt{a_{ii}-\sum_{k=1}^{i-1}l_{ik}^2} \label{cho2}.
-\end{align}
-\end{theorem}
-\begin{proof}
+\section{Algorithms}
+
+\subsection{Cholesky Decomposition}
+By Theorem \ref{cholesky}, we can write algorithms to perform Cholesky decomposition.
+\begin{algorithm}[h]
+		\KwIn{}
+		\KwOut{}
+		A=zeros(n+1,n+1)\;
+		\For{i=1:n+1}
+		{
+			\(A(i,1)=y(i)\)\;
+		}
+		\(a(1)=A(1,1)\)\;
+		\For{j=2:n+1}
+		{
+			\For{i=j:n+1}
+			{
+				\(A(i,j)=\frac{A(i,j-1)-A(i-1,j-1)}{(j-1)h}\)\;
+			}
+			\(a(j)=A(j,j)\)\;
+		}
+		\(f_x=0\)\;
+		\For{i=0:n}
+		{
+			\( f_x=f_x+a(i)x^i \)
+		}
+		\caption{Cholesky Decomposition}
+\end{algorithm}
 
 
-\cite{tam37}
-\end{proof}
+
+
+
