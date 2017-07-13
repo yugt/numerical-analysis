@@ -1,4 +1,4 @@
-function [ L ] = Cholesky( A )
+function [L] = Cholesky(A)
 [n,n]=size(A);
 for k=1:n-1
     A(k,k)=sqrt(A(k,k));
