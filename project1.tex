@@ -189,7 +189,7 @@ Then $A$ is positive definite if and only if \(\sigma_A\subset\R_*^+\), \textit{
 \begin{proof}
 Select \(\lambda\in\sigma_{A}\) and its corresponding eigenvector \(v\in\R^n,v\neq0\).
 The equation (\ref{hermitianproof}) for \(\R^{n\times n}\) deduces
-\[ \lambda=\frac{v^T Av}{v^Tv} \]
+\[ \lambda=\frac{v^T Av}{v^Tv}. \]
 Since \(v\neq0\), its inner product of itself \(v^Tv>0\).
 Then,
 \[ v^TAv>0 \iff \lambda=\frac{v^TAv}{v^Tv}>0. \]
@@ -204,7 +204,7 @@ A matrix \(A\in\C^{n\times n}\) is \emph{lower triangular} if all the elements a
 
 \begin{theorem}[Determinant of lower triangular matrix]\label{lowertriangle}
 The determinant of a lower triangular matrix \(A\in\C^{n\times n}\) is the product of its main diagonal elements, \textit{i.e.},
-\[ \det(A)=\prod_{i=1}^n a_{ii} \]
+\[ \det(A)=\prod_{i=1}^n a_{ii}. \]
 \end{theorem}
 \begin{proof}
 This is a direct result from cofactor expansion of determinant.
@@ -238,7 +238,7 @@ b_1 \\ b_2 \\ \vdots \\ b_n
 \end{pmatrix}
 \end{equation}
 with a simplified experssion
-\[ AX=B \]
+\[ AX=B. \]
 
 \begin{theorem}
 The solution to the system of linear equations 
@@ -283,7 +283,7 @@ We need a lower trianglar factorization in the form
 \[ A_{k+1}=L_{k+1}L_{k+1}^T=\begin{pmatrix} L_k & 0 \\  l^T & \beta \end{pmatrix}\begin{pmatrix} L_k^T & l \\  0 & \beta \end{pmatrix}. \]
 Then we get two equations to satisfy
 \begin{align*}
-	L_k l&=v\\
+	L_k l&=v,\\
 	l^T l+\beta^2&=\alpha,
 \end{align*}
 which directly gives the solution
