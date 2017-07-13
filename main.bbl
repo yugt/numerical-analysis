@@ -1,0 +1,398 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.8 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist[entry]{nty/global/}
+    \entry{tam39}{book}{}
+      \name{author}{2}{}{%
+        {{hash=f9e8aec91056dae5c9beca62a35f4dd4}{%
+           family={Atkinson},
+           familyi={A\bibinitperiod},
+           given={Kendall},
+           giveni={K\bibinitperiod}}}%
+        {{hash=4cdccd91cd0dddb30db3331d8ca33c11}{%
+           family={Han},
+           familyi={H\bibinitperiod},
+           given={Weimin},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{be931c2fb3ad1df4518c66324888a771}
+      \strng{fullhash}{be931c2fb3ad1df4518c66324888a771}
+      \strng{authornamehash}{be931c2fb3ad1df4518c66324888a771}
+      \strng{authorfullhash}{be931c2fb3ad1df4518c66324888a771}
+      \field{sortinit}{A}
+      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-1-4419-0457-7}
+      \field{number}{39}
+      \field{series}{Texts in Applied Mathematics}
+      \field{title}{Theoretical Numerical Analysis}
+      \field{year}{2009}
+      \verb{doi}
+      \verb 10.1007/978-1-4419-0458-4
+      \endverb
+    \endentry
+    \entry{utm}{book}{}
+      \name{author}{1}{}{%
+        {{hash=71493eec7caacea528ad39dbfb52773a}{%
+           family={Axler},
+           familyi={A\bibinitperiod},
+           given={Sheldon},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{71493eec7caacea528ad39dbfb52773a}
+      \strng{fullhash}{71493eec7caacea528ad39dbfb52773a}
+      \strng{authornamehash}{71493eec7caacea528ad39dbfb52773a}
+      \strng{authorfullhash}{71493eec7caacea528ad39dbfb52773a}
+      \field{sortinit}{A}
+      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3}
+      \field{isbn}{978-3-319-11079-0}
+      \field{series}{Undergraduate Texts in Mathematics}
+      \field{title}{Linear Algebra Done Right}
+      \field{year}{2015}
+      \verb{doi}
+      \verb 10.1007/978-3-319-11080-6
+      \endverb
+    \endentry
+    \entry{tam59}{book}{}
+      \name{author}{1}{}{%
+        {{hash=573bbd339542b82a86a003ec760ee5cd}{%
+           family={Bj\"{o}rck},
+           familyi={B\bibinitperiod},
+           given={\r{A}ke},
+           giveni={\r{A}\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{573bbd339542b82a86a003ec760ee5cd}
+      \strng{fullhash}{573bbd339542b82a86a003ec760ee5cd}
+      \strng{authornamehash}{573bbd339542b82a86a003ec760ee5cd}
+      \strng{authorfullhash}{573bbd339542b82a86a003ec760ee5cd}
+      \field{sortinit}{B}
+      \field{sortinithash}{5f6fa000f686ee5b41be67ba6ff7962d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-319-05088-1}
+      \field{number}{59}
+      \field{series}{Texts in Applied Mathematics}
+      \field{title}{Numerical Methods in Matrix Computations}
+      \field{year}{2013}
+      \verb{doi}
+      \verb 10.1007/978-3-319-05089-8
+      \endverb
+    \endentry
+    \entry{corless}{book}{}
+      \name{author}{2}{}{%
+        {{hash=f87439749b533132aed0808d1f5c5860}{%
+           family={Corless},
+           familyi={C\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+        {{hash=54f175eb8cd4d963f7d326b630deb8ec}{%
+           family={Fillion},
+           familyi={F\bibinitperiod},
+           given={Nicolas},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{63897fd0a489663203be9db3d210b963}
+      \strng{fullhash}{63897fd0a489663203be9db3d210b963}
+      \strng{authornamehash}{63897fd0a489663203be9db3d210b963}
+      \strng{authorfullhash}{63897fd0a489663203be9db3d210b963}
+      \field{sortinit}{C}
+      \field{sortinithash}{095692fd22cc3c74d7fe223d02314dbd}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-1-4614-8452-3}
+      \field{title}{A Graduate Introduction to Numerical Methods}
+      \field{year}{2013}
+      \verb{doi}
+      \verb 10.1007/978-1-4614-8453-0
+      \endverb
+    \endentry
+    \entry{dutoit}{book}{}
+      \name{author}{2}{}{%
+        {{hash=ac6056dd9379b8901598c58d55171e5b}{%
+           family={Dutoit},
+           familyi={D\bibinitperiod},
+           given={Thierry},
+           giveni={T\bibinitperiod}}}%
+        {{hash=f1b2d037206f56a112ff85c9e203df06}{%
+           family={Marques},
+           familyi={M\bibinitperiod},
+           given={Ferran},
+           giveni={F\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{0cc63c5fe8e45f2c7d5b7e4e1794ea39}
+      \strng{fullhash}{0cc63c5fe8e45f2c7d5b7e4e1794ea39}
+      \strng{authornamehash}{0cc63c5fe8e45f2c7d5b7e4e1794ea39}
+      \strng{authorfullhash}{0cc63c5fe8e45f2c7d5b7e4e1794ea39}
+      \field{sortinit}{D}
+      \field{sortinithash}{d10b5413de1f3d197b20897dd0d565bb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-0-387-74534-3}
+      \field{title}{Applied Signal Processing: MATLAB-Based Proof of Concept}
+      \field{year}{2009}
+      \verb{doi}
+      \verb 10.1007/978-0-387-74535-0
+      \endverb
+    \endentry
+    \entry{golan}{book}{}
+      \name{author}{1}{}{%
+        {{hash=33dfbf279c01face58589f06fae1d212}{%
+           family={Golan},
+           familyi={G\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{33dfbf279c01face58589f06fae1d212}
+      \strng{fullhash}{33dfbf279c01face58589f06fae1d212}
+      \strng{authornamehash}{33dfbf279c01face58589f06fae1d212}
+      \strng{authorfullhash}{33dfbf279c01face58589f06fae1d212}
+      \field{sortinit}{G}
+      \field{sortinithash}{618d986594b7198ba52cf8b00d348f3f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3}
+      \field{isbn}{978-94-007-2635-2}
+      \field{title}{The Linear Algebra a Beginning Graduate Student Ought to Know}
+      \field{year}{2012}
+      \verb{doi}
+      \verb 10.1007/978-94-007-2636-9
+      \endverb
+    \endentry
+    \entry{horn}{book}{}
+      \name{author}{2}{}{%
+        {{hash=9bb4a65733a04e3bc87721eaa7c62180}{%
+           family={Horn},
+           familyi={H\bibinitperiod},
+           given={Roger\bibnamedelima A.},
+           giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=f375d12600d86a56cfcf2fd5e2e9ff99}{%
+           family={Johnson},
+           familyi={J\bibinitperiod},
+           given={Charles\bibnamedelima R.},
+           giveni={C\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge}%
+      }
+      \strng{namehash}{e84727538e4c0cf83d2edcca8e604a2d}
+      \strng{fullhash}{e84727538e4c0cf83d2edcca8e604a2d}
+      \strng{authornamehash}{e84727538e4c0cf83d2edcca8e604a2d}
+      \strng{authorfullhash}{e84727538e4c0cf83d2edcca8e604a2d}
+      \field{sortinit}{H}
+      \field{sortinithash}{2f664b453ec75da1fe3804ca92633405}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{isbn}{978-0-521-83940-2}
+      \field{title}{Matrix Analysis}
+      \field{year}{2013}
+    \endentry
+    \entry{gtm181}{book}{}
+      \name{author}{1}{}{%
+        {{hash=f2099ff9eeb99f589e56fc275320d050}{%
+           family={Kress},
+           familyi={K\bibinitperiod},
+           given={Rainer},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{f2099ff9eeb99f589e56fc275320d050}
+      \strng{fullhash}{f2099ff9eeb99f589e56fc275320d050}
+      \strng{authornamehash}{f2099ff9eeb99f589e56fc275320d050}
+      \strng{authorfullhash}{f2099ff9eeb99f589e56fc275320d050}
+      \field{sortinit}{K}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-1-4612-6833-8}
+      \field{number}{181}
+      \field{series}{Graduate Texts in Mathematics}
+      \field{title}{Numerical Analysis}
+      \field{year}{1997}
+      \verb{doi}
+      \verb 10.1007/978-1-4612-0599-9
+      \endverb
+    \endentry
+    \entry{cc12}{book}{}
+      \name{author}{2}{}{%
+        {{hash=4de6c0a863f33a1e75a1dc95ceb381eb}{%
+           family={Markel},
+           familyi={M\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=425aba49dbea17c00ce9a0be39c49029}{%
+           family={Jr},
+           familyi={J\bibinitperiod},
+           given={Augustine\bibnamedelima Gray.},
+           giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{a39ef3f64de860240da81309cbfaaec3}
+      \strng{fullhash}{a39ef3f64de860240da81309cbfaaec3}
+      \strng{authornamehash}{a39ef3f64de860240da81309cbfaaec3}
+      \strng{authorfullhash}{a39ef3f64de860240da81309cbfaaec3}
+      \field{sortinit}{M}
+      \field{sortinithash}{c26a05ef03e4429073ed5c825140fac3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-642-66288-1}
+      \field{number}{12}
+      \field{series}{Communication and Cybernetics}
+      \field{title}{Linear Prediction of Speech}
+      \field{year}{1976}
+      \verb{doi}
+      \verb 10.1007/978-3-642-66286-7
+      \endverb
+    \endentry
+    \entry{utx}{book}{}
+      \name{author}{3}{}{%
+        {{hash=c28a2501b2d78ab05e717a1f7a22209f}{%
+           family={Quarteroni},
+           familyi={Q\bibinitperiod},
+           given={Alfio},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2fc2128fdc5c010ed6b8e8af8f05eb88}{%
+           family={Saleri},
+           familyi={S\bibinitperiod},
+           given={Fausto},
+           giveni={F\bibinitperiod}}}%
+        {{hash=24b1add3dc764f3dc6b23394a0253706}{%
+           family={Sacco},
+           familyi={S\bibinitperiod},
+           given={Riccardo},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{913c328789c7d954715fba2cded1899f}
+      \strng{fullhash}{913c328789c7d954715fba2cded1899f}
+      \strng{authornamehash}{913c328789c7d954715fba2cded1899f}
+      \strng{authorfullhash}{913c328789c7d954715fba2cded1899f}
+      \field{sortinit}{Q}
+      \field{sortinithash}{605f5784956f0b01c606746ceb816bf5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-1-4757-7394-1}
+      \field{number}{37}
+      \field{series}{Universitext}
+      \field{title}{Introduction to Functional Analysis}
+      \field{year}{2000}
+      \verb{doi}
+      \verb 10.1007/978-0-387-22750-4
+      \endverb
+    \endentry
+    \entry{tam37}{book}{}
+      \name{author}{3}{}{%
+        {{hash=c28a2501b2d78ab05e717a1f7a22209f}{%
+           family={Quarteroni},
+           familyi={Q\bibinitperiod},
+           given={Alfio},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2fc2128fdc5c010ed6b8e8af8f05eb88}{%
+           family={Saleri},
+           familyi={S\bibinitperiod},
+           given={Fausto},
+           giveni={F\bibinitperiod}}}%
+        {{hash=24b1add3dc764f3dc6b23394a0253706}{%
+           family={Sacco},
+           familyi={S\bibinitperiod},
+           given={Riccardo},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{913c328789c7d954715fba2cded1899f}
+      \strng{fullhash}{913c328789c7d954715fba2cded1899f}
+      \strng{authornamehash}{913c328789c7d954715fba2cded1899f}
+      \strng{authorfullhash}{913c328789c7d954715fba2cded1899f}
+      \field{sortinit}{Q}
+      \field{sortinithash}{605f5784956f0b01c606746ceb816bf5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-1-4757-7394-1}
+      \field{number}{37}
+      \field{series}{Texts in Applied Mathematics}
+      \field{title}{Numerical Mathematics}
+      \field{year}{2000}
+      \verb{doi}
+      \verb 10.1007/978-0-387-22750-4
+      \endverb
+    \endentry
+    \entry{gtm135}{book}{}
+      \name{author}{1}{}{%
+        {{hash=a0bb63935d75258a8310acff0e05e2a3}{%
+           family={Roman},
+           familyi={R\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{a0bb63935d75258a8310acff0e05e2a3}
+      \strng{fullhash}{a0bb63935d75258a8310acff0e05e2a3}
+      \strng{authornamehash}{a0bb63935d75258a8310acff0e05e2a3}
+      \strng{authorfullhash}{a0bb63935d75258a8310acff0e05e2a3}
+      \field{sortinit}{R}
+      \field{sortinithash}{c15bc8eb6936bc6b3c8baa9e8575af53}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3}
+      \field{isbn}{978-0-387-72828-5}
+      \field{number}{135}
+      \field{series}{Graduate Texts in Mathematics}
+      \field{title}{Advanced Linear Algebra}
+      \field{year}{2008}
+      \verb{doi}
+      \verb 10.1007/0-387-27474-X
+      \endverb
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+
