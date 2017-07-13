@@ -46,50 +46,40 @@ This can be achieved by applying the covariance method, which consists in window
 E_n=\sum_{m=n}^{n+N-1}\left(y[m]-\sum_{i=1}^p a_i y[m-i] \right)^2.
 \end{equation}
 Furthermore, we observe the recursive relationship between these terms
-\begin{equation}
+\begin{equation}\label{recursive}
 	\sum_{m=-\infty}^{\infty} y[m]y[m-k]=\sum_{m=-\infty}^{\infty} \left(x[m]+ \sum_{i=1}^p a_iy[m-i]\right)y[m-k], \quad k=1,\cdots,p.
 \end{equation}
 We want to make the prediction unbiased, so the error should have zero mean.
-\[ \sum_{m=-\infty}^{+\infty}x[m]=0 \]
+\[ \sum_{m=-\infty}^{+\infty}x[m]=0. \]
 Furthermorre, we also want the error be independent to the signal
-\[ \sum_{m=-\infty}^{+\infty}x[m]y[m-k] \]
-
-
-
-\begin{enumerate}
-	\item Show that
-	\begin{equation}
-	\sum_{m=-\infty}^{\infty} y[m]y[m-k]=\sum_{i=1}^p a_i\sum_{m=-\infty}^{\infty} y[m-i]y[m-k], \quad k=1,\cdots,p.
-	\end{equation}
-	Since those sums are infinite they cannot be computed, and as such need to be truncated.\cite{karris}
-	This can be achieved by applying the covariance method, which consists in windowing the error
-	\begin{equation}
-	E_n=\sum_{m=n}^{n+N-1}\left(y[m]-\sum_{i=1}^p a_i y[m-i] \right)^2.
-	\end{equation}
-	\item Prove that
-	\begin{align*}
-	\phi_n(k,0)&=\sum_{i=0}^p a_i\phi_n(k,i), \\
-	\phi_n(k,i)&=\sum_{m=n}^{n+N-1} y[m-k]y[m-i].
-	\end{align*}
-	\item Conclude that
-	\begin{equation}
+\[ \sum_{m=-\infty}^{+\infty}x[m]y[m-k]=0. \]
+Then, equation (\ref{recursive}) can be simplified to
+\begin{equation}
+\sum_{m=-\infty}^{\infty} y[m]y[m-k]=\sum_{i=1}^p a_i\sum_{m=-\infty}^{\infty} y[m-i]y[m-k], \quad k=1,\cdots,p.
+\end{equation}
+Again, we apply the truncation to avoid infinite calculation,
+\begin{equation}\label{simple}
+\sum_{m=n}^{n+N-1} y[m]y[m-k]=\sum_{i=1}^p a_i\sum_{m=n}^{n+N-1} y[m-i]y[m-k], \quad k=1,\cdots,p.
+\end{equation}
+Define
+\begin{equation}
+\phi_n(k,i)=\sum_{m=n}^{n+N-1} y[m-k]y[m-i].
+\end{equation}
+Then, equation (\ref{simple}) can be written in
+\begin{equation}
+\phi_n(k,0)=\sum_{i=0}^p a_i\phi_n(k,i), \quad  k=1,\cdots,p.
+\end{equation}
+This can be further written in the form of linear equation
+\begin{equation}
 	\begin{pmatrix} \phi(1,0)\\ \vdots \\ \phi(p,0) \end{pmatrix}=\begin{pmatrix} \phi(1,1) & \cdots & \phi(1,p) \\ \vdots & & \vdots \\ \phi(p,1) & \cdots & \phi(p,p) \end{pmatrix}\begin{pmatrix} a_1 \\ \vdots \\ a_p \end{pmatrix}.
-	\end{equation}
-	Determining the optimal value for the \(a_i, 1\leq i\leq p\), implies inverting the matrix $\Phi$.
-	This can be achieved through Cholesky decomposition.\cite{gtm216,gtm135}
-\end{enumerate}
-
-
-
-
-
-
-
+\end{equation}
+Solving for \(a_i, 1\leq i\leq p\) requires to invert the matrix $\Phi$.
+This can be achieved through Gauss elimination.
+However, we will use Cholesky decomposition \ref{cholesky} in this paper instead.
 
 
 \section{Linear algebra}
 \subsection{Remainder}
-
 
 \begin{definition}[Hermitian matrix]
 A Matrix \(A\in\C^{n\times n}\) is \emph{Hermitian} if it is equal to the conjugate transpose of itself, \textit{i.e.},
@@ -206,10 +196,10 @@ Then,
 Given a vector space $V$ over a subfield \(\mathbb{F}\subseteq\C\), a \emph{norm} on $V$ is a function \(||\cdot||:V\to\R\) with the following properties:
 \item For all \(c\in\mathbb{F}\) and all \(u,v\in V\),
 \begin{enumerate}
-	\item \(||v||\geq0\);
-	\item \(||v||=0\implies v=0\);
-	\item \(||cv||=|c|\cdot||v||\);
-	\item \(||u+v||\leq||u||+||v||\).
+	\item \(||v||\geq0\); \hfill Nonnegative
+	\item \(||v||=0\implies v=0\); \hfill Positive
+	\item \(||cv||=|c|\cdot||v||\); \hfill Homogeneous
+	\item \(||u+v||\leq||u||+||v||\). \hfill Subadditive
 \end{enumerate}
 \end{definition}
 
@@ -237,7 +227,7 @@ N_p(A)\coloneqq
 \max_{\substack{1\leq i\leq m\\ 1\leq j\leq n}}|a_{ij}| & p=+\infty
 \end{cases}
 \end{equation}
-define a set of matrix norms.
+define a set of norms.
 \end{theorem}
 \begin{proof}
 We separate the cases where \(p=+\infty\) and \(p\in\N^*\).
@@ -281,7 +271,6 @@ We separate the cases where \(p=+\infty\) and \(p\in\N^*\).
 	\end{enumerate}
 \end{itemize}
 \end{proof}
-
 
 
 
@@ -423,9 +412,22 @@ If $A$ is not invertible, then the kernel (null space) of $A$ has nonzero dimens
 	which means \(X+cv\) is also a solution, and uniqness is violated.
 	\item \(B\notin\text{range}(A)\), then the solution doesn't exist by definition.
 \end{itemize}
-
-
-
-
 \end{proof}
 
+
+\begin{theorem}[Cholesky decomposition]
+\label{cholesky}
+Let \(A\in\R^{n\times n}\) be a symmetric and positive definite matrix.
+Then, there exists a unique lower triangular matrix $L$ with positive diagonal entries such that
+\[ A=LL^T, \]
+where the entries \(l_{ij}\) can be computed as follows: \(h_{11}=\sqrt{a_{11}}\), and for \(i=2\cdots n\),
+\begin{align}
+l_{ij}&=\frac{a_{ij}-\sum_{k=1}^{j-1}l_{ik}l_{jk}}{l_{jj}}, \quad j=1\cdots,i-1, \label{cho1}\\
+l_{ii}&=\sqrt{a_{ii}-\sum_{k=1}^{i-1}l_{ik}^2} \label{cho2}.
+\end{align}
+\end{theorem}
+\begin{proof}
+
+
+\cite{tam37}
+\end{proof}
