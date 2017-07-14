@@ -1,0 +1,170 @@
+%!TEX root = main.tex
+\titleformat{\section}{\normalfont\large\bfseries}{Exercise \thesection\ --- }{1pt}{}
+% \setcounter{chapter}{6}
+\renewcommand{\chaptername}{Assignment}
+\chapter{Iteration Methods}
+
+
+\section{Lipschitz Continuity vs. Differentiability}
+A function \(f:\R\to\R\) is differentiable in some open interval \(\mathcal{I}\subset\R\) if it is differentiable at every point of \(\mathcal{I}\), and it is Lipschitz continuous if there is a constant \(c\geq0\) such that
+\[ |f(x_1)-f(x_2)\leq c|x_1-x_2| \qquad \forall x_1,x_2\in\mathcal{I}. \]
+\begin{enumerate}
+	\item Give a function, with proof, that is differentiable but its derivative is not bounded in some open interval.
+	\item Suppose $f$ is differentiable and $f'$ is bounded in some open interval.
+	Prove that $f$ is Lipschitz continuous in that interval.
+	\item Give a function, with proof, that is differentiable but not Lipschitz continuous in some open interval.
+	\item Give a function, with proof, that is Lipschitz continuous but not differentiable in some open interval.
+\end{enumerate}
+
+
+
+\section{Fixed Point Iteration Convergence Condition}
+A fixed point of a function \(g(x)\) is a real number \(x^∗\) such that
+\[ g(x^∗ )=x^∗. \]
+Assume the followings:
+\begin{enumerate}
+	\item The function $g$ and its derivative $g'$ are continuous on \([a, b]\), \textit{i.e.}, \(g,g'\in\mathcal{C}[a,b\).
+	\item The function $g$ is bounded below by $a$ and above by $b$, \textit{i.e.}, \(g(x)\in[a, b] \forall x\in[a,b]\).
+	\item The initial point \(x_0\) is an interior point of \([a,b]\), \textit{i.e.}, \(x_0\in(a, b)\).
+\end{enumerate}
+Show the followings are true.
+\begin{enumerate}
+	\item If \(0\leq|g'(x)|<1, \forall x\in[a,b]\), the fixed-point iteration will converge to the unique fixed point \(x^∗\in[a,b]\).
+	\item If \(|g'(x)|>1 \forall x\in[a,b]\), then the fixed-point iteration will never converge to \(x^∗\).
+\end{enumerate}
+
+
+\section{Root Finding}
+Choose a suitable numerical method to find the smallest positive root and the second smallest positive root of the equation
+\[ \tan x = 4x \]
+correct to 3 decimal places.
+Explain your choice.
+
+
+\section{Order of Convergence}
+Suppose that the sequence {a n } converges to the number L, and there is a constant
+0 <λ< ∞
+such that
+|a n+1 − L|
+= λ
+n→∞ |a n − L|
+lim
+then the sequence is said to converge linearly to L. If
+|a n+1 − L|
+= λ
+n→∞ |a − L| 2
+n
+lim
+then the sequence is said to converge quadratically to L. If
+|a n+1 − L|
+= λ
+|a n − L| α
+lim
+n→∞
+then the sequence is said to converge to L with order of convergence α. The constant λ is
+called the asymptotic error. A positive sequence {E n } is said to has an order of at least α
+and a rate of at most λ if there is a sequence {a n } that has an order α and a rate of λ such
+that
+E n ≤ a n
+for all n.
+(a) (2 points) Find the order of convergence and the rate of convergence of the sequence
+a n =
+1
+n
+for
+n ≥ 1
+(b) (2 points) Examine the order of convergence and the rate of convergence of {b n } where
+b 2k =
+1
+ln k
+and
+b 2k+1 =
+1
+k
+for
+k ≥ 1
+(c) (2 points) Use the precise definition above to show the method of fixed-point iteration
+leads an error sequence that has at least linear convergence.
+(d) (2 points) Find the asymptotic error constant for the method of fixed-point iteration
+when it has at least quadratic convergence.
+(e) (2 points) Show the order of convergence of the secant method is
+√
+1+ 5
+2
+
+
+\section{Order of Roots}
+Suppose that f (x) and its derivatives f 0 (x), . . . , f (m) (x) are defined and continuous on an
+interval containing x ∗ , we say that f (x) = 0 has a root of order m at x = x ∗ if and only if
+f (x ∗ ) = 0,
+f 0 (x ∗ ) = 0,
+f 00 (x ∗ ) = 0,
+···
+f (m−1) (x ∗ ) = 0,
+and f (m) (x ∗ ) 6 = 0
+The positive integer m is known as the multiplicity of the root. A root of order m = 1 is
+often called a simple root, and if m > 1, it is called a multiple root
+
+
+(a) (2 points) Prove by induction that there exists a continuous function h(x) so that f (x)
+can be expressed as the product
+f (x) = (x − x ∗ ) m h(x),
+where
+h(x ∗ ) 6 = 0
+if the equation f (x) has a root of order m at x = x ∗ .
+(b) (2 points) Show the following modified Newton’s iteration will produce a sequence that
+converges quadratically to x ∗
+x k = x k−1 − m
+f (x k−1 )
+f 0 (x k−1 )
+if the original Newton’s method produces a sequence converges linearly to the root
+x = x ∗ of order m > 1.
+(c) (2 points) In practice, it is unlikely that m is known, in those cases the following
+version of modified Newton’s method can be applied to accelerate convergence
+x k = x k−1 −
+u(x k−1 )
+u 0 (x k−1 )
+where
+u(x) =
+f (x)
+f 0 (x)
+Explain how this helps to speed up convergence.
+(d) (2 points) Zero is a root of multiplicity of 3 for the function
+f (x) = sin(x 3 ).
+Start with x 0 = 1 and compute x 1 , x 2 , . . ., x 6 first by using the iteration formula in
+part (b) and then by using the iteration formula in part (c). What can you conclude
+based on the values that you have computed.
+(e) (2 points) Compare Newton’s method and the modified version of it in part (c) by
+finding all the roots of the following polynomial correct to 6 decimal places.
+f (x) = x 5 − 11x 4 + 46x 3 − 90x 2 + 81x − 27
+
+
+\section{Problem with Root Finding Methods}
+Provide an example, if exists, of root-finding problems that satisfy the following criteria:
+(a) (2 points) It can be solved by Bisection but not by using fixed-point iteration.
+(b) (2 points) It can be solved by using fixed-point iteration but not by Newton’s method.
+
+
+\section{Complex Root Finding for Analytic Functions}
+Let f : C → C be analytic. The following iteration formula can be used to solve f (z) = 0.
+f (z k )
+z k+1 = z k − "
+f 0 (z k ) −
+!
+#
+f 00 (z k )
+f (z k )
+2f 0 (z k )
+where f 0 (z) and f 00 (z) are the usual complex derivatives of f (z).
+(a) (1 point (bonus)) For the following function
+f (z) = z 7 − 1
+depict the relationship between the initial point z 0 = x 0 + iy 0 and the number of
+iteration required for the sequence to be considered to have converged, that is,
+|z k − z k−1 | 2 < 
+where  = 0.0001.
+(b) (1 point (bonus)) What happens to the relationship in part (a) if we use the criterion
+
+
+ 2
+2 
+where  = 0.0001.
