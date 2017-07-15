@@ -13,7 +13,7 @@ Guangting Yu, University of Michigan - Shanghai Jiao Tong University Joint Insti
 \section*{Abstract}
 This paper finds an efficient algorithm to predict the speech signal based on the previously recorded speech signal.
 The prediction is linear in that the prediction signal can be written as a linear combination of previous signals, while the coefficients are the core of the prediction.
-Obtaining the best coefficents is equivalent to solving a system of linear equations, where Cholesky decomposition is applied to achieve the goal.
+Obtaining the best coefficients is equivalent to solving a system of linear equations, where Cholesky decomposition is applied to achieve the goal.
 The pseudocode and MATLAB\texttrademark\ code of the Cholesky decomposition are implemented.
 
 
@@ -298,7 +298,7 @@ Furthermore, the determinant of the product of two matrices is the product of th
 \[ \det(A_{k+1})=\det(L_{k+1})\cdot\det(L_{k+1}^T)=\beta^2\det(L_k)^2>0, \]
 where the positiveness of \(\det(A_{k+1})\) comes from the induction hypothesis that it is positive definite, so that its determinant is the product of all its eigenvalues.
 With \(\det(L_k)>0\), we obtain \(\beta^2>0\), which proves that (\ref{cho4}) defines a positive real number.
-So the existance of the Cholesky decomposition is already proved, and it is easy to observe that (\ref{cho2}) is equivalent to (\ref{cho4}), and (\ref{cho1}) is equivalent to (\ref{cho3}).
+So the existence of the Cholesky decomposition is already proved, and it is easy to observe that (\ref{cho2}) is equivalent to (\ref{cho4}), and (\ref{cho1}) is equivalent to (\ref{cho3}).
 \cite{tam37}
 \end{proof}
 
