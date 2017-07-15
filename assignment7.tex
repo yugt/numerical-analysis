@@ -19,18 +19,18 @@ A function \(f:\R\to\R\) is differentiable in some open interval \(\mathcal{I}\s
 
 
 \section{Fixed Point Iteration Convergence Condition}
-A fixed point of a function \(g(x)\) is a real number \(x^∗\) such that
-\[ g(x^∗ )=x^∗. \]
+A fixed point of a function \(g(x)\) is a real number \(x^*\) such that
+\[ g(x^* )=x^*. \]
 Assume the followings:
 \begin{enumerate}
-	\item The function $g$ and its derivative $g'$ are continuous on \([a, b]\), \textit{i.e.}, \(g,g'\in\mathcal{C}[a,b\).
-	\item The function $g$ is bounded below by $a$ and above by $b$, \textit{i.e.}, \(g(x)\in[a, b] \forall x\in[a,b]\).
+	\item The function $g$ and its derivative $g'$ are continuous on \([a, b]\), \textit{i.e.}, \(g,g'\in\mathcal{C}[a,b]\).
+	\item The function $g$ is bounded below by $a$ and above by $b$, \textit{i.e.}, \(\forall x\in[a,b],g(x)\in[a, b]\).
 	\item The initial point \(x_0\) is an interior point of \([a,b]\), \textit{i.e.}, \(x_0\in(a, b)\).
 \end{enumerate}
 Show the followings are true.
 \begin{enumerate}
-	\item If \(0\leq|g'(x)|<1, \forall x\in[a,b]\), the fixed-point iteration will converge to the unique fixed point \(x^∗\in[a,b]\).
-	\item If \(|g'(x)|>1 \forall x\in[a,b]\), then the fixed-point iteration will never converge to \(x^∗\).
+	\item If \(0\leq|g'(x)|<1, \forall x\in[a,b]\), the fixed-point iteration will converge to the unique fixed point \(x^*\in[a,b]\).
+	\item If \(|g'(x)|>1, \forall x\in[a,b]\), then the fixed-point iteration will never converge to \(x^*\).
 \end{enumerate}
 
 
@@ -42,129 +42,67 @@ Explain your choice.
 
 
 \section{Order of Convergence}
-Suppose that the sequence {a n } converges to the number L, and there is a constant
-0 <λ< ∞
-such that
-|a n+1 − L|
-= λ
-n→∞ |a n − L|
-lim
-then the sequence is said to converge linearly to L. If
-|a n+1 − L|
-= λ
-n→∞ |a − L| 2
-n
-lim
-then the sequence is said to converge quadratically to L. If
-|a n+1 − L|
-= λ
-|a n − L| α
-lim
-n→∞
-then the sequence is said to converge to L with order of convergence α. The constant λ is
-called the asymptotic error. A positive sequence {E n } is said to has an order of at least α
-and a rate of at most λ if there is a sequence {a n } that has an order α and a rate of λ such
-that
-E n ≤ a n
-for all n.
-(a) (2 points) Find the order of convergence and the rate of convergence of the sequence
-a n =
-1
-n
-for
-n ≥ 1
-(b) (2 points) Examine the order of convergence and the rate of convergence of {b n } where
-b 2k =
-1
-ln k
-and
-b 2k+1 =
-1
-k
-for
-k ≥ 1
-(c) (2 points) Use the precise definition above to show the method of fixed-point iteration
-leads an error sequence that has at least linear convergence.
-(d) (2 points) Find the asymptotic error constant for the method of fixed-point iteration
-when it has at least quadratic convergence.
-(e) (2 points) Show the order of convergence of the secant method is
-√
-1+ 5
-2
+Suppose that the sequence \(\{a_n\}\) converges to the number $L$, and there is a constant \(0<\lambda<\infty\) such that
+\[ \lim_{n\to\infty} \frac{|a_{n+1}-L|}{|a_n-L|^\alpha}=\lambda, \]
+then the sequence is said to converge to $L$ with \emph{order of convergence} $\alpha$.
+The constant $\lambda$ is called the \emph{asymptotic error}.
+A positive sequence \(\{E_n\}\) is said to has an order of at least $\alpha$ and a rate of at most $\lambda$ if there is a sequence \(\{a_n\}\) that has an order $\alpha$ and a rate of $\lambda$ such that
+\[ E_n\leq a_n \quad \forall n\in\N^*. \]
+\begin{enumerate}
+	\item Find the order of convergence and the rate of convergence of the sequence
+	\[ a_n=\frac{1}{n} \quad \forall n\geq1 \]
+	\item Examine the order of convergence and the rate of convergence of \(\{b_n\}\) where
+	\[ b_{2k}=\frac{1}{\ln k} \quad \text{and} b_{2k+1}=\frac{1}{k} \quad \forall k\geq1. \]
+	\item Use the precise definition above to show the method of fixed-point iteration leads an error sequence that has at least linear convergence.
+	\item Find the asymptotic error constant for the method of fixed-point iteration when it has at least quadratic convergence.
+	\item Show the order of convergence of the secant method is \(\frac{\sqrt{5}+1}{2} \).
+\end{enumerate}
 
 
 \section{Order of Roots}
-Suppose that f (x) and its derivatives f 0 (x), . . . , f (m) (x) are defined and continuous on an
-interval containing x ∗ , we say that f (x) = 0 has a root of order m at x = x ∗ if and only if
-f (x ∗ ) = 0,
-f 0 (x ∗ ) = 0,
-f 00 (x ∗ ) = 0,
-···
-f (m−1) (x ∗ ) = 0,
-and f (m) (x ∗ ) 6 = 0
-The positive integer m is known as the multiplicity of the root. A root of order m = 1 is
-often called a simple root, and if m > 1, it is called a multiple root
+Suppose that \(f(x)\) and its derivatives \(f'(x),\cdots, f^{(m)}(x)\) are defined and continuous on an
+interval containing $x^*$, we say that \(f(x)=0\) has a \emph{root of order} $m$ at \(x=x^*\) if and only ifi
+\[ f(x^*)=0, f'(x^*)=0, f''(x^*)=0, \cdots, f^{(m-1)}(x^*)=0, \text{ and } f^{(m)}(x^*)\neq0. \]
+The positive integer $m$ is known as the \emph{multiplicity of the root}.
+A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it is called a \emph{multiple root}.
+\begin{enumerate}
+	\item Prove by induction that there exists a continuous function \(h(x)\) so that \(f(x)\) can be expressed as the product
+	\[ f(x)=(x-x^*)^m h(x), \quad \text{where} \quad h(x^*)\neq0 \]
+	if the equation \(f(x)\) has a root of order $m$ at \(x=x^*\).
+	\item Show the following modified Newton's iteration will produce a sequence that converges quadratically to $x^*$
+	\[ x_k=x_{k-1}-m\cdot\frac{f(x_{k-1})}{f'(x_{k-1})} \]
+	if the original Newton's method produces a sequence converges linearly to the root \(x=x^*\) of order \(m>1\).
+	\item In practice, it is unlikely that m is known, in those cases the following version of modified Newton's method can be applied to accelerate convergence
+	\[ x_k=x_{k-1}-\frac{u(x_{k-1})}{u'(x_{k-1})}, \quad \text{where} \quad u(x)=\frac{f(x)}{f'(x)} \]
+	Explain how this helps to speed up convergence.
+	\item Zero is a root of multiplicity of 3 for the function
+	\[ f(x)=\sin(x^3). \]
+	Start with \(x_0=1\) and compute \(x_1, x_2, \cdots, x_6\) first by using the iteration formula in part (b) and then by using the iteration formula in part (c).
+	What can you conclude based on the values that you have computed?
+	\item Compare Newton's method and the modified version of it in part (c) by finding all the roots of the following polynomial correct to 6 decimal places.
+	\[ f(x)=x^5 - 11x^4 + 46x^3 - 90x^2 + 81x - 27 \]
+\end{enumerate}
 
-
-(a) (2 points) Prove by induction that there exists a continuous function h(x) so that f (x)
-can be expressed as the product
-f (x) = (x − x ∗ ) m h(x),
-where
-h(x ∗ ) 6 = 0
-if the equation f (x) has a root of order m at x = x ∗ .
-(b) (2 points) Show the following modified Newton’s iteration will produce a sequence that
-converges quadratically to x ∗
-x k = x k−1 − m
-f (x k−1 )
-f 0 (x k−1 )
-if the original Newton’s method produces a sequence converges linearly to the root
-x = x ∗ of order m > 1.
-(c) (2 points) In practice, it is unlikely that m is known, in those cases the following
-version of modified Newton’s method can be applied to accelerate convergence
-x k = x k−1 −
-u(x k−1 )
-u 0 (x k−1 )
-where
-u(x) =
-f (x)
-f 0 (x)
-Explain how this helps to speed up convergence.
-(d) (2 points) Zero is a root of multiplicity of 3 for the function
-f (x) = sin(x 3 ).
-Start with x 0 = 1 and compute x 1 , x 2 , . . ., x 6 first by using the iteration formula in
-part (b) and then by using the iteration formula in part (c). What can you conclude
-based on the values that you have computed.
-(e) (2 points) Compare Newton’s method and the modified version of it in part (c) by
-finding all the roots of the following polynomial correct to 6 decimal places.
-f (x) = x 5 − 11x 4 + 46x 3 − 90x 2 + 81x − 27
 
 
 \section{Problem with Root Finding Methods}
 Provide an example, if exists, of root-finding problems that satisfy the following criteria:
-(a) (2 points) It can be solved by Bisection but not by using fixed-point iteration.
-(b) (2 points) It can be solved by using fixed-point iteration but not by Newton’s method.
+\begin{enumerate}
+	\item It can be solved by Bisection but not by using fixed-point iteration.
+	\item It can be solved by using fixed-point iteration but not by Newton's method.
+\end{enumerate}
 
 
 \section{Complex Root Finding for Analytic Functions}
-Let f : C → C be analytic. The following iteration formula can be used to solve f (z) = 0.
-f (z k )
-z k+1 = z k − "
-f 0 (z k ) −
-!
-#
-f 00 (z k )
-f (z k )
-2f 0 (z k )
-where f 0 (z) and f 00 (z) are the usual complex derivatives of f (z).
-(a) (1 point (bonus)) For the following function
-f (z) = z 7 − 1
-depict the relationship between the initial point z 0 = x 0 + iy 0 and the number of
-iteration required for the sequence to be considered to have converged, that is,
-|z k − z k−1 | 2 < 
-where  = 0.0001.
-(b) (1 point (bonus)) What happens to the relationship in part (a) if we use the criterion
-
-
- 2
-2 
-where  = 0.0001.
+Let \(f:\C\to\C\) be analytic.
+The following iteration formula can be used to solve \(f(z)=0\).
+\[ z_{k+1}=z_k \frac{f(z_k)}{f'(z_k)-\frac{f''(z_k)}{2f'(x_k)}\cdot f(z_k)} \]
+where \(f'(z)\) and \(f''(z)\) are the usual complex derivatives of \(f(z)\).
+\begin{enumerate}
+	\item For the following function
+	\[ f(z)=z^7-1 \]
+	depict the relationship between the initial point \(z_0=x_0+i y_0\) and the number of iteration required for the sequence to be considered to have converged, \textit{i.e.},
+	\[ |z_k - z_{k-1}|^2 < \varepsilon \quad \text{where } \varepsilon=0.0001. \]
+	\item What happens to the relationship in part (a) if we use the criterion 
+	\[ \left| |z_k|^2 - |z_{k-1}|^2\right| < \varepsilon \quad \text{where } \varepsilon=0.0001. \]
+\end{enumerate}
