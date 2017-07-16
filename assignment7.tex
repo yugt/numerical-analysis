@@ -79,6 +79,10 @@ Show the followings are true.
 	Define the Lipschitz constant to be
 	\[ c=\sup_{\xi\in(a,b)} g'(\xi). \]
 	It comes from definition that \(0\leq c<1\).
+	Define \(h(x)=g(x)-x\), and it is monotonically decreasing since
+	\[ h'(x)=g'(x)-1\in(-2,0), \quad \forall x\in[a,b]. \]
+	Thus, \(h(x)=0\) has at most one solution, and so is \(g(x)=x\).
+	This proves the uniqueness of \(x^*\).
 	Then apply Cauchy's Mean Value Theorem \ref{cauchymean},
 	\[ |g(x_{k+1})-g(x_k)|=|g'(\xi)|\cdot|x_{k+1}-x_k|\leq c\cdot|x_{k+1}-x_k|. \]
 	Apply the iteration relation,
@@ -87,8 +91,42 @@ Show the followings are true.
 	\[ |g(x_{k+1})-g(x_k)|\leq c\cdot|g(x_k)-g(x_{k-1})|. \]
 	Such a recursive relation deduces
 	\[ |g(x_{k+1})-g(x_k)|\leq c^k\cdot|g(x_1)-g(x_0)|. \]
+	Notice that \(g(x)\) is bounded on \([a,b]\), so \(|g(x_1)-g(x_0)|\) is finite, and with \(0\leq c<1\),
+	\[ \lim_{k\to\infty}|g(x_{k+1})-g(x_k)|\leq |g(x_1)-g(x_0)|\cdot\lim_{k\to\infty}c^k=0. \]
+	Furthermore, the iteration relation also implies
+	\[ \lim_{k\to\infty}(x_{k+2}-x_{k+1})=0. \]
+	Together with the boundedness of \(x_n\) and \(g\), we conclude that the sequence \(x_n\) is convergent to some \(x^*\in[a,b]\).
 	\end{proof}
 	\item If \(|g'(x)|>1, \forall x\in[a,b]\), then the fixed-point iteration will never converge to \(x^*\).
+	\begin{proof}
+	Since \(g'(x)\) is continuous on the interval \([a,b]\),
+	\[ |g'(x)|>1 \implies (\forall x\in[a,b], g'(x)>1) \quad \text{or} \quad (\forall x\in[a,b], g'(x)<-1) \]
+	So we discuss over these two cases.
+	\begin{itemize}
+		\item{\(g'(x)>1\):} define \(h(x)=g(x)-x\), and it is monotonically increasing since
+		\[ h'(x)=g'(x)-1>0. \]
+		Thus, \(h'(x)=0\) has at most one solution, and so is \(g(x)=x\).
+		\item{\(g'(x)<-1\):} define \(h(x)=g(x)+x\), and it is monotonically decreasing since
+		\[ h'(x)=g'(x)+1<0. \]
+		Thus, \(h'(x)=0\) has at most one solution, and so is \(g(x)=x\).
+	\end{itemize}
+	In both cases, if the solution \(x^*\) exists, then it is unique.
+	Define the Lipschitz constant to be
+	\[ c=\inf_{\xi\in(a,b)} |g'(\xi)|. \]
+	It comes from definition that \(c>1\).
+	Then apply Cauchy's Mean Value Theorem \ref{cauchymean},
+	\[ |g(x_{k+1})-g(x_k)|=|g'(\xi)|\cdot|x_{k+1}-x_k|\geq c\cdot|x_{k+1}-x_k|. \]
+	Apply the iteration relation,
+	\[ x_{k+1}=g(x_k), \qquad x_k=g(x_{x-1}), \]
+	we get
+	\[ |g(x_{k+1})-g(x_k)|\geq c\cdot|g(x_k)-g(x_{k-1})|. \]
+	Such a recursive relation deduces
+	\[ |g(x_{k+1})-g(x_k)|\geq c^k\cdot|g(x_1)-g(x_0)|=c^{k+1}|x_1-x_0|. \]
+	Since \(x^*\) is unique, if \(x_0\neq x^*\), then \(x_1=g(x_0)\neq x_0\).
+	Then, with \(c>1\),
+	\[ \lim_{k\to\infty}|g(x_{k+1})-g(x_k)|\geq |x_1-x_0|\lim_{k\to\infty} c^{k+1}=+\infty \]
+	which implies that the iteration does not converge.
+	\end{proof}
 \end{enumerate}
 
 
@@ -99,18 +137,18 @@ correct to 3 decimal places.
 Explain your choice.
 
 
-\section{Order of convergence}
+\section{Order and rate of convergence}
 Suppose that the sequence \(\{a_n\}\) converges to the number $L$, and there is a constant \(0<\lambda<\infty\) such that
 \[ \lim_{n\to\infty} \frac{|a_{n+1}-L|}{|a_n-L|^\alpha}=\lambda, \]
 then the sequence is said to converge to $L$ with \emph{order of convergence} $\alpha$.
 The constant $\lambda$ is called the \emph{asymptotic error}.
-A positive sequence \(\{E_n\}\) is said to has an order of at least $\alpha$ and a rate of at most $\lambda$ if there is a sequence \(\{a_n\}\) that has an order $\alpha$ and a rate of $\lambda$ such that
+A positive sequence \(\{E_n\}\) is said to has an order of at least $\alpha$ and a \emph{rate} of at most $\lambda$ if there is a sequence \(\{a_n\}\) that has an order $\alpha$ and a rate of $\lambda$ such that
 \[ E_n\leq a_n \quad \forall n\in\N^*. \]
 \begin{enumerate}
 	\item Find the order of convergence and the rate of convergence of the sequence
 	\[ a_n=\frac{1}{n} \quad \forall n\geq1 \]
 	\item Examine the order of convergence and the rate of convergence of \(\{b_n\}\) where
-	\[ b_{2k}=\frac{1}{\ln k} \quad \text{and} b_{2k+1}=\frac{1}{k} \quad \forall k\geq1. \]
+	\[ b_{2k}=\frac{1}{\ln k} \quad \text{and} \quad b_{2k+1}=\frac{1}{k} \quad \forall k\geq1. \]
 	\item Use the precise definition above to show the method of fixed-point iteration leads an error sequence that has at least linear convergence.
 	\item Find the asymptotic error constant for the method of fixed-point iteration when it has at least quadratic convergence.
 	\item Show the order of convergence of the secant method is \(\frac{\sqrt{5}+1}{2} \).
