@@ -5,7 +5,7 @@
 \chapter{Iteration Methods}
 
 
-\section{Lipschitz Continuity vs. Differentiability}
+\section{Lipschitz continuity vs. Differentiability}
 A function \(f:\R\to\R\) is differentiable in some open interval \(\mathcal{I}\subset\R\) if it is differentiable at every point of \(\mathcal{I}\), and it is Lipschitz continuous if there is a constant \(c\geq0\) such that
 \[ |f(x_1)-f(x_2)\leq c|x_1-x_2| \qquad \forall x_1,x_2\in\mathcal{I}. \]
 \begin{enumerate}
@@ -17,7 +17,31 @@ A function \(f:\R\to\R\) is differentiable in some open interval \(\mathcal{I}\s
 	\item Suppose $f$ is differentiable and $f'$ is bounded in some open interval.
 	Prove that $f$ is Lipschitz continuous in that interval.
 	\begin{proof}
-
+	We first introduce Cauchy's Mean Value Theorem,
+	\begin{theorem}[Mean Value Theorem]
+	\label{cauchymean}
+	If a function $f$ is continuous on the closed interval \([a,b]\), and differentiable on the open interval \((a,b)\), then there exists a point \(\xi\in(a,b)\) such that
+	\[ f'(\xi)=\frac{f(b)-f(a)}{b-a}. \]
+	\end{theorem}
+	\begin{proof}
+	Define \(g(x)=f(x)-rx\), where $r$ is a constant.
+	Since $f$ is continuous on \([a,b]\) and {}differentiable on \((a,b)\), the same is true for $g$.
+	We now want to choose $r$
+	\begin{align*}
+	g(a)=g(b)&\iff f(a)-ra=f(b)-rb\\
+	&\iff r(b-a)=f(b)-f(a) \\
+	&\iff r=\frac{f(b)-f(a)}{b-a}\cdot
+	\end{align*}
+	By Rolle's theorem \ref{rolle}, since $g$ is differentiable and \(g(a)=g(b)\), there is some \(\xi\in(a,b)\) for which \(g'(\xi)=0\) and thus 
+	\[ f'(\xi)=g'(\xi)+r=\frac{f(b)-f(a)}{b-a}\]
+	as required.
+	\end{proof}
+	Then, we can set the Lipschitz constant to be
+	\[ c=\sup_{\xi\in(a,b)}|f'(\xi)|. \]
+	Since $f'$ is bounded on \((a,b)\), the Lipschitz constant is finite.
+	Apply Cauchy's Mean Value Theorem, we get
+	\[ \forall x_1,x_2\in(a,b),\quad |f(x_1)-f(x_2)|=|f'(\xi)|\cdot|x_1-x_2|\leq c\cdot|x_1-x_2|, \]
+	which means $f$ is Lipschitz continuous.
 	\end{proof}
 	\item Give a function, with proof, that is differentiable but not Lipschitz continuous in some open interval.
 	\begin{proof}
@@ -39,7 +63,7 @@ A function \(f:\R\to\R\) is differentiable in some open interval \(\mathcal{I}\s
 
 
 
-\section{Fixed Point Iteration Convergence Condition}
+\section{Fixed point iteration convergence condition}
 A fixed point of a function \(g(x)\) is a real number \(x^*\) such that
 \[ g(x^* )=x^*. \]
 Assume the followings:
@@ -51,18 +75,31 @@ Assume the followings:
 Show the followings are true.
 \begin{enumerate}
 	\item If \(0\leq|g'(x)|<1, \forall x\in[a,b]\), the fixed-point iteration will converge to the unique fixed point \(x^*\in[a,b]\).
+	\begin{proof}
+	Define the Lipschitz constant to be
+	\[ c=\sup_{\xi\in(a,b)} g'(\xi). \]
+	It comes from definition that \(0\leq c<1\).
+	Then apply Cauchy's Mean Value Theorem \ref{cauchymean},
+	\[ |g(x_{k+1})-g(x_k)|=|g'(\xi)|\cdot|x_{k+1}-x_k|\leq c\cdot|x_{k+1}-x_k|. \]
+	Apply the iteration relation,
+	\[ x_{k+1}=g(x_k), \qquad x_k=g(x_{x-1}), \]
+	we get
+	\[ |g(x_{k+1})-g(x_k)|\leq c\cdot|g(x_k)-g(x_{k-1})|. \]
+	Such a recursive relation deduces
+	\[ |g(x_{k+1})-g(x_k)|\leq c^k\cdot|g(x_1)-g(x_0)|. \]
+	\end{proof}
 	\item If \(|g'(x)|>1, \forall x\in[a,b]\), then the fixed-point iteration will never converge to \(x^*\).
 \end{enumerate}
 
 
-\section{Root Finding}
+\section{Root finding}
 Choose a suitable numerical method to find the smallest positive root and the second smallest positive root of the equation
 \[ \tan x = 4x \]
 correct to 3 decimal places.
 Explain your choice.
 
 
-\section{Order of Convergence}
+\section{Order of convergence}
 Suppose that the sequence \(\{a_n\}\) converges to the number $L$, and there is a constant \(0<\lambda<\infty\) such that
 \[ \lim_{n\to\infty} \frac{|a_{n+1}-L|}{|a_n-L|^\alpha}=\lambda, \]
 then the sequence is said to converge to $L$ with \emph{order of convergence} $\alpha$.
@@ -80,7 +117,7 @@ A positive sequence \(\{E_n\}\) is said to has an order of at least $\alpha$ and
 \end{enumerate}
 
 
-\section{Order of Roots}
+\section{Order of roots}
 Suppose that \(f(x)\) and its derivatives \(f'(x),\cdots, f^{(m)}(x)\) are defined and continuous on an
 interval containing $x^*$, we say that \(f(x)=0\) has a \emph{root of order} $m$ at \(x=x^*\) if and only ifi
 \[ f(x^*)=0, f'(x^*)=0, f''(x^*)=0, \cdots, f^{(m-1)}(x^*)=0, \text{ and } f^{(m)}(x^*)\neq0. \]
@@ -106,7 +143,7 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 
 
 
-\section{Problem with Root Finding Methods}
+\section{Problem with root finding methods}
 Provide an example, if exists, of root-finding problems that satisfy the following criteria:
 \begin{enumerate}
 	\item It can be solved by Bisection but not by using fixed-point iteration.
@@ -114,7 +151,7 @@ Provide an example, if exists, of root-finding problems that satisfy the followi
 \end{enumerate}
 
 
-\section{Complex Root Finding for Analytic Functions}
+\section{Complex root finding for analytic functions}
 Let \(f:\C\to\C\) be analytic.
 The following iteration formula can be used to solve \(f(z)=0\).
 \[ z_{k+1}=z_k \frac{f(z_k)}{f'(z_k)-\frac{f''(z_k)}{2f'(x_k)}\cdot f(z_k)} \]

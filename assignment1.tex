@@ -140,9 +140,17 @@ For each of the following question prove your result.
 \end{enumerate}
 
 
-\section{Slides}
-\begin{enumerate}
-	\item In the lecture the Cauchy-Schwartz inequality (1.20) was proven for real numbers, prove it for the complex numbers.
+\section{Cauchy-Schwartz inequality}
+% \section{Slides}
+% \begin{enumerate}
+	% \item 
+	In the lecture the Cauchy-Schwartz inequality was proven for real numbers, prove it for the complex numbers.
+	\begin{theorem}[Cauchy-Schwartz Inequality]
+	\label{cauchy-schwartz}
+	Let $V$ be an inner product space over \(\C\) and \(u,v\in V\). Then
+	\[ |\langle u,v\rangle| \leq ||u|| \cdot ||v||. \]
+	This equality occurs if and only if one of \(u,v\) is a scalar multiple of the other.
+	\end{theorem}
 	\begin{proof}
 	If \(v=0\), both sides are zeros, so the equality is trivially true.
 	If \(v\neq0\), we define
@@ -159,15 +167,15 @@ For each of the following question prove your result.
 	Since all the squares are nonnegative, we get
 	\[||u||||v||\geq |\langle u,v \rangle|^2 \]
 	\end{proof}
-    \item Show that a distance is always positive.
-	\begin{proof}
-	This is directly deduced from the definition:
-	\begin{quote}
-		A distance on $X$ is a function \(d: X\times X\to\R^+\) such that ...
-	\end{quote}
-	which already indicates that the distance is always positive.
-	\end{proof}
-\end{enumerate}
+	% \item Show that a distance is always positive.
+	% \begin{proof}
+	% This is directly deduced from the definition:
+	% \begin{quote}
+	% 	A distance on $X$ is a function \(d: X\times X\to\R^+\) such that ...
+	% \end{quote}
+	% which already indicates that the distance is always positive.
+	% \end{proof}
+% \end{enumerate}
 
 
 \section{Linear algebra}
