@@ -10,10 +10,31 @@ A function \(f:\R\to\R\) is differentiable in some open interval \(\mathcal{I}\s
 \[ |f(x_1)-f(x_2)\leq c|x_1-x_2| \qquad \forall x_1,x_2\in\mathcal{I}. \]
 \begin{enumerate}
 	\item Give a function, with proof, that is differentiable but its derivative is not bounded in some open interval.
+	\begin{proof}
+	\[ f(x)=\tan x, \quad x\in\left(-\frac{\pi}{2},\frac{\pi}{2}\right) \]
+	is differentiable since its derivative is \(f'(x)=\sec^2x\), which is not bounded on its domain.
+	\end{proof}
 	\item Suppose $f$ is differentiable and $f'$ is bounded in some open interval.
 	Prove that $f$ is Lipschitz continuous in that interval.
+	\begin{proof}
+
+	\end{proof}
 	\item Give a function, with proof, that is differentiable but not Lipschitz continuous in some open interval.
+	\begin{proof}
+	This is exactly the same as differentiable but the derivative not bounded.	
+	\[ f(x)=\sqrt[3]{x}, \quad x\in(-1,1) \]
+	is differentiable since its derivative is \(f'(x)=\frac{1}{3}x^{-\frac{2}{3}}\).
+	But it is not Lipschitz continuous since
+	\[ \frac{|f(x_1)-f(x_2)|}{|x_1-x_2|}=\frac{1}{x_1^{\frac{2}{3}}+x_1^{\frac{1}{3}}x_2^{\frac{1}{3}}+x_2^{\frac{2}{3}}} \]
+	is not bounded on \(x_1, x_2\in(-1,1)\) so that the Lipschitz constant does not exist.
+	\end{proof}
 	\item Give a function, with proof, that is Lipschitz continuous but not differentiable in some open interval.
+	\begin{proof}
+	\[ f(x)=|x|, \quad x\in(-1,1) \]
+	is Lipschitz continuous with Lipschitz constant
+	\[ c=\limsup_{x_1,x_2\in(-1,1)}\left|\frac{f(x_1)-f(x_2)}{x_1-x_2}\right|=1. \]
+	But it is not differentiable at \(x=0\).
+	\end{proof}
 \end{enumerate}
 
 
