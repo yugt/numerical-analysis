@@ -5,6 +5,7 @@
 \chapter{Iteration Methods}
 
 
+
 \section{Lipschitz continuity vs. Differentiability}
 A function \(f:\R\to\R\) is differentiable in some open interval \(\mathcal{I}\subset\R\) if it is differentiable at every point of \(\mathcal{I}\), and it is Lipschitz continuous if there is a constant \(c\geq0\) such that
 \[ |f(x_1)-f(x_2)\leq c|x_1-x_2| \qquad \forall x_1,x_2\in\mathcal{I}. \]
@@ -129,13 +130,14 @@ Show the followings are true.
 	\end{proof}
 \end{enumerate}
 
-
 \section{Root finding}
 Choose a suitable numerical method to find the smallest positive root and the second smallest positive root of the equation
 \[ \tan x = 4x \]
 correct to 3 decimal places.
 Explain your choice.
-
+\begin{proof}[Answer]
+Obviously, Newton's method converges quadratically, which is faster than bisection method.
+\end{proof}
 
 \section{Order and rate of convergence}
 Suppose that the sequence \(\{a_n\}\) converges to the number $L$, and there is a constant \(0<\lambda<\infty\) such that
@@ -147,8 +149,22 @@ A positive sequence \(\{E_n\}\) is said to has an order of at least $\alpha$ and
 \begin{enumerate}
 	\item Find the order of convergence and the rate of convergence of the sequence
 	\[ a_n=\frac{1}{n} \quad \forall n\geq1 \]
+	\begin{proof}[Answer]
+	First, we evaluate the sequence limit.
+	\[ L=\lim_{n\to\infty}\frac{1}{n}=0. \]
+	Then,
+	\[ \lim_{n\to\infty}\frac{|a_{n+1}}{|a_n|}=1 \]
+	So the order of the convergence is 1, and the rate of the convergence is also 1.
+	\end{proof}
 	\item Examine the order of convergence and the rate of convergence of \(\{b_n\}\) where
 	\[ b_{2k}=\frac{1}{\ln k} \quad \text{and} \quad b_{2k+1}=\frac{1}{k} \quad \forall k\geq1. \]
+	\begin{proof}[Answer]
+	First, we evaluate the sequence limit.
+	\[ L=\lim_{n\to\infty}\frac{1}{\ln n}=0. \]
+	Then,
+	\[ \lim_{n\to\infty}\frac{|a_{n+1}}{|a_n|}=1 \]
+	So the order of the convergence is 1, and the rate of the convergence is also 1.
+	\end{proof}
 	\item Use the precise definition above to show the method of fixed-point iteration leads an error sequence that has at least linear convergence.
 	\item Find the asymptotic error constant for the method of fixed-point iteration when it has at least quadratic convergence.
 	\item Show the order of convergence of the secant method is \(\frac{\sqrt{5}+1}{2} \).
