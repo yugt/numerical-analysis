@@ -5,7 +5,6 @@
 \chapter{Iteration Methods}
 
 
-
 \section{Lipschitz continuity vs. Differentiability}
 A function \(f:\R\to\R\) is differentiable in some open interval \(\mathcal{I}\subset\R\) if it is differentiable at every point of \(\mathcal{I}\), and it is Lipschitz continuous if there is a constant \(c\geq0\) such that
 \[ |f(x_1)-f(x_2)\leq c|x_1-x_2| \qquad \forall x_1,x_2\in\mathcal{I}. \]
@@ -31,7 +30,7 @@ A function \(f:\R\to\R\) is differentiable in some open interval \(\mathcal{I}\s
 	\begin{align*}
 	g(a)=g(b)&\iff f(a)-ra=f(b)-rb\\
 	&\iff r(b-a)=f(b)-f(a) \\
-	&\iff r=\frac{f(b)-f(a)}{b-a}\cdot
+	&\iff r=\frac{f(b)-f(a)}{b-a}.
 	\end{align*}
 	By Rolle's theorem \ref{rolle}, since $g$ is differentiable and \(g(a)=g(b)\), there is some \(\xi\in(a,b)\) for which \(g'(\xi)=0\) and thus 
 	\[ f'(\xi)=g'(\xi)+r=\frac{f(b)-f(a)}{b-a}\]
@@ -61,7 +60,6 @@ A function \(f:\R\to\R\) is differentiable in some open interval \(\mathcal{I}\s
 	But it is not differentiable at \(x=0\).
 	\end{proof}
 \end{enumerate}
-
 
 
 \section{Fixed point iteration convergence condition}
