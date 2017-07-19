@@ -64,7 +64,7 @@ A function \(f:\R\to\R\) is differentiable in some open interval \(\mathcal{I}\s
 
 \section{Fixed point iteration convergence condition}
 A fixed point of a function \(g(x)\) is a real number \(x^*\) such that
-\[ g(x^* )=x^*. \]
+\[ g(x^*)=x^*. \]
 Assume the followings:
 \begin{enumerate}
 	\item The function $g$ and its derivative $g'$ are continuous on \([a, b]\), \textit{i.e.}, \(g,g'\in\mathcal{C}[a,b]\).
@@ -128,6 +128,7 @@ Show the followings are true.
 	\end{proof}
 \end{enumerate}
 
+
 \section{Root finding}
 Choose a suitable numerical method to find the smallest positive root and the second smallest positive root of the equation
 \[ \tan x = 4x \]
@@ -136,6 +137,7 @@ Explain your choice.
 \begin{proof}[Answer]
 Obviously, Newton's method converges quadratically, which is faster than bisection method.
 \end{proof}
+
 
 \section{Order and rate of convergence}
 Suppose that the sequence \(\{a_n\}\) converges to the number $L$, and there is a constant \(0<\lambda<\infty\) such that
@@ -151,20 +153,30 @@ A positive sequence \(\{E_n\}\) is said to has an order of at least $\alpha$ and
 	First, we evaluate the sequence limit.
 	\[ L=\lim_{n\to\infty}\frac{1}{n}=0. \]
 	Then,
-	\[ \lim_{n\to\infty}\frac{|a_{n+1}}{|a_n|}=1 \]
+	\[ \lim_{n\to\infty}\frac{|a_{n+1}|}{|a_n|}=1 \]
 	So the order of the convergence is 1, and the rate of the convergence is also 1.
 	\end{proof}
 	\item Examine the order of convergence and the rate of convergence of \(\{b_n\}\) where
 	\[ b_{2k}=\frac{1}{\ln k} \quad \text{and} \quad b_{2k+1}=\frac{1}{k} \quad \forall k\geq1. \]
 	\begin{proof}[Answer]
 	First, we evaluate the sequence limit.
-	\[ L=\lim_{n\to\infty}\frac{1}{\ln n}=0. \]
+	\[ L=\lim_{n\to\infty}\max\left(\frac{1}{\ln (n/2)},\frac{2}{n}\right)=0. \]
+	Notice that
+	\[ \forall \alpha\in\R,\qquad \lim_{n\to\infty}\frac{\ln^\alpha n}{n}=0 \quad\text{and}\quad \lim_{n\to\infty}\frac{n}{\ln^\alpha n}=+\infty. \]
 	Then,
-	\[ \lim_{n\to\infty}\frac{|a_{n+1}}{|a_n|}=1 \]
-	So the order of the convergence is 1, and the rate of the convergence is also 1.
+	\begin{align*}
+		\lim_{2k\to\infty}\frac{|b_{2k+1}|}{|b_{2k}|}&=\lim_{k\to\infty}\frac{\ln k}{k}=0\\
+		\lim_{2k\to\infty}\frac{|b_{2k+2}|}{|b_{2k+1}|}&=\lim_{k\to\infty}\frac{k+1}{\ln k}=+\infty
+	\end{align*}
+	Since the two subsequence of \(b_n\) have two different limits, the limit of \(b_n\) does not exist.
+	So neither the order of the convergence nor the rate of the convergence exists.
 	\end{proof}
 	\item Use the precise definition above to show the method of fixed-point iteration leads an error sequence that has at least linear convergence.
+	\begin{proof}[Answer]
+	
+	\end{proof}
 	\item Find the asymptotic error constant for the method of fixed-point iteration when it has at least quadratic convergence.
+	
 	\item Show the order of convergence of the secant method is \(\frac{\sqrt{5}+1}{2} \).
 \end{enumerate}
 
