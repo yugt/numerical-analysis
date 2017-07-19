@@ -17,7 +17,6 @@ function [p0,err,k,y]=newton(f,df,p0,delta,epsilon,max1)
 % call  [p0,err,k,y]=newton(f,df,p0,delta,epsilon,max1).
 
 
-
 %  NUMERICAL METHODS: Matlab Programs
 % (c) 2004 by John H. Mathews and Kurtis D. Fink
 %  Complementary Software to accompany the textbook:
@@ -27,12 +26,13 @@ function [p0,err,k,y]=newton(f,df,p0,delta,epsilon,max1)
 %  One Lake Street
 %  Upper Saddle River, NJ 07458
 
-for k=1:max1	
-	p1=p0-f(p0)/df(p0);	
+for k=1:max1
+	p1=p0-f(p0)/df(p0);
 	err=abs(p1-p0);
 	relerr=2*err/(abs(p1)+delta);
 	p0=p1;
 	y=f(p0);
-	if (err<delta)|(relerr<delta)|(abs(y)<epsilon),break,end
+	if (err<delta)||(relerr<delta)||(abs(y)<epsilon)
+		break
+	end
 end
-
