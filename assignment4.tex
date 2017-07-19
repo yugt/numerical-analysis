@@ -151,7 +151,7 @@ This sequence defines the Legendre polynomials.
 	\[ \D{n}{x}\left[x\left(x^2-1\right)^{n}\right]=x\D{n}{x}\left[\left(x^2-1\right)^{n}\right]+n\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right] \tag{***} \]
 	Apply the substitution to get
 	\begin{align*}
-	(n+1)Q_{n+1}(x)&=\frac{n+1}{2^{n}n!}x\D{n}{x}\left[\left(x^2-1\right)^{n}\right]+\frac{n+1}{2^{n}n!}\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right]\\
+	(n+1)Q_{n+1}(x)&=\frac{n+1}{2^{n}n!}x\D{n}{x}\left[\left(x^2-1\right)^{n}\right]+\frac{n+1}{2^{n}n!}n\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right]\\
 	&=x(n+1)Q_n(x)+\frac{n(n+1)}{2^{n}n!}\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right]\\
 	&=x(2n+1)Q_n(x)-nxQ_n(x)-\frac{n}{2^n n!}x\D{n}{x}\left[\left(x^2-1\right)^{n}\right]
 	\end{align*}
@@ -159,7 +159,7 @@ This sequence defines the Legendre polynomials.
 	\[ x\D{n}{x}\left[\left(x^2-1\right)^{n}\right]=\D{n}{x}\left[x\left(x^2-1\right)^{n}\right]-n\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right] \]
 	Apply substitution,
 	\begin{align*}
-	(n+1)Q_{n+1}(x)&=x(2n+1)Q_n(x)+\frac{n+1}{2^(n-1)!}\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right]\\
+	(n+1)Q_{n+1}(x)&=x(2n+1)Q_n(x)+\frac{n+1}{2^n (n-1)!}\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right]\\
 	&-\frac{n}{2^n n!}\D{n}{x}\left[x\left(x^2-1\right)^{n}\right]+\frac{n}{2^n n!}\D{n-1}{x}\left[n\left(x^2-1\right)^{n}\right]\\
 	&=x(2n+1)Q_n(x)+\frac{1}{2^n(n-1)!}\\
 	&\cdot\D{n-1}{x}\left\{(n-1)\left(x^2-1\right)^{n}-\frac{\ud}{\ud x}\left[x\left(x^2-1\right)^{n}\right]+n\left(x^2-1\right)^{n} \right\}\\
