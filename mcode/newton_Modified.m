@@ -31,7 +31,7 @@ for k=1:max1
     disp(k)
 	p1=p0-m*f(p0)/df(p0)
 	err=abs(p1-p0)
-	relerr=2*err/(abs(p1)+delta)
+	relerr=2*err/(abs(p1)+delta);
 	p0=p1;
 	y=f(p0);
 	if (err<delta)||(relerr<delta)||(abs(y)<epsilon)
