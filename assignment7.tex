@@ -184,11 +184,6 @@ The results are recorded in Table \ref{newtoniteration}.
 	\caption{Newton's Method on Iteration}
 	\label{newtoniteration}
 \end{table}
-
-
-
-
-
 \end{proof}
 
 
@@ -225,18 +220,13 @@ A positive sequence \(\{E_n\}\) is said to has an order of at least $\alpha$ and
 	So neither the order of the convergence nor the rate of the convergence exists.
 	\end{proof}
 	\item Use the precise definition above to show the method of fixed-point iteration leads an error sequence that has at least linear convergence.
-	\begin{proof}[Answer]
-	
-	\end{proof}
 	\item Find the asymptotic error constant for the method of fixed-point iteration when it has at least quadratic convergence.
-	
 	\item Show the order of convergence of the secant method is \(\frac{\sqrt{5}+1}{2} \).
 \end{enumerate}
 
 
 \section{Order of roots}
-Suppose that \(f(x)\) and its derivatives \(f'(x),\cdots, f^{(m)}(x)\) are defined and continuous on an
-interval containing $x^*$, we say that \(f(x)=0\) has a \emph{root of order} $m$ at \(x=x^*\) if and only ifi
+Suppose that \(f(x)\) and its derivatives \(f'(x),\cdots, f^{(m)}(x)\) are defined and continuous on an interval containing $x^*$, we say that \(f(x)=0\) has a \emph{root of order} $m$ at \(x=x^*\) if and only if
 \[ f(x^*)=0, f'(x^*)=0, f''(x^*)=0, \cdots, f^{(m-1)}(x^*)=0, \text{ and } f^{(m)}(x^*)\neq0. \]
 The positive integer $m$ is known as the \emph{multiplicity of the root}.
 A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it is called a \emph{multiple root}.
@@ -271,7 +261,7 @@ Provide an example, if exists, of root-finding problems that satisfy the followi
 \section{Complex root finding for analytic functions}
 Let \(f:\C\to\C\) be analytic.
 The following iteration formula can be used to solve \(f(z)=0\).
-\[ z_{k+1}=z_k \frac{f(z_k)}{f'(z_k)-\frac{f''(z_k)}{2f'(x_k)}\cdot f(z_k)} \]
+\[ z_{k+1}=z_k-\frac{f(z_k)}{f'(z_k)-\frac{f''(z_k)}{2f'(x_k)}\cdot f(z_k)} \]
 where \(f'(z)\) and \(f''(z)\) are the usual complex derivatives of \(f(z)\).
 \begin{enumerate}
 	\item For the following function
