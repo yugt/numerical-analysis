@@ -2,3 +2,4 @@ main.*
 !*.tex
 *.blg
 Textbooks/
+mcode/*.asv
