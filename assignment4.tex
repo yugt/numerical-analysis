@@ -15,7 +15,7 @@ This sequence defines the Legendre polynomials.
 	\[ I_n=\int_{-1}^{1}Q_n^2(x)\ud x \]
 	We can easily get the first Legendre polynomial
 	\[ Q_0(x)=1, \quad I_0=\int_{-1}^{1}\ud x=2 \]
-	So \(I_0\neq0\) trivially hols for \(n=0\).
+	So \(I_0\neq0\) trivially holds for \(n=0\).
 	By integration by parts,
 	\begin{align*}
 	I_n&=\frac{1}{2^{2n}(n!)^2} \int_{-1}^{1} \D{n}{x}\left[\left(x^2-1\right)^n \right] \cdot \D{n}{x}\left[\left(x^2-1\right)^n \right] \ud x\\
@@ -23,6 +23,7 @@ This sequence defines the Legendre polynomials.
 	&=\frac{1}{2^{2n}(n!)^2} \left\{ \left.\D{n}{x}\left[\left(x^2-1\right)^n \right]\D{n-1}{x}\left[\left(x^2-1\right)^n \right]\right|_{-1}^{1}\right. \\
 	& \left. - \int_{-1}^{1} \D{n-1}{x}\left[\left(x^2-1\right)^n \right] \cdot \D{n+1}{x}\left[\left(x^2-1\right)^n \right] \ud x \right\}
 	\end{align*}
+	{\color{red}Calculation Mistakes}
 	Since the \(\D{k}{x}\left[\left(x^2-1\right)^n \right]\) always has a factor \(\left(x^2-1\right)\) for \(0\leq k\leq n\), the first term is always zero, which means
 	\[ I_n=\frac{-1}{2^{2n}(n!)^2} \int_{-1}^{1} \D{n-1}{x}\left[\left(x^2-1\right)^n \right] \cdot \D{n+1}{x}\left[\left(x^2-1\right)^n \right] \ud x \]
 	By repeating $n$ times of integration by part, we get

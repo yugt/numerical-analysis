@@ -135,7 +135,60 @@ Choose a suitable numerical method to find the smallest positive root and the se
 correct to 3 decimal places.
 Explain your choice.
 \begin{proof}[Answer]
-Obviously, Newton's method converges quadratically, which is faster than bisection method.
+Newton's method converges quadratically if the function has nonzero derivative at the root, which is faster than bisection method.
+Even if it has zero derivative at the root, Newton's method still converges linearly, which is not worse than bisection method.
+So we choose Newton's method.
+We first define the function in MATLAB\texttrademark\ style.
+\begin{lstlisting}[style=Matlab-editor]
+f = @(x) tan(x)-4*x;
+df = @(x) 1/(cos(x)^2)-4;
+\end{lstlisting}
+The initial guess for the first positve root is near \(\frac{\pi}{2}\), while the second is near \(\frac{3\pi}{2}\).
+Using the MATLAB\texttrademark\ function provided, we perform the iteration with the following command:
+\begin{lstlisting}[style=Matlab-editor]
+newton(f,df,1.57,1e-4,1e-3,100)
+newton(f,df,4.7,1e-4,1e-3,100)
+\end{lstlisting}
+The results are recorded in Table \ref{newtoniteration}.
+\begin{table}[htbp]
+\centering
+	\subfloat[Finding the first positive root]{%
+		\begin{tabular}{|c|c|c|c|}
+		\hline
+		$n$ & \(x_n\) & \(E_n\) & Relative \(E_n\) \\	\hline
+		1	&	1.5692	&	7.9235e-04	&	0.0001\\	\hline
+		2	&	1.5676	&	0.0016	&	0.0020	\\	\hline
+		3	&	1.5645	&	0.0031	&	0.0040	\\	\hline
+		4	&	1.5585	&	0.0060	&	0.0077	\\	\hline
+		5	&	1.5472	&	0.0113	&	0.0147	\\	\hline
+		6	&	1.5270	&	0.0202	&	0.0265	\\	\hline
+		7	&	1.4947	&	0.0323	&	0.0432	\\	\hline
+		8	&	1.4525	&	0.0422	&	0.0581	\\	\hline
+		9	&	1.4141	&	0.0384	&	0.0543	\\	\hline
+		10	&	1.3959	&	0.0181	&	0.0260	\\	\hline
+		11	&	1.3933	&	0.0026	&	0.0038	\\	\hline
+		12	&	1.3932	&	4.5560e-05	&	6.5397e-05	\\	\hline
+		\end{tabular}}%
+	\quad% --- set horizontal distance between tables here
+	\subfloat[Finding the second positive root]{%
+		\begin{tabular}{|c|c|c|c|}
+		\hline
+		$n$ & \(x_n\) & \(E_n\) & Relative \(E_n\) \\	\hline
+		1	&	4.6905	&	0.0095	&	0.0041	\\	\hline
+		2	&	4.6776	&	0.0129	&	0.0055	\\	\hline
+		3	&	4.6654	&	0.0122	&	0.0052	\\	\hline
+		4	&	4.6596	&	0.0058	&	0.0025	\\	\hline
+		5	&	4.6588	&	8.1071e-04	&	3.4803e-04	\\	\hline
+		6	&	4.6588	&	1.2777e-05	&	5.4849e-06	\\	\hline
+		\end{tabular}}
+	\caption{Newton's Method on Iteration}
+	\label{newtoniteration}
+\end{table}
+
+
+
+
+
 \end{proof}
 
 
