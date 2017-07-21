@@ -350,7 +350,7 @@ Let $f$ be a continuous function and $P^n$ be its interpolation polynomial in th
 	By the principle of mathematical induction, we have it true for all \(k\in\N^*\).
 	\end{proof}
 	\item Write the pseudocode of a clear algorithm to compute \(P^n(x)\) when given $n+1$ nodes \(x_0,\cdots,x_n\) and the value of $f$ at those nodes.
-	\begin{algorithm}[h]
+	\begin{algorithm}[ht]
 	\KwIn{$n+1$ nodes: \((x_0,f(x_0)),\cdots,(x_n,f(x_n))\), \(x_0,\cdots,x_n\) stored in vector $x$ and  \(f(x_0),\cdots,f(x_n)\) stored in vector $y$}
 	\KwOut{Coefficients of \(P^n(x)\): \(a_0,\cdots,a_n\), stored in vector $a$}
 	A=zeros(n+1,n+1)\;

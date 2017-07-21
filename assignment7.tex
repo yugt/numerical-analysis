@@ -62,7 +62,7 @@ A function \(f:\R\to\R\) is differentiable in some open interval \(\mathcal{I}\s
 \end{enumerate}
 
 
-\section{Fixed point iteration convergence condition}
+\section{Fixed point iteration convergence condition\label{fixedpoint}}
 A fixed point of a function \(g(x)\) is a real number \(x^*\) such that
 \[ g(x^*)=x^*. \]
 Assume the followings:
@@ -143,7 +143,7 @@ We first define the function in MATLAB\texttrademark\ style.
 f = @(x) tan(x)-4*x;
 df = @(x) 1/(cos(x)^2)-4;
 \end{lstlisting}
-The initial guess for the first positve root is near \(\frac{\pi}{2}\), while the second is near \(\frac{3\pi}{2}\).
+The initial guess for the first positive root is near \(\frac{\pi}{2}\), while the second is near \(\frac{3\pi}{2}\).
 Using the MATLAB\texttrademark\ function provided, we perform the iteration with the following command:
 \begin{lstlisting}[style=Matlab-editor]
 newton(f,df,1.57,1e-4,1e-3,100)
@@ -194,7 +194,6 @@ The results are recorded in Table \ref{newtoniteration}.
 
 
 
-
 \section{Order and rate of convergence}
 Suppose that the sequence \(\{a_n\}\) converges to the number $L$, and there is a constant \(0<\lambda<\infty\) such that
 \[ \lim_{n\to\infty} \frac{|a_{n+1}-L|}{|a_n-L|^\alpha}=\lambda, \]
@@ -228,7 +227,37 @@ A positive sequence \(\{E_n\}\) is said to has an order of at least $\alpha$ and
 	So neither the order of the convergence nor the rate of the convergence exists.
 	\end{proof}
 	\item Use the precise definition above to show the method of fixed-point iteration leads an error sequence that has at least linear convergence.
+	\begin{proof}
+	Suppose the fixed point for function $g$ is
+	\[ g(x^*)=x^*. \]
+	The iteration gives
+	\[ \forall n\in\N^*,\quad x_{n+1}=g(x_n). \]
+	If the iteration converges, according to \ref{fixedpoint}, we have
+	\[ \lim_{n\to\infty} x_n=x^*. \]
+	The linear convergence comes directly from the definition of Lipschitz continuity.
+	Lipschitz continuity ensures that
+	\[ |g(x_{n})-g(x^*)|\leq c\cdot|x_n-x^*|, \]
+	where \(0<c<1\) is the Lipschitz constant.
+	Apply substitutions, we obtain
+	\[ |x_{n+1}-x^*|\leq c\cdot|x_n-x^*| \]
+	Apply the definition of error term,
+	\[ E_{n+1}\leq c\cdot E_n. \]
+	Since this is true for all \(n\in\N^*\), we have the limit
+	\[ \lim_{n\to\infty} \frac{E_{n+1}}{E_n}\leq c. \]
+	So the linear convergence is proved.
+	\end{proof}
 	\item Find the asymptotic error constant for the method of fixed-point iteration when it has at least quadratic convergence.
+	\begin{proof}
+	Since \(g:\R\to\R\) is required to be Lipschitz continuous, it is absolutely continuous, and therefore is almost everywhere differentiable.
+	Apply the Taylor's expansion at \(x^*\),
+	\[ g(x_n)=g(x^*+(x_n-x^*))=g(x^*)+g'(x^*)(x_n-x^*)+\frac{1}{2}g''(x^*)(x_n-x^*)^2+o\left((x_n-x^*)^2\right) \]
+	If the convergence is at least quadratic, the first derivative \(g'(x^*)=0\), so the Taylor expansion is reduced to
+	\[ x_{n+1}-x^*=\frac{1}{2}g''(x^*)(x_n-x^*)^2+o\left((x_n-x^*)^2\right) \]
+	Observe that \(x_n-x^*\) is the error term \(E_n\), and by substitution,
+	\[ \lim_{n\to\infty}\frac{E_{n+1}}{E_n} = g'(x^*). \]
+	So the convergence rate is
+	\[ \lim_{n\to\infty}\frac{|x_{n+1}-x^*|}{|x_{n}-x^*|^2}=\frac{1}{2}|g'(x^*)|. \]
+	\end{proof}
 	\item Show the order of convergence of the secant method is \(\frac{\sqrt{5}+1}{2} \).
 \end{enumerate}
 
@@ -253,20 +282,29 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 	Start with \(x_0=1\) and compute \(x_1, x_2, \cdots, x_6\) first by using the iteration formula in part (b) and then by using the iteration formula in part (c).
 	What can you conclude based on the values that you have computed?
 	\begin{proof}[Answer]
-
+	Using the MATLAB\texttrademark\ function provided, we perform the iteration with the following command:
+	\begin{lstlisting}[style=Matlab-editor]
+	f = @(x) sin(x^3);
+	df = @(x) 3*x^2*cos(x^3);
+	newton_Modified(f,df,1,3,1e-10,1e-10,100)
+	u = @(x) tan(x^3)/(3*x^2);
+	du = @(x) sec(x^3)^2 - (2*tan(x^3))/(3*x^3);
+	newton_Improved(f,u,du,1,1e-20,1e-20,6)
+	\end{lstlisting}
+	The results are recorded in Table \ref{newtoncompare1}.
 	\begin{table}[htbp]
 		\begin{subtable}[t]{.49\linewidth}
 			\centering
-			\caption{Regular}
+			\caption{Modified with \(m=3\)}
 			\begin{tabular}[t]{|c|c|c|}
 			\hline
 			\normalsize	$n$	&	\normalsize	\(x_n\)	&	\normalsize	\(E_n=|x_n-x_{n-1}|\)	\\	\hline
-			\footnotesize	1	&	\footnotesize	0.480864091781699	&	\footnotesize	0.519135908218301	\\	\hline
-			\footnotesize	2	&	\footnotesize	0.319912215554577	&	\footnotesize	0.160951876227122	\\	\hline
-			\footnotesize	3	&	\footnotesize	0.213236689788164	&	\footnotesize	0.106675525766413	\\	\hline
-			\footnotesize	4	&	\footnotesize	0.142155565745277	&	\footnotesize	0.071081124042887	\\	\hline
-			\footnotesize	5	&	\footnotesize	0.094770246815029	&	\footnotesize	0.047385318930248	\\	\hline
-			\footnotesize	6	&	\footnotesize	0.063180156914457	&	\footnotesize	0.031590089900572	\\	\hline
+			\scriptsize	1	&	\scriptsize	-0.557407724654902		&	\scriptsize	1.557407724654902	\\	\hline
+			\scriptsize	2	&	\scriptsize	0.005640692477577		&	\scriptsize	0.563048417132479	\\	\hline
+			\scriptsize	3	&	\scriptsize	-6.071532165918825e-17	&	\scriptsize	0.005640692477577	\\	\hline
+			\scriptsize	4	&	\scriptsize	0						&	\scriptsize	6.071532165918825e-17	\\	\hline
+			\scriptsize	5	&	\scriptsize	NaN						&	\scriptsize	NaN	\\	\hline
+			\scriptsize	6	&	\scriptsize	NaN						&	\scriptsize	NaN	\\	\hline
 			\end{tabular}
 		\end{subtable}
 		\begin{subtable}[t]{.49\linewidth}
@@ -275,111 +313,128 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 			\begin{tabular}{|c|c|}
 			\hline
 			\normalsize	\(x_n\)	&	\normalsize	\(E_n=|x_n-x_{n-1}|\)	\\	\hline
-			\footnotesize	0.782537832379215		&	\footnotesize	0.217462167620785	\\	\hline
-			\footnotesize	0.265581322231385		&	\footnotesize	0.516956510147830	\\	\hline
-			\footnotesize	1.862855151222864e-04	&	\footnotesize	0.265395036716262	\\	\hline
-			\footnotesize	2.710505431213761e-20	&	\footnotesize	1.862855151222864e-04	\\	\hline
-			\footnotesize	3.009265538105056e-36	&	\footnotesize	2.710505431213761e-20	\\	\hline
-			\footnotesize	3.340955887615245e-52	&	\footnotesize	3.009265538105056e-36	\\	\hline
+			\scriptsize	0.782537832379215		&	\scriptsize	0.217462167620785	\\	\hline
+			\scriptsize	0.265581322231385		&	\scriptsize	0.516956510147830	\\	\hline
+			\scriptsize	1.862855151222864e-04	&	\scriptsize	0.265395036716262	\\	\hline
+			\scriptsize	2.710505431213761e-20	&	\scriptsize	1.862855151222864e-04	\\	\hline
+			\scriptsize	3.009265538105056e-36	&	\scriptsize	2.710505431213761e-20	\\	\hline
+			\scriptsize	3.340955887615245e-52	&	\scriptsize	3.009265538105056e-36	\\	\hline
 			\end{tabular}
 		\end{subtable}
 		\caption{Comparison of Newton's Method on Iteration}
-		\label{newtoncompare}
+		\label{newtoncompare1}
 	\end{table}
-
-
+	It's easy to observe that both methods converge rapidly, and the method in part (b) happens to reach the exact solution and terminates.
 	\end{proof}
 	\item Compare Newton's method and the modified version of it in part (c) by finding all the roots of the following polynomial correct to 6 decimal places.
 	\[ f(x)=x^5 - 11x^4 + 46x^3 - 90x^2 + 81x - 27 \]
+	\begin{proof}
+	
+	\begin{table}[htbp]
+		\begin{subtable}[t]{.49\linewidth}
+			\centering
+			\caption{Original Newton's iteration}
+			\begin{tabular}[t]{|c|c|c|}
+			\hline
+			$n$	&	\(x_n\)				&	\(E_n=|x_n-x_{n-1}|\)	\\	\hline
+			\footnotesize	1	&	\footnotesize	1.079999999999995	&	\footnotesize	0.120000000000005	\\	\hline
+			\footnotesize	2	&	\footnotesize	1.037333333333312	&	\footnotesize	0.042666666666683	\\	\hline
+			\footnotesize	3	&	\footnotesize	1.018118414918420	&	\footnotesize	0.019214918414892	\\	\hline
+			\footnotesize	4	&	\footnotesize	1.008933250933831	&	\footnotesize	0.009185163984589	\\	\hline
+			\footnotesize	5	&	\footnotesize	1.004436361406744	&	\footnotesize	0.004496889527087	\\	\hline
+			\footnotesize	6	&	\footnotesize	1.002210759058684	&	\footnotesize	0.002225602348059	\\	\hline
+			\footnotesize	7	&	\footnotesize	1.001103541654488	&	\footnotesize	0.001107217404196	\\	\hline
+			\footnotesize	8	&	\footnotesize	1.000551313519913	&	\footnotesize	5.522281345746727e-04	\\	\hline
+			\footnotesize	9	&	\footnotesize	1.000275542702326	&	\footnotesize	2.757708175875617e-04	\\	\hline
+			\footnotesize	10	&	\footnotesize	1.000137742869052	&	\footnotesize	1.377998332738883e-04	\\	\hline
+			\footnotesize	11	&	\footnotesize	1.000068864318036	&	\footnotesize	6.887855101522789e-05	\\	\hline
+			\footnotesize	12	&	\footnotesize	1.000034430381744	&	\footnotesize	3.443393629209979e-05	\\	\hline
+			\footnotesize	13	&	\footnotesize	1.000017214700528	&	\footnotesize	1.721568121615391e-05	\\	\hline
+			\footnotesize	14	&	\footnotesize	1.000008607270650	&	\footnotesize	8.607429878404460e-06	\\	\hline
+			\footnotesize	15	&	\footnotesize	1.000004303573453	&	\footnotesize	4.303697196395007e-06	\\	\hline
+			\footnotesize	16	&	\footnotesize	1.000002151611564	&	\footnotesize	2.151961889129694e-06	\\	\hline
+			\footnotesize	17	&	\footnotesize	1.000001075651434	&	\footnotesize	1.075960130103582e-06	\\	\hline
+			\end{tabular}
+		\end{subtable}
+		\begin{subtable}[t]{.49\linewidth}
+			\centering
+			\caption{Improved}
+			\begin{tabular}{|c|c|}
+				\hline
+				\(x_n\)				&	\(E_n=|x_n-x_{n-1}|\)	\\	\hline
+				\footnotesize	1.036363636363630	&	\footnotesize	0.163636363636370	\\	\hline
+				\footnotesize	1.001028277634942	&	\footnotesize	0.035335358728688	\\	\hline
+				\footnotesize	1.000000793830820	&	\footnotesize	0.001027483804122	\\	\hline
+				\footnotesize	1.000000000564978	&	\footnotesize	7.932658419029792e-07	\\	\hline
+			\end{tabular}
+		\end{subtable}
+		\caption{Comparison of Newton's Method on Iteration at a Root of Order 2}
+		\label{newtoncompare2}
+	\end{table}
+	\begin{table}[htbp]
+		\begin{subtable}[t]{.49\linewidth}
+			\centering
+			\caption{Original Newton's iteration}
+			\begin{tabular}{|c|c|c|}
+			\hline
+			$n$	&	\(x_n\)				&	\(E_n=|x_n-x_{n-1}|\)	\\	\hline
+			\footnotesize	1	&	\footnotesize	3.006677685778723	&	\footnotesize	0.003322314221277	\\	\hline
+			\footnotesize	2	&	\footnotesize	3.004456717701055	&	\footnotesize	0.002220968077668	\\	\hline
+			\footnotesize	3	&	\footnotesize	3.002973344359819	&	\footnotesize	0.001483373341236	\\	\hline
+			\footnotesize	4	&	\footnotesize	3.001983210661162	&	\footnotesize	9.901336986564147e-04	\\	\hline
+			\footnotesize	5	&	\footnotesize	3.001322573018363	&	\footnotesize	6.606376427993332e-04	\\	\hline
+			\footnotesize	6	&	\footnotesize	3.000881914953126	&	\footnotesize	4.406580652367431e-04	\\	\hline
+			\footnotesize	7	&	\footnotesize	3.000588039669541	&	\footnotesize	2.938752835852654e-04	\\	\hline
+			\footnotesize	8	&	\footnotesize	3.000392066202243	&	\footnotesize	1.959734672976055e-04	\\	\hline
+			\footnotesize	9	&	\footnotesize	3.000261381083893	&	\footnotesize	1.306851183500157e-04	\\	\hline
+			\footnotesize	10	&	\footnotesize	3.000174327057305	&	\footnotesize	8.705402658826245e-05	\\	\hline
+			\footnotesize	11	&	\footnotesize	3.000116433888668	&	\footnotesize	5.789316863724636e-05	\\	\hline
+			\footnotesize	12	&	\footnotesize	3.000076956251177	&	\footnotesize	3.947763749057032e-05	\\	\hline
+			\footnotesize	13	&	\footnotesize	3.000053363008282	&	\footnotesize	2.359324289535891e-05	\\	\hline
+			\footnotesize	14	&	\footnotesize	3.000035897764118	&	\footnotesize	1.746524416423867e-05	\\	\hline
+			\footnotesize	15	&	\footnotesize	3.000028546336471	&	\footnotesize	7.351427647073194e-06	\\	\hline
+			\footnotesize	16	&	\footnotesize	3.000002389324648	&	\footnotesize	2.615701182318020e-05	\\	\hline
+			\footnotesize	17	&	\footnotesize	3.000831576720999	&	\footnotesize	8.291873963517382e-04	\\	\hline
+			\footnotesize	18	&	\footnotesize	3.000554470371992	&	\footnotesize	2.771063490074610e-04	\\	\hline
+			\footnotesize	19	&	\footnotesize	3.000369712689852	&	\footnotesize	1.847576821396579e-04	\\	\hline
+			\footnotesize	20	&	\footnotesize	3.000246556354566	&	\footnotesize	1.231563352859233e-04	\\	\hline
+			\footnotesize	21	&	\footnotesize	3.000164218617164	&	\footnotesize	8.233773740240480e-05	\\	\hline
+			\footnotesize	22	&	\footnotesize	3.000109602674366	&	\footnotesize	5.461594279765336e-05	\\	\hline
+			\footnotesize	23	&	\footnotesize	3.000073526984020	&	\footnotesize	3.607569034658198e-05	\\	\hline
+			\footnotesize	24	&	\footnotesize	3.000046805273550	&	\footnotesize	2.672171046969041e-05	\\	\hline
+			\footnotesize	25	&	\footnotesize	3.000033832581067	&	\footnotesize	1.297269248246025e-05	\\	\hline
+			\footnotesize	26	&	\footnotesize	3.000031763455728	&	\footnotesize	2.069125339509981e-06	\\	\hline
+			\footnotesize	27	&	\footnotesize	3.000027068531880	&	\footnotesize	4.694923848358457e-06	\\	\hline
+			\footnotesize	28	&	\footnotesize	3.000010906132086	&	\footnotesize	1.616239979318479e-05	\\	\hline
+			\end{tabular}
+		\end{subtable}
+		\begin{subtable}[t]{.49\linewidth}
+			\centering
+			\caption{Improved}
+			\begin{tabular}{|c|c|}
+			\hline
+			\(x_n\)				&	\(E_n=|x_n-x_{n-1}|\)	\\	\hline
+			\footnotesize	2.999869302453229	&	\footnotesize	0.020130697546771	\\	\hline
+			\footnotesize	2.999997846418646	&	\footnotesize	1.285439654177267e-04	\\	\hline
+			\footnotesize	2.983092132985680	&	\footnotesize	0.016905713432966	\\	\hline
+			\footnotesize	2.999903080879523	&	\footnotesize	0.016810947893843	\\	\hline
+			\footnotesize	2.999999154222051	&	\footnotesize	9.607334252725863e-05	\\	\hline
+			\footnotesize	2.921051830315649	&	\footnotesize	0.078947323906402	\\	\hline
+			\footnotesize	2.997750655427219	&	\footnotesize	0.076698825111570	\\	\hline
+			\footnotesize	2.999998308704638	&	\footnotesize	0.002247653277418	\\	\hline
+			\footnotesize	2.992547985979292	&	\footnotesize	0.007450322725346	\\	\hline
+			\footnotesize	2.999981350990154	&	\footnotesize	0.007433365010863	\\	\hline
+			\footnotesize	3.000103925190753	&	\footnotesize	1.225742005983577e-04	\\	\hline
+			\footnotesize	3.000003933963204	&	\footnotesize	9.999122754900114e-05	\\	\hline
+			\end{tabular}
+		\end{subtable}
+		\caption{Comparison of Newton's Method on Iteration at a Root of Order 3}
+		\label{newtoncompare3}
+	\end{table}
+
+	\end{proof}
 \end{enumerate}
 
-
-     1
-
-
-p1 =
-
-  -0.557407724654902
-
-
-err =
-
-   1.557407724654902
-
-     2
-
-
-p1 =
-
-   0.005640692477577
-
-
-err =
-
-   0.563048417132479
-
-     3
-
-
-p1 =
-
-    -6.071532165918825e-17
-
-
-err =
-
-   0.005640692477577
-
-     4
-
-
-p1 =
-
-     0
-
-
-err =
-
-     6.071532165918825e-17
-
-     5
-
-
-p1 =
-
-   NaN
-
-
-err =
-
-   NaN
-
-     6
-
-
-p1 =
-
-   NaN
-
-
-err =
-
-   NaN
-
-
-
-% %	sin(x^3)	m=3
-% \begin{table}[htbp]
-% 	\centering
-% 	\begin{tabular}{|c|c|c|c|}
-% 	\hline
-% 	$n$	&	\(x_n\)				&	\(E_n=x_n-x_{n-1}\)	&	Relative error	\\	\hline
-% 	1	&	-0.557407724654902	&	1.557407724654902	&	5.588037823981398	\\	\hline
-% 	2	&	 0.005640692477577	&	0.563048417132479	&	1.996380442255248e+02	\\	\hline
-% 	3	&	-6.071532165918825e-17	&	0.005640692477577	&	1.128137810562963e+08	\\	\hline
-% 	\end{tabular}
-% 	\caption{Finding Root of \(\sin\left(x^3\right)\) with modified Newton's Iteration at \(m=3\)}
-% \end{table}
 
 % %	sin(x^3)	m=1
 % \begin{table}[htbp]
@@ -397,134 +452,6 @@ err =
 % 	\caption{Finding Root of \(\sin\left(x^3\right)\) with regular Newtons Iteration}
 % \end{table}
 
-% %	sin(x^3)	u
-% \begin{table}[htbp]
-% 	\centering
-% 	\begin{tabular}{|c|c|c|}
-% 	\hline
-% 	$n$	&	\(x_n\)				&	\(E_n=x_n-x_{n-1}\)	\\	\hline
-% 	1	&	0.782537832379215	&	0.217462167620785	\\	\hline
-% 	2	&	0.265581322231385	&	0.516956510147830	\\	\hline
-% 	3	&	1.862855151222864e-04	&	0.265395036716262	\\	\hline
-% 	4	&	2.710505431213761e-20	&	1.862855151222864e-04	\\	\hline
-% 	5	&	3.009265538105056e-36	&	2.710505431213761e-20	\\	\hline
-% 	6	&	3.340955887615245e-52	&	3.009265538105056e-36	\\	\hline
-% 	\end{tabular}
-% 	\caption{Finding Root of \(\sin\left(x^3\right)\) with improved Newtons Iteration}
-% \end{table}
-
-
-% %	polynomial regular root=1
-% \begin{table}[htbp]
-% 	\centering
-% 	\begin{tabular}{|c|c|c|}
-% 	\hline
-% 	$n$	&	\(x_n\)				&	\(E_n=x_n-x_{n-1}\)	\\	\hline
-% 	1	&	1.079999999999995	&	0.120000000000005	\\	\hline
-% 	2	&	1.037333333333312	&	0.042666666666683	\\	\hline
-% 	3	&	1.018118414918420	&	0.019214918414892	\\	\hline
-% 	4	&	1.008933250933831	&	0.009185163984589	\\	\hline
-% 	5	&	1.004436361406744	&	0.004496889527087	\\	\hline
-% 	6	&	1.002210759058684	&	0.002225602348059	\\	\hline
-% 	7	&	1.001103541654488	&	0.001107217404196	\\	\hline
-% 	8	&	1.000551313519913	&	5.522281345746727e-04	\\	\hline
-% 	9	&	1.000275542702326	&	2.757708175875617e-04	\\	\hline
-% 	10	&	1.000137742869052	&	1.377998332738883e-04	\\	\hline
-% 	11	&	1.000068864318036	&	6.887855101522789e-05	\\	\hline
-% 	12	&	1.000034430381744	&	3.443393629209979e-05	\\	\hline
-% 	13	&	1.000017214700528	&	1.721568121615391e-05	\\	\hline
-% 	14	&	1.000008607270650	&	8.607429878404460e-06	\\	\hline
-% 	15	&	1.000004303573453	&	4.303697196395007e-06	\\	\hline
-% 	16	&	1.000002151611564	&	2.151961889129694e-06	\\	\hline
-% 	17	&	1.000001075651434	&	1.075960130103582e-06	\\	\hline
-% 	\end{tabular}
-% 	\caption{Finding Root of \(\sin\left(x^3\right)\) with improved Newtons Iteration}
-% \end{table}
-
-% %	polynomial improved root=1
-% \begin{table}[htbp]
-% 	\centering
-% 	\begin{tabular}{|c|c|c|}
-% 	\hline
-% 	$n$	&	\(x_n\)				&	\(E_n=x_n-x_{n-1}\)	\\	\hline
-% 	1	&	1.036363636363630	&	0.163636363636370	\\	\hline
-% 	2	&	1.001028277634942	&	0.035335358728688	\\	\hline
-% 	3	&	1.000000793830820	&	0.001027483804122	\\	\hline
-% 	4	&	1.000000000564978	&	7.932658419029792e-07	\\	\hline
-% 	\end{tabular}
-% 	\caption{Finding Root of \(\sin\left(x^3\right)\) with improved Newtons Iteration}
-% \end{table}
-
-
-
-% %	polynomial regular root=3
-
-
-% \begin{table}[htbp]
-% 	\centering
-% 	\begin{tabular}{|c|c|c|}
-% 	\hline
-% 	$n$	&	\(x_n\)				&	\(E_n=x_n-x_{n-1}\)	\\	\hline
-% 	1	&	3.006677685778723	&	0.003322314221277	\\	\hline
-% 	2	&	3.004456717701055	&	0.002220968077668	\\	\hline
-% 	3	&	3.002973344359819	&	0.001483373341236	\\	\hline
-% 	4	&	3.001983210661162	&	9.901336986564147e-04	\\	\hline
-% 	5	&	3.001322573018363	&	6.606376427993332e-04	\\	\hline
-% 	6	&	3.000881914953126	&	4.406580652367431e-04	\\	\hline
-% 	7	&	3.000588039669541	&	2.938752835852654e-04	\\	\hline
-% 	8	&	3.000392066202243	&	1.959734672976055e-04	\\	\hline
-% 	9	&	3.000261381083893	&	1.306851183500157e-04	\\	\hline
-% 	10	&	3.000174327057305	&	8.705402658826245e-05	\\	\hline
-% 	11	&	3.000116433888668	&	5.789316863724636e-05	\\	\hline
-% 	12	&	3.000076956251177	&	3.947763749057032e-05	\\	\hline
-% 	13	&	3.000053363008282	&	2.359324289535891e-05	\\	\hline
-% 	14	&	3.000035897764118	&	1.746524416423867e-05	\\	\hline
-% 	15	&	3.000028546336471	&	7.351427647073194e-06	\\	\hline
-% 	16	&	3.000002389324648	&	2.615701182318020e-05	\\	\hline
-% 	17	&	3.000831576720999	&	8.291873963517382e-04	\\	\hline
-% 	18	&	3.000554470371992	&	2.771063490074610e-04	\\	\hline
-% 	19	&	3.000369712689852	&	1.847576821396579e-04	\\	\hline
-% 	20	&	3.000246556354566	&	1.231563352859233e-04	\\	\hline
-% 	21	&	3.000164218617164	&	8.233773740240480e-05	\\	\hline
-% 	22	&	3.000109602674366	&	5.461594279765336e-05	\\	\hline
-% 	23	&	3.000073526984020	&	3.607569034658198e-05	\\	\hline
-% 	24	&	3.000046805273550	&	2.672171046969041e-05	\\	\hline
-% 	25	&	3.000033832581067	&	1.297269248246025e-05	\\	\hline
-% 	26	&	3.000031763455728	&	2.069125339509981e-06	\\	\hline
-% 	27	&	3.000027068531880	&	4.694923848358457e-06	\\	\hline
-% 	28	&	3.000010906132086	&	1.616239979318479e-05	\\	\hline
-% 	\end{tabular}
-% 	\caption{Finding Root of \(\sin\left(x^3\right)\) with improved Newtons Iteration}
-% \end{table}
-
-% %	polynomial improved root=3
-
-% \begin{table}[htbp]
-% 	\centering
-% 	\begin{tabular}{|c|c|c|}
-% 	\hline
-% 	$n$	&	\(x_n\)				&	\(E_n=x_n-x_{n-1}\)	\\	\hline
-% 	1	&	2.999869302453229	&	0.020130697546771	\\	\hline
-% 	2	&	2.999997846418646	&	1.285439654177267e-04	\\	\hline
-% 	3	&	2.983092132985680	&	0.016905713432966	\\	\hline
-% 	4	&	2.999903080879523	&	0.016810947893843	\\	\hline
-% 	5	&	2.999999154222051	&	9.607334252725863e-05	\\	\hline
-% 	6	&	2.921051830315649	&	0.078947323906402	\\	\hline
-% 	7	&	2.997750655427219	&	0.076698825111570	\\	\hline
-% 	8	&	2.999998308704638	&	0.002247653277418	\\	\hline
-% 	9	&	2.992547985979292	&	0.007450322725346	\\	\hline
-% 	10	&	2.999981350990154	&	0.007433365010863	\\	\hline
-% 	11	&	3.000103925190753	&	1.225742005983577e-04	\\	\hline
-% 	12	&	3.000003933963204	&	9.999122754900114e-05	\\	\hline
-% 	\end{tabular}
-% 	\caption{Finding Root of \(\sin\left(x^3\right)\) with improved Newtons Iteration}
-% \end{table}
-
-
-
-
-
-
 
 \section{Problem with root finding methods}
 Provide an example, if exists, of root-finding problems that satisfy the following criteria:
@@ -532,6 +459,25 @@ Provide an example, if exists, of root-finding problems that satisfy the followi
 	\item It can be solved by Bisection but not by using fixed-point iteration.
 	\item It can be solved by using fixed-point iteration but not by Newton's method.
 \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \section{Complex root finding for analytic functions}
@@ -547,5 +493,3 @@ where \(f'(z)\) and \(f''(z)\) are the usual complex derivatives of \(f(z)\).
 	\item What happens to the relationship in part (a) if we use the criterion 
 	\[ \left| |z_k|^2 - |z_{k-1}|^2\right| < \varepsilon \quad \text{where } \varepsilon=0.0001. \]
 \end{enumerate}
-
-
