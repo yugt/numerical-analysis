@@ -272,8 +272,14 @@ A positive sequence \(\{E_n\}\) is said to has an order of at least $\alpha$ and
 		The subscript is ignored since Taylor's expansion applies to all \(E_n,n\in\N^*\) with the assumption that \(E_n\) are small.
 		Since \(f(x^*)=0\) by definition of root,
 		\[ f(x^*+E_n)\approx f'(x^*)E_n \left(1+\frac{f''(x^*)}{2f'(x^*)}\cdot E_n \right). \]
-		So the denominator in \ref{secanterror} can be approximated by
+		So the denominator in (\ref{secanterror}) can be approximated by
 		\[ f(x^*+E_n)-f(x^*+E_{n-1})\approx f'(x^*)(E_n-E_{n-1}) \left[1+\frac{f''(x^*)}{2f'(x^*)}\cdot (E_n+E_{n-1}) \right]. \]
+		For simplicity, define
+		\[ M=\frac{f''(x^*)}{2f'(x^*)}. \]
+		Then equation (\ref{secanterror}) can be simplified to
+		\begin{align*}
+			E_{n+1}&\approx E_n
+		\end{align*}
 	\end{proof}
 \end{enumerate}
 
