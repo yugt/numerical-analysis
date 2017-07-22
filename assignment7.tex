@@ -341,13 +341,25 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 	\[ x_k=x_{k-1}-m\cdot\frac{f(x_{k-1})}{f'(x_{k-1})} \]
 	if the original Newton's method produces a sequence converges linearly to the root \(x=x^*\) of order \(m>1\).
 	\begin{proof}
-		
+		Write \(f(x)=(x-x^*)^m h(x)\), then
+		\[ x_{k} = x_{k-1} - m\cdot\frac{f(x_{k-1})}{f'(x_{k-1})} = x_{k-1} - 
+		\frac{(x_{k-1}-x^*)h(x_{k-1})}{h(x_{k-1})+\frac{1}{m}(x_{k-1}-x^*)h'(x_{k-1})}. \]
+		Define the error term \(E_k=x_k-x^*\), then
+		\[ E_k = E_{k-1} \left( 1 - 
+		\frac{1}{1+\frac{1}{m} E_{k-1}\frac{h'(x^*+E_{k-1})}{h(x^*+E_{k-1})}}\right). \]
+		A first order approximation gives
+		\[ E_k \approx E_{k-1}^2 \cdot
+		\frac{h'(x^*+E_{k-1})}{m\cdot h(x^*+E_{k-1})}. \]
+		So the quadratic convergence is proved.
 	\end{proof}
 	\item In practice, it is unlikely that $m$ is known, in those cases the following version of modified Newton's method can be applied to accelerate convergence
 	\[ x_k=x_{k-1}-\frac{u(x_{k-1})}{u'(x_{k-1})}, \quad \text{where} \quad u(x)=\frac{f(x)}{f'(x)} \]
 	Explain how this helps to speed up convergence.
-	\begin{proof}
-		
+	\begin{proof}[Answer]
+		 If a polynomial \(f(x)\) has a root of multiplicity \(m\) at a point \(x_0\), then its derivative \(f'(x)\) has a root of multiplicity \(m-1\) at \(x_0\).
+		 Thus we can obtain a function
+		 \[ u(x)=\frac{f(x)}{f'(x)} \]
+		 that  has  all  simple roots at all of \(f\)'s roots.
 	\end{proof}
 	\item Zero is a root of multiplicity of 3 for the function
 	\[ f(x)=\sin(x^3). \]
@@ -401,7 +413,18 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 	\item Compare Newton's method and the modified version of it in part (c) by finding all the roots of the following polynomial correct to 6 decimal places.
 	\[ f(x)=x^5 - 11x^4 + 46x^3 - 90x^2 + 81x - 27 \]
 	\begin{proof}
-	
+	Using the MATLAB\texttrademark\ function provided, we perform the iteration with the following command:
+	\begin{lstlisting}[style=Matlab-editor]
+	f = @(x) x^5-11*x^4+46*x^3-90*x^2+81*x-27;
+	df = @(x) 5*x^4-44*x^3+138*x^2-180*x+81;
+	u = @(x) f(x)/df(x);
+	du = @(x) (5*x^2-18*x+21)/(5*x-9)^2;
+	newton_Modified(f,df,1.2,1,1e-11,1e-11,100)
+	newton_Improved(f,u,du,1.2,1e-20,1e-20,6)
+	newton_Modified(f,df,3.01,1,1e-20,1e-80,100)
+	newton_Improved(f,u,du,3.02,1e-80,1e-40,40)
+	\end{lstlisting}
+	The results are recorded in Table \ref{newtoncompare2} and \ref{newtoncompare3}.
 	\begin{table}[htbp]
 		\begin{subtable}[t]{.49\linewidth}
 			\centering
@@ -503,7 +526,7 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 		\caption{Comparison of Newton's Method on Iteration at a Root of Order 3}
 		\label{newtoncompare3}
 	\end{table}
-
+	Obviously, the improved method which only have simple roots converges much faster.
 	\end{proof}
 \end{enumerate}
 
@@ -552,8 +575,6 @@ Provide an example, if exists, of root-finding problems that satisfy the followi
 		At critical points \(|x_0|=1\) or \(|x_0|=\frac{1}{2}\), the function is not differentiable.
 	\end{proof}
 \end{enumerate}
-
-
 
 
 \section{Complex root finding for analytic functions}
