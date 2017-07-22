@@ -259,6 +259,22 @@ A positive sequence \(\{E_n\}\) is said to has an order of at least $\alpha$ and
 	\[ \lim_{n\to\infty}\frac{|x_{n+1}-x^*|}{|x_{n}-x^*|^2}=\frac{1}{2}|g'(x^*)|. \]
 	\end{proof}
 	\item Show the order of convergence of the secant method is \(\frac{\sqrt{5}+1}{2} \).
+	\begin{proof}
+		Apply the definition of secant method.
+		\[ x_{n+1}=x_n-\frac{f(x_n)(x_n-x_{n-1})}{f(x_n)-f(x_{n-1})}. \]
+		Rewrite it in the form of error term, \textit{i.e.}, apply the substitution \(x_n=x_*+E_n\), we get
+		\begin{equation}
+		\label{secanterror}
+		E_{n+1}=E_n-\frac{f(x^*+E_n)(E_n-E_{n-1})}{f(x^*+E_n)-f(x^*+E_{n-1})}.
+		\end{equation}
+		Assume \(f\in\mathcal{C}^2\), we apply Taylor's expansion up to the quadratic term,
+		\[ f(x^*+E)\approx f(x^*)+f'(x^*)E+\frac{f''(x^*)}{2}\cdot E^2. \]
+		The subscript is ignored since Taylor's expansion applies to all \(E_n,n\in\N^*\) with the assumption that \(E_n\) are small.
+		Since \(f(x^*)=0\) by definition of root,
+		\[ f(x^*+E_n)\approx f'(x^*)E_n \left(1+\frac{f''(x^*)}{2f'(x^*)}\cdot E_n \right). \]
+		So the denominator in \ref{secanterror} can be approximated by
+		\[ f(x^*+E_n)-f(x^*+E_{n-1})\approx f'(x^*)(E_n-E_{n-1}) \left[1+\frac{f''(x^*)}{2f'(x^*)}\cdot (E_n+E_{n-1}) \right]. \]
+	\end{proof}
 \end{enumerate}
 
 
@@ -271,6 +287,11 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 	\item Prove by induction that there exists a continuous function \(h(x)\) so that \(f(x)\) can be expressed as the product
 	\[ f(x)=(x-x^*)^m h(x), \quad \text{where} \quad h(x^*)\neq0 \]
 	if the equation \(f(x)\) has a root of order $m$ at \(x=x^*\).
+	\begin{proof}
+		We prove by induction.
+		When \(m=1\), we have
+		\[f(x^*)=0,\quad f'(x^*)\neq0. \]
+	\end{proof}
 	\item Show the following modified Newton's iteration will produce a sequence that converges quadratically to $x^*$
 	\[ x_k=x_{k-1}-m\cdot\frac{f(x_{k-1})}{f'(x_{k-1})} \]
 	if the original Newton's method produces a sequence converges linearly to the root \(x=x^*\) of order \(m>1\).
@@ -479,23 +500,6 @@ Provide an example, if exists, of root-finding problems that satisfy the followi
 		At critical points \(|x_0|=1\) or \(|x_0|=\frac{1}{2}\), the function is not differentiable.
 	\end{proof}
 \end{enumerate}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
