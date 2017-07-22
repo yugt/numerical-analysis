@@ -258,7 +258,7 @@ A positive sequence \(\{E_n\}\) is said to has an order of at least $\alpha$ and
 	So the convergence rate is
 	\[ \lim_{n\to\infty}\frac{|x_{n+1}-x^*|}{|x_{n}-x^*|^2}=\frac{1}{2}|g'(x^*)|. \]
 	\end{proof}
-	\item Show the order of convergence of the secant method is \(\frac{\sqrt{5}+1}{2} \).
+	\item Show the order of convergence of the secant method is \(\frac{\sqrt{5}+1}{2}\).
 	\begin{proof}
 		Apply the definition of secant method.
 		\[ x_{n+1}=x_n-\frac{f(x_n)(x_n-x_{n-1})}{f(x_n)-f(x_{n-1})}. \]
@@ -278,8 +278,33 @@ A positive sequence \(\{E_n\}\) is said to has an order of at least $\alpha$ and
 		\[ M=\frac{f''(x^*)}{2f'(x^*)}. \]
 		Then equation (\ref{secanterror}) can be simplified to
 		\begin{align*}
-			E_{n+1}&\approx E_n
+			E_{n+1}&\approx E_n-\frac{E_n f'(x^*)(1+M E_n)(E_n-E_{n-1})}{f'(x^*)(E_n-E_{n-1})[1+M(E_n+E_{n-1})]}\\
+			&=E_n-\frac{E_n (1+M E_n)}{1+M(E_n+E_{n-1})}\\
+			&=\frac{M}{1+M(E_n+E_{n-1})}E_nE_{n-1}
 		\end{align*}
+		Again, apply the assumption that \(E_n\) are small, then
+		\[ \frac{1}{1+M(E_n+E_{n-1})}\approx 1, \]
+		and thus
+		\begin{equation}
+		\label{secantrecursion}
+		E_{n+1}=M E_n E_{n-1}.
+		\end{equation}
+		By definition of convergence rate,
+		\[ \lim_{n\to\infty}\frac{|E_{n+1}|}{|E_n|^\alpha}=\lambda. \]
+		Then, we have the approximated first order recursive relation
+		\[ \forall n>N,\quad|E_{n+1}|\approx \lambda|E_n|^\alpha. \]
+		Apply this approximation to the second order recursive relation (\ref{secantrecursion}),
+		\[ \lambda|E_n|^\alpha=|M|\cdot|E_n|\cdot|E_{n-1}|, \]
+		which can be written in another first order recursive relation
+		\[ |E_n|^{\alpha-1}=\frac{|M|}{\lambda}\cdot|E_{n-1}|. \]
+		Taking the \((\alpha-1)^{\text{th}}\) root, we have the recursive relation in the original form
+		\[ |E_n|=\left(\frac{|M|}{\lambda}\right)^{\frac{1}{\alpha-1}}\cdot|E_{n-1}|^{\frac{1}{\alpha-1}} \]
+		Since we only focus on the order of convergence, not the rate, we omit the equation for the coefficient.
+		Then, we require
+		\[  \alpha=\frac{1}{\alpha-1}, \]
+		which has a root
+		\[ \alpha=\frac{\sqrt{5}+1}{2}. \]
+		The negative root is omitted since it does not satisfy the convergence condition.
 	\end{proof}
 \end{enumerate}
 

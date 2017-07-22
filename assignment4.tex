@@ -263,7 +263,7 @@ The MATLAB\texttrademark\ code is attached here.
 
 
 \section{Newton's form of the interpolation polynomial}
-Let $f$ be a continuous function and $P^n$ be its interpolation polynomial in the points \(x_0,\cdots,x_n\).
+Let \(f\) be a continuous function, \(P^n\) be its interpolation polynomial in the points \(x_0,\cdots,x_n\).
 \begin{enumerate}
 	\item Let \(P^0(x)=f(x_0)\) be the interpolation polynomial in a single point $x_0$.
 	\begin{enumerate}[(a)]
@@ -407,7 +407,7 @@ Denoting \(f[x_i]\) by $f_i$ , \(0\leq i\leq n\), we recursively define the oper
 	\end{proof}
 	\item Write the pseudocode of an algorithm which takes a step $h$ as input, a number of nodes, the value of $f$ at each of those nodes, and a value $x$.
 	The algorithm should return \(P^{n}(x)\approx f(x)\).
-	\begin{algorithm}[h]
+	\begin{algorithm}[ht]
 		\KwIn{Step length $h$, number of nodes $n+1$, the value of $f$ at those nodes, stored in vector $y$, and a value $x$}
 		\KwOut{Estimation of $f$ at $x$ using interpolation with polynomial of degree at most $n$, denoted as $f_x$}
 		A=zeros(n+1,n+1)\;
