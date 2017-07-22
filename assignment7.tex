@@ -319,16 +319,36 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 	\[ f(x)=(x-x^*)^m h(x), \quad \text{where} \quad h(x^*)\neq0 \]
 	if the equation \(f(x)\) has a root of order $m$ at \(x=x^*\).
 	\begin{proof}
-		We prove by induction.
-		When \(m=1\), we have
-		\[f(x^*)=0,\quad f'(x^*)\neq0. \]
+		Actually, induction is not required to prove the statement.
+		We can define
+		\[ h(x)=\frac{f(x)}{(x-x^*)^m}, \quad \forall x\in\R\backslash\{x^*\}. \]
+		This function is obviously continuous at \(\R\backslash\{x^*\}\).
+		So we need the continuity at \(x=x^*\).
+		Apply the L'Hospital rule, \(h\) has a limit at \(x=x^*\)
+		\[ \lim_{x\to x^*}\frac{f(x)}{(x-x^*)^m}=\lim_{x\to x^*}\frac{f^{(m)}(x)}{\left[(x-x^*)^m\right]^{(m)}}		=\frac{f^{(m)}(x)}{m!}\neq0 \]
+		by definition.
+		So we complete the definition of \(h\):
+		\[ h(x)=\begin{cases}
+		\frac{f(x)}{(x-x^*)^m}, & x\in\R\backslash\{x^*\}\\
+		\frac{f^{(m)}(x^*)}{m!}, & x=x^* \end{cases}. \]
+		This is continuous at \(x^*\), since the limit of the function equals to the function value.
+		It is easy to verify
+		\[ f(x)=(x-x^*)^m h(x). \]
+		And \(h(x^*)=f^{(m)}(x^*)\neq0\) is also satisfied.
+		So we are able to find such an \(h(x)\) for all \(m\in\N^*\).
 	\end{proof}
 	\item Show the following modified Newton's iteration will produce a sequence that converges quadratically to $x^*$
 	\[ x_k=x_{k-1}-m\cdot\frac{f(x_{k-1})}{f'(x_{k-1})} \]
 	if the original Newton's method produces a sequence converges linearly to the root \(x=x^*\) of order \(m>1\).
+	\begin{proof}
+		
+	\end{proof}
 	\item In practice, it is unlikely that $m$ is known, in those cases the following version of modified Newton's method can be applied to accelerate convergence
 	\[ x_k=x_{k-1}-\frac{u(x_{k-1})}{u'(x_{k-1})}, \quad \text{where} \quad u(x)=\frac{f(x)}{f'(x)} \]
 	Explain how this helps to speed up convergence.
+	\begin{proof}
+		
+	\end{proof}
 	\item Zero is a root of multiplicity of 3 for the function
 	\[ f(x)=\sin(x^3). \]
 	Start with \(x_0=1\) and compute \(x_1, x_2, \cdots, x_6\) first by using the iteration formula in part (b) and then by using the iteration formula in part (c).
@@ -503,6 +523,7 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 % 	\end{tabular}
 % 	\caption{Finding Root of \(\sin\left(x^3\right)\) with regular Newtons Iteration}
 % \end{table}
+
 
 
 \section{Problem with root finding methods}
