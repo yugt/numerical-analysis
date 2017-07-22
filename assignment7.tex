@@ -457,7 +457,27 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 Provide an example, if exists, of root-finding problems that satisfy the following criteria:
 \begin{enumerate}
 	\item It can be solved by Bisection but not by using fixed-point iteration.
+	\begin{proof}[Answer]
+		By previous result, we only need the function to have Lipschitz constant \(c>1\).
+		A typical example is
+		\[ f(x)=2|x|. \]
+	\end{proof}
 	\item It can be solved by using fixed-point iteration but not by Newton's method.
+	\begin{proof}[Answer]
+		Fixed-point iteration requires Lipschitz continuity, while Newton's method requires differentiable.
+		So we can construct a piecewise Lipschitz continuous function
+		\[ f(x)=\begin{cases}
+		\frac{\left| x\right| }{2} & |x|\leq \frac{1}{2} \\
+		\frac{1}{4} &  \frac{1}{2}\leq |x| \leq 1 \\
+		\frac{\left| x\right| }{2}-\frac{1}{4} & |x|\geq 1
+		\end{cases} \]
+		Such function has Lipschitz constant \(c=\frac{1}{2}\) on \(\R\), so it will be solved by fixed-point iteration at any initial guess.
+		However, if the initial guess \(x_0\) has \(|x_0|>1\), then
+		\[ x_1=x_0-\frac{\frac{|x_0|}{2}-\frac{1}{4}}{\text{sgn}{(x_0)}\cdot\frac{1}{2}}=\frac{1}{2}\cdot\text{sgn}{(x_0)} \]
+		But the function is not differentiable at \(\pm\frac{1}{2}\), so the process cannot continue.
+		If the initial guess has \(\frac{1}{2}<|x_0|<1\), then \(f'(x_0)=0\), and the process cannot continue either.
+		At critical points \(|x_0|=1\) or \(|x_0|=\frac{1}{2}\), the function is not differentiable.
+	\end{proof}
 \end{enumerate}
 
 
