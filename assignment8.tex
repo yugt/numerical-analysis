@@ -1,0 +1,60 @@
+%!TEX root = main.tex
+\titleformat{\section}{\normalfont\large\bfseries}{Exercise \thesection\ --- }{1pt}{}
+% \setcounter{chapter}{7}
+\renewcommand{\chaptername}{Assignment}
+\chapter{Optimization}
+
+
+\section{Convexity and Concavity}
+The negative of a \emph{convex} function is known to be a \emph{concave} function.
+The negative of a \emph{quasi-convex} function is known to be a \emph{quasi-concave} function.
+For each of the following functions determine whether it is convex, concave, quasi-convex, or quasi-concave.
+\begin{enumerate}
+	\item The function \(f: \R \to \R\) given by
+	\[ f(x)=e^x-1. \]
+	\item The function \(f: \R_{++}^2 \to \R\) given by
+	\[ f(x_1,x_2)=x_1 x_2. \]
+	\item The function \(f: \R_{++}^2 \to \R\) given by
+	\[ f(x_1,x_2)=\frac{1}{x_1 x_2}. \]
+	\item The function \(f: \R_{++}^2 \to \R\) given by
+	\[ f(x_1,x_2)=\frac{x_1}{x_2}. \]
+	\item The function \(f: \R\times\R_+ \to \R\) given by
+	\[ f(x_1,x_2)=\frac{x_1^2}{x_2}. \]
+	\item The function \(f: \R_{++}^2 \to \R\) given by
+	\[ f(x_1,x_2)=x_1^\alpha x_2^{1-\alpha}. \]
+\end{enumerate}
+
+
+\section{Extrema and Convexity in higher dimension}
+Let \(f: \R^n \to \R\). Prove the following theorems.
+\begin{enumerate}
+	\item If \(f\) is continuously differentiable in an open neighborhood of a local minimizer \(x^*\), then the gradient \(\nabla f(x^ *) = 0\).
+	\item If the Hessian \(H\) of \(f\) is continuous in an open neighborhood of a local minimizer \(x^*\), then the gradient \(\nabla f(x^ *) = 0\) and the Hessian \(H\) at \(x=x^*\) is \emph{positive semi-definite}.
+	\item If \(f\) is differentiable and convex, then \(x^*\) is a global minimum if and only if \(\nabla f(x^*) = 0\).
+	\item If \(f\) is twice differentiable, then \(f\) is convex if and only if \(f\) is \emph{positive semi-definite} for all \(x \in \R\).
+\end{enumerate}
+
+
+\section{Approximation width}
+Let \(f_0, f_1, \cdots, f_n: \R \to \R\) be continuous functions.
+Consider the problem of approximating \(f_0\) as a linear combination of \(f_1, \cdots, f_n\).
+For \(\alpha\in\R^n\), we say that
+\[ f=\alpha_1f_1+\cdots+\alpha_n f_n \]
+approximates \(f_0\) with tolerance \(\epsilon > 0\) over the interval \([0, T]\) if
+\[ |f(t)-f_0(t)|\leq\epsilon \quad \forall t\in[0,T]. \]
+For a fixed tolerance \(\epsilon > 0\), we define the \emph{approximation width} as the largest \(T\) such that \(f\) approximates \(f_0\) over the interval \([0, T]\), that is
+\[ W(\alpha) = \sup \left\{ T | \forall 0 \leq t \leq T, \quad |f(t) - f_0(t)| \leq\epsilon \right\} \]
+Show that \(W\) is quasi-concave.
+
+
+\section{Numerical methods to find global extrema}
+Choose a suitable numerical method to find the global minimum of the function
+\[ f(x)=\frac{\sin\frac{1}{x}}{(x-2\pi)^2+\pi} \]
+correct to 3 decimal places.
+Explain your choice.
+
+
+\section{Constrained Extrema}
+Consider the following function
+\[ f(x,y) = e^x\left(4x^2 + 2y^2 + 4xy + 2y + 1\right). \]
+Produce an informative MATLAB\texttrademark\ plot of \(g(y) = \min_{x} f(x, y)\), which gives the minimum of \(f(x,y)\) as \(y\) changes.
