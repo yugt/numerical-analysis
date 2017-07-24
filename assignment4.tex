@@ -350,7 +350,11 @@ Let \(f\) be a continuous function, \(P^n\) be its interpolation polynomial in t
 	By the principle of mathematical induction, we have it true for all \(k\in\N^*\).
 	\end{proof}
 	\item Write the pseudocode of a clear algorithm to compute \(P^n(x)\) when given $n+1$ nodes \(x_0,\cdots,x_n\) and the value of $f$ at those nodes.
-	\begin{algorithm}[ht]
+	\ifnum\webview=1
+		\begin{algorithm}[H]
+	\else
+		\begin{algorithm}[htbp]
+	\fi
 	\KwIn{$n+1$ nodes: \((x_0,f(x_0)),\cdots,(x_n,f(x_n))\), \(x_0,\cdots,x_n\) stored in vector $x$ and  \(f(x_0),\cdots,f(x_n)\) stored in vector $y$}
 	\KwOut{Coefficients of \(P^n(x)\): \(a_0,\cdots,a_n\), stored in vector $a$}
 	A=zeros(n+1,n+1)\;
@@ -407,7 +411,11 @@ Denoting \(f[x_i]\) by $f_i$ , \(0\leq i\leq n\), we recursively define the oper
 	\end{proof}
 	\item Write the pseudocode of an algorithm which takes a step $h$ as input, a number of nodes, the value of $f$ at each of those nodes, and a value $x$.
 	The algorithm should return \(P^{n}(x)\approx f(x)\).
-	\begin{algorithm}[ht]
+	\ifnum\webview=1
+		\begin{algorithm}[H]
+	\else
+		\begin{algorithm}[htbp]
+	\fi
 		\KwIn{Step length $h$, number of nodes $n+1$, the value of $f$ at those nodes, stored in vector $y$, and a value $x$}
 		\KwOut{Estimation of $f$ at $x$ using interpolation with polynomial of degree at most $n$, denoted as $f_x$}
 		A=zeros(n+1,n+1)\;

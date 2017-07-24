@@ -1,5 +1,6 @@
-\documentclass[12pt,oneside]{book}
-\usepackage[a4paper, margin=1in, headheight=105pt]{geometry}
+\documentclass[10pt]{book}
+\usepackage[active,tightpage,floats]{preview}
+\usepackage{incgraph}
 \usepackage{subcaption}
 \usepackage{enumerate}
 \usepackage{mathtools}
@@ -12,30 +13,24 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{caption}
+\usepackage{float}
 \usepackage{xparse}
 \usepackage{amsthm}
 \usepackage{ifpdf}
-\usepackage{float}
 \usepackage[backend=biber,backref=true]{biblatex}
 \usepackage[linesnumbered,boxed,algochapter]{algorithm2e}
 \usepackage[titletoc]{appendix}
 \usepackage{matlab-prettifier}
-% \usepackage[numbered,framed]{mcode}
 \addbibresource{reference.bib}
 
 \makeatletter
 \@addtoreset{chapter}{part}
 \makeatother
 
-\pagestyle{fancy}
-\lhead{{\chaptername\/} \thechapter}
-\chead{\href{http://www-personal.umich.edu/~yugtmath}{\calligra{Guangting Yu}}}
-\rhead{\href{https://mcommunity.umich.edu/\#search:yugtmath}{5133709016}}
-\lfoot{\href{http://umji.sjtu.edu.cn/}{\textbf{UM-SJTU Joint Institute}}}
-\rfoot{\href{https://umji.famousedu.com/courses/38}{\textbf{VV570 Numerical Analysis}}}
+\newcommand{\webview}{1}
 
-\newcommand{\webview}{0}
 
+\renewcommand{\PreviewBorder}{1in}
 \newcommand{\ud}{~\mathrm{d}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\R}{\mathbb{R}}
@@ -54,18 +49,31 @@
 
 \graphicspath{{./graphics/}}
 
+\thispagestyle{empty}
+
 \begin{document}
-\tableofcontents
-\part{Assignments}
+\begin{preview}
 \input{assignment1.tex}
+\end{preview}
+\begin{preview}
 \input{assignment2.tex}
+\end{preview}
+\begin{preview}
 \input{assignment3.tex}
+\end{preview}
+\begin{preview}
 \input{assignment4.tex}
+\end{preview}
+\begin{preview}
 \input{assignment5.tex}
+\end{preview}
+\begin{preview}
 \input{assignment6.tex}
+\end{preview}
+\begin{preview}
 \input{assignment7.tex}
+\end{preview}
+\begin{preview}
 \input{assignment8.tex}
-\part{Projects}
-\input{project1.tex}
-\printbibliography
+\end{preview}
 \end{document}

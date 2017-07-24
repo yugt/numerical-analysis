@@ -153,7 +153,11 @@ Produce an informative MATLAB\texttrademark\ plot of \(g(y) = \min_{x} f(x, y)\)
 	\end{align*}
 	and the natural domain is \(y\in[-3,1]\).
 	The plot of \(g\) is given in Figure \ref{mathematica}.
-	\begin{figure}[htbp]
+	\ifnum\webview=1
+		\begin{figure}[H]
+	\else
+		\begin{figure}[htbp]
+	\fi	
 		\centering
 		\ifpdf
 			\includegraphics[width=\textwidth]{A8p6.pdf}

@@ -150,8 +150,14 @@ newton(f,df,1.57,1e-4,1e-3,100)
 newton(f,df,4.7,1e-4,1e-3,100)
 \end{lstlisting}
 The results are recorded in Table \ref{newtoniteration}.
-\begin{table}[htbp]
+\ifnum\webview=1
+	\begin{table}[H]
+	\centering
+	\begin{subtable}[t]{.8\textwidth}
+\else
+	\begin{table}[htbp]
 	\begin{subtable}[t]{.48\linewidth}
+\fi
 		\centering
 		\caption{Finding the first positive root}
 		\begin{tabular}[t]{|c|c|c|c|}
@@ -171,8 +177,14 @@ The results are recorded in Table \ref{newtoniteration}.
 		12	&	1.3932	&	4.5560e-05	&	6.5397e-05	\\	\hline
 		\end{tabular}
 	\end{subtable}
-	\hfill
-	\begin{subtable}[t]{.48\linewidth}
+	\ifnum\webview=1
+		\\
+		\centering
+		\begin{subtable}[t]{.8\textwidth}
+	\else
+		\hfill
+		\begin{subtable}[t]{.48\linewidth}
+	\fi
 		\centering
 		\caption{Finding the second positive root}
 		\begin{tabular}[t]{|c|c|c|c|}
@@ -376,8 +388,14 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 	newton_Improved(f,u,du,1,1e-20,1e-20,6)
 	\end{lstlisting}
 	The results are recorded in Table \ref{newtoncompare1}.
-	\begin{table}[htbp]
-		\begin{subtable}[t]{.49\linewidth}
+	\ifnum\webview=1
+		\begin{table}[H]
+		\centering
+		\begin{subtable}[t]{.8\textwidth}
+	\else
+		\begin{table}[htbp]
+		\begin{subtable}[t]{.49\linewidth}	
+	\fi		
 			\centering
 			\caption{Modified with \(m=3\)}
 			\begin{tabular}[t]{|c|c|c|}
@@ -391,7 +409,12 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 			\scriptsize	6	&	\scriptsize	NaN						&	\scriptsize	NaN	\\	\hline
 			\end{tabular}
 		\end{subtable}
-		\begin{subtable}[t]{.49\linewidth}
+		\ifnum\webview=1
+			\centering
+			\begin{subtable}[t]{.8\textwidth}
+		\else
+			\begin{subtable}[t]{.49\linewidth}
+		\fi
 			\centering
 			\caption{Improved}
 			\begin{tabular}{|c|c|}
@@ -425,8 +448,14 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 	newton_Improved(f,u,du,3.02,1e-80,1e-40,40)
 	\end{lstlisting}
 	The results are recorded in Table \ref{newtoncompare2} and \ref{newtoncompare3}.
-	\begin{table}[htbp]
+	\ifnum\webview=1
+		\begin{table}[H]
+		\centering
+		\begin{subtable}[t]{.8\textwidth}
+	\else
+		\begin{table}[htbp]
 		\begin{subtable}[t]{.49\linewidth}
+	\fi	
 			\centering
 			\caption{Original Newton's iteration}
 			\begin{tabular}[t]{|c|c|c|}
@@ -451,7 +480,12 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 			\footnotesize	17	&	\footnotesize	1.000001075651434	&	\footnotesize	1.075960130103582e-06	\\	\hline
 			\end{tabular}
 		\end{subtable}
-		\begin{subtable}[t]{.49\linewidth}
+		\ifnum\webview=1
+			\centering
+			\begin{subtable}[t]{.8\textwidth}
+		\else
+			\begin{subtable}[t]{.49\linewidth}
+		\fi
 			\centering
 			\caption{Improved}
 			\begin{tabular}{|c|c|}
@@ -466,8 +500,14 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 		\caption{Comparison of Newton's Method on Iteration at a Root of Order 2}
 		\label{newtoncompare2}
 	\end{table}
-	\begin{table}[htbp]
+	\ifnum\webview=1
+		\begin{table}[H]
+		\centering
+		\begin{subtable}[t]{.8\textwidth}
+	\else
+		\begin{table}[htbp]
 		\begin{subtable}[t]{.49\linewidth}
+	\fi	
 			\centering
 			\caption{Original Newton's iteration}
 			\begin{tabular}{|c|c|c|}
@@ -503,7 +543,12 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 			\footnotesize	28	&	\footnotesize	3.000010906132086	&	\footnotesize	1.616239979318479e-05	\\	\hline
 			\end{tabular}
 		\end{subtable}
-		\begin{subtable}[t]{.49\linewidth}
+		\ifnum\webview=1
+			\centering
+			\begin{subtable}[t]{.8\textwidth}
+		\else
+			\begin{subtable}[t]{.49\linewidth}
+		\fi
 			\centering
 			\caption{Improved}
 			\begin{tabular}{|c|c|}
