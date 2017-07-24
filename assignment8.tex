@@ -12,14 +12,41 @@ For each of the following functions determine whether it is convex, concave, qua
 \begin{enumerate}
 	\item The function \(f: \R \to \R\) given by
 	\[ f(x)=e^x-1. \]
+	\begin{proof}[Answer]
+	The second derivative
+	\[f''(x)=e^x>0,\quad \forall x\in\R, \]
+	so it is convex.
+	\end{proof}
 	\item The function \(f: \R_{++}^2 \to \R\) given by
 	\[ f(x_1,x_2)=x_1 x_2. \]
+	\begin{proof}[Answer]
+	The Hessian matrix of \(f\) is
+	\[ \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \]
+	where the eigenvalues are \(\lambda_1=1,\lambda_2=-1\).
+	So the function is neither convex nor concave.
+	\end{proof}
 	\item The function \(f: \R_{++}^2 \to \R\) given by
 	\[ f(x_1,x_2)=\frac{1}{x_1 x_2}. \]
+	\begin{proof}[Answer]
+	The Hessian matrix of \(f\) is
+	\[ \begin{pmatrix} \frac{2}{x_1^3 x_2} & \frac{1}{x_1^2 x_2^2} \\ \frac{1}{x_1^2 x_2^2} & \frac{2}{x_1 x_2^3} \end{pmatrix}, \]
+	which is positive definite for \(x_1,x_2\in\R^{+}\).
+	Thus, \(f\) is convex on its domain.
+	\end{proof}
 	\item The function \(f: \R_{++}^2 \to \R\) given by
 	\[ f(x_1,x_2)=\frac{x_1}{x_2}. \]
+	\begin{proof}
+	The Hessian matrix of \(f\) is
+	\[ \begin{pmatrix} 0 & -\frac{1}{x_2^2} \\ -\frac{1}{x_2^2} & \frac{2x_1}{x_2^3} \end{pmatrix}, \]
+	which is negative semidefinite.
+	So it is neither convex nor concave.
+	\end{proof}
 	\item The function \(f: \R\times\R_+ \to \R\) given by
 	\[ f(x_1,x_2)=\frac{x_1^2}{x_2}. \]
+	The Hessian matrix of \(f\) is
+	\[ \begin{pmatrix} \frac{2}{x_2} & -\frac{2x_1}{x_2^2} \\ -\frac{2x_1}{x_2^2} & \frac{2x_1^2}{x_2^3} \end{pmatrix}, \]
+	which is negative semidefinite.
+	So it is neither convex nor concave.
 	\item The function \(f: \R_{++}^2 \to \R\) given by
 	\[ f(x_1,x_2)=x_1^\alpha x_2^{1-\alpha}. \]
 \end{enumerate}
