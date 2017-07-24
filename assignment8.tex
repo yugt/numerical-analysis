@@ -155,7 +155,11 @@ Produce an informative MATLAB\texttrademark\ plot of \(g(y) = \min_{x} f(x, y)\)
 	The plot of \(g\) is given in Figure \ref{mathematica}.
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[width=\textwidth]{A8p6.pdf}
+		\ifpdf
+			\includegraphics[width=\textwidth]{A8p6.pdf}
+		\else
+			\includegraphics[width=\textwidth]{A8p6.eps}
+		\fi
 		\caption{Plot of \(g(y) = \min_{x} f(x, y)\)}
 		\label{mathematica}
 	\end{figure}
