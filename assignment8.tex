@@ -5,7 +5,7 @@
 \chapter{Optimization}
 
 
-\section{Convexity and Concavity}
+\section{Convexity and Quasi-convexity}
 The negative of a \emph{convex} function is known to be a \emph{concave} function.
 The negative of a \emph{quasi-convex} function is known to be a \emph{quasi-concave} function.
 For each of the following functions determine whether it is convex, concave, quasi-convex, or quasi-concave.
@@ -14,8 +14,9 @@ For each of the following functions determine whether it is convex, concave, qua
 	\[ f(x)=e^x-1. \]
 	\begin{proof}[Answer]
 	The second derivative
-	\[f''(x)=e^x>0,\quad \forall x\in\R, \]
-	so it is convex.
+	\[ f''(x)=e^x>0,\quad \forall x\in\R, \]
+	so it is convex, and it comes from definition that it is also quasi-convex.
+	Thus, it is not concave, and not quasi-concave.
 	\end{proof}
 	\item The function \(f: \R_{++}^2 \to \R\) given by
 	\[ f(x_1,x_2)=x_1 x_2. \]
@@ -23,7 +24,7 @@ For each of the following functions determine whether it is convex, concave, qua
 	The Hessian matrix of \(f\) is
 	\[ \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \]
 	where the eigenvalues are \(\lambda_1=1,\lambda_2=-1\).
-	So the function is neither convex nor concave.
+	So the function is neither convex nor concave, nor is it quasi-convex or quasi-concave.
 	\end{proof}
 	\item The function \(f: \R_{++}^2 \to \R\) given by
 	\[ f(x_1,x_2)=\frac{1}{x_1 x_2}. \]
@@ -31,22 +32,25 @@ For each of the following functions determine whether it is convex, concave, qua
 	The Hessian matrix of \(f\) is
 	\[ \begin{pmatrix} \frac{2}{x_1^3 x_2} & \frac{1}{x_1^2 x_2^2} \\ \frac{1}{x_1^2 x_2^2} & \frac{2}{x_1 x_2^3} \end{pmatrix}, \]
 	which is positive definite for \(x_1,x_2\in\R^{+}\).
-	Thus, \(f\) is convex on its domain.
+	Thus, \(f\) is convex on its domain, and it follows from definition that it is also quasi-convex.
+	Thus, it is not concave, and not quasi-concave.
 	\end{proof}
 	\item The function \(f: \R_{++}^2 \to \R\) given by
 	\[ f(x_1,x_2)=\frac{x_1}{x_2}. \]
 	\begin{proof}
 	The Hessian matrix of \(f\) is
-	\[ \begin{pmatrix} 0 & -\frac{1}{x_2^2} \\ -\frac{1}{x_2^2} & \frac{2x_1}{x_2^3} \end{pmatrix}, \]
-	which is negative semidefinite.
-	So it is neither convex nor concave.
+	\[ \begin{pmatrix} 0 & -\frac{1}{x_2^2} \\ -\frac{1}{x_2^2} & \frac{2x_1}{x_2^3} \end{pmatrix}. \]
+	And the eigenvalue of it is
+	\[ \lambda_{1,2}=\frac{x_1\pm\sqrt{x_1^2+x_2^2}}{x_2^3}. \]
+	So \(\lambda_1>0,\lambda_2<0,\forall x_1,x_2\in\R^+\), which means the matrix is never positive definite or negative definite.
+	So \(f\) not convex, not concave, not quasi-convex, not quasi-concave.
 	\end{proof}
 	\item The function \(f: \R\times\R_+ \to \R\) given by
 	\[ f(x_1,x_2)=\frac{x_1^2}{x_2}. \]
 	The Hessian matrix of \(f\) is
 	\[ \begin{pmatrix} \frac{2}{x_2} & -\frac{2x_1}{x_2^2} \\ -\frac{2x_1}{x_2^2} & \frac{2x_1^2}{x_2^3} \end{pmatrix}, \]
 	which is negative semidefinite.
-	So it is neither convex nor concave.
+	So the function is neither convex nor concave, nor is it quasi-convex or quasi-concave.
 	\item The function \(f: \R_{++}^2 \to \R\) given by
 	\[ f(x_1,x_2)=x_1^\alpha x_2^{1-\alpha}. \]
 \end{enumerate}
