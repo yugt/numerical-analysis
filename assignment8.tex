@@ -53,6 +53,13 @@ For each of the following functions determine whether it is convex, concave, qua
 	So the function is neither convex nor concave, nor is it quasi-convex or quasi-concave.
 	\item The function \(f: \R_{++}^2 \to \R\) given by
 	\[ f(x_1,x_2)=x_1^\alpha x_2^{1-\alpha}. \]
+	\[ f(x_1,x_2)=x_1 x_2. \]
+	\begin{proof}[Answer]
+	The Hessian matrix of \(f\) is
+	\[ \begin{pmatrix} \alpha(\alpha-1)x_1^{\alpha-2}x_2^{1-\alpha}  & \alpha(1-\alpha)x_1^{\alpha-1}x_2^{-\alpha} \\ \alpha(1-\alpha)x_1^{\alpha-1}x_2^{-\alpha} & \alpha(\alpha-1)x_1^{\alpha}x_2^{-\alpha-1} \end{pmatrix}, \]
+	where the eigenvalues are \(\lambda_1=\alpha(\alpha-1)x_1^{\alpha}x_2^{-\alpha}\left(x_1^{-2}x_2+x_2^{-1}\right),\lambda_2=0\).
+	So the function is neither convex nor concave.
+	\end{proof}
 \end{enumerate}
 
 
