@@ -410,24 +410,37 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 			\end{tabular}
 		\end{subtable}
 		\ifnum\webview=1
-			\centering
 			\begin{subtable}[t]{.8\textwidth}
+			\centering
+			\caption{Improved}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				\normalsize	$n$	& \normalsize	\(x_n\)	&	\normalsize	\(E_n=|x_n-x_{n-1}|\)	\\	\hline
+				\scriptsize	1	&	\scriptsize	0.782537832379215		&	\scriptsize	0.217462167620785	\\	\hline
+				\scriptsize	2	&	\scriptsize	0.265581322231385		&	\scriptsize	0.516956510147830	\\	\hline
+				\scriptsize	3	&	\scriptsize	1.862855151222864e-04	&	\scriptsize	0.265395036716262	\\	\hline
+				\scriptsize	4	&	\scriptsize	2.710505431213761e-20	&	\scriptsize	1.862855151222864e-04	\\	\hline
+				\scriptsize	5	&	\scriptsize	3.009265538105056e-36	&	\scriptsize	2.710505431213761e-20	\\	\hline
+				\scriptsize	6	&	\scriptsize	3.340955887615245e-52	&	\scriptsize	3.009265538105056e-36	\\	\hline
+			\end{tabular}
+			\end{subtable}
 		\else
 			\begin{subtable}[t]{.49\linewidth}
-		\fi
 			\centering
 			\caption{Improved}
 			\begin{tabular}{|c|c|}
-			\hline
-			\normalsize	\(x_n\)	&	\normalsize	\(E_n=|x_n-x_{n-1}|\)	\\	\hline
-			\scriptsize	0.782537832379215		&	\scriptsize	0.217462167620785	\\	\hline
-			\scriptsize	0.265581322231385		&	\scriptsize	0.516956510147830	\\	\hline
-			\scriptsize	1.862855151222864e-04	&	\scriptsize	0.265395036716262	\\	\hline
-			\scriptsize	2.710505431213761e-20	&	\scriptsize	1.862855151222864e-04	\\	\hline
-			\scriptsize	3.009265538105056e-36	&	\scriptsize	2.710505431213761e-20	\\	\hline
-			\scriptsize	3.340955887615245e-52	&	\scriptsize	3.009265538105056e-36	\\	\hline
+				\hline
+				\normalsize	\(x_n\)	&	\normalsize	\(E_n=|x_n-x_{n-1}|\)	\\	\hline
+				\scriptsize	0.782537832379215		&	\scriptsize	0.217462167620785	\\	\hline
+				\scriptsize	0.265581322231385		&	\scriptsize	0.516956510147830	\\	\hline
+				\scriptsize	1.862855151222864e-04	&	\scriptsize	0.265395036716262	\\	\hline
+				\scriptsize	2.710505431213761e-20	&	\scriptsize	1.862855151222864e-04	\\	\hline
+				\scriptsize	3.009265538105056e-36	&	\scriptsize	2.710505431213761e-20	\\	\hline
+				\scriptsize	3.340955887615245e-52	&	\scriptsize	3.009265538105056e-36	\\	\hline
 			\end{tabular}
-		\end{subtable}
+			\end{subtable}
+		\fi
+			
 		\caption{Comparison of Newton's Method on Iteration}
 		\label{newtoncompare1}
 	\end{table}
@@ -481,11 +494,20 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 			\end{tabular}
 		\end{subtable}
 		\ifnum\webview=1
-			\centering
 			\begin{subtable}[t]{.8\textwidth}
+			\centering
+			\caption{Improved}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				$n$ & \(x_n\)				&	\(E_n=|x_n-x_{n-1}|\)	\\	\hline
+				\footnotesize	1	&	\footnotesize	1.036363636363630	&	\footnotesize	0.163636363636370	\\	\hline
+				\footnotesize	2	&	\footnotesize	1.001028277634942	&	\footnotesize	0.035335358728688	\\	\hline
+				\footnotesize	3	&	\footnotesize	1.000000793830820	&	\footnotesize	0.001027483804122	\\	\hline
+				\footnotesize	4	&	\footnotesize	1.000000000564978	&	\footnotesize	7.932658419029792e-07	\\	\hline
+			\end{tabular}
+			\end{subtable}
 		\else
 			\begin{subtable}[t]{.49\linewidth}
-		\fi
 			\centering
 			\caption{Improved}
 			\begin{tabular}{|c|c|}
@@ -496,7 +518,8 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 				\footnotesize	1.000000793830820	&	\footnotesize	0.001027483804122	\\	\hline
 				\footnotesize	1.000000000564978	&	\footnotesize	7.932658419029792e-07	\\	\hline
 			\end{tabular}
-		\end{subtable}
+			\end{subtable}
+		\fi	
 		\caption{Comparison of Newton's Method on Iteration at a Root of Order 2}
 		\label{newtoncompare2}
 	\end{table}
@@ -544,30 +567,49 @@ A root of order \(m=1\) is often called a \emph{simple root}, and if \(m>1\), it
 			\end{tabular}
 		\end{subtable}
 		\ifnum\webview=1
-			\centering
 			\begin{subtable}[t]{.8\textwidth}
+			\centering
+			\caption{Improved}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				$n$		&		\(x_n\)				&	\(E_n=|x_n-x_{n-1}|\)	\\	\hline
+				\footnotesize	1	&	\footnotesize	2.999869302453229	&	\footnotesize	0.020130697546771	\\	\hline
+				\footnotesize	2	&	\footnotesize	2.999997846418646	&	\footnotesize	1.285439654177267e-04	\\	\hline
+				\footnotesize	3	&	\footnotesize	2.983092132985680	&	\footnotesize	0.016905713432966	\\	\hline
+				\footnotesize	4	&	\footnotesize	2.999903080879523	&	\footnotesize	0.016810947893843	\\	\hline
+				\footnotesize	5	&	\footnotesize	2.999999154222051	&	\footnotesize	9.607334252725863e-05	\\	\hline
+				\footnotesize	6	&	\footnotesize	2.921051830315649	&	\footnotesize	0.078947323906402	\\	\hline
+				\footnotesize	7	&	\footnotesize	2.997750655427219	&	\footnotesize	0.076698825111570	\\	\hline
+				\footnotesize	8	&	\footnotesize	2.999998308704638	&	\footnotesize	0.002247653277418	\\	\hline
+				\footnotesize	9	&	\footnotesize	2.992547985979292	&	\footnotesize	0.007450322725346	\\	\hline
+				\footnotesize	10	&	\footnotesize	2.999981350990154	&	\footnotesize	0.007433365010863	\\	\hline
+				\footnotesize	11	&	\footnotesize	3.000103925190753	&	\footnotesize	1.225742005983577e-04	\\	\hline
+				\footnotesize	12	&	\footnotesize	3.000003933963204	&	\footnotesize	9.999122754900114e-05	\\	\hline
+			\end{tabular}
+			\end{subtable}
 		\else
 			\begin{subtable}[t]{.49\linewidth}
-		\fi
 			\centering
 			\caption{Improved}
 			\begin{tabular}{|c|c|}
-			\hline
-			\(x_n\)				&	\(E_n=|x_n-x_{n-1}|\)	\\	\hline
-			\footnotesize	2.999869302453229	&	\footnotesize	0.020130697546771	\\	\hline
-			\footnotesize	2.999997846418646	&	\footnotesize	1.285439654177267e-04	\\	\hline
-			\footnotesize	2.983092132985680	&	\footnotesize	0.016905713432966	\\	\hline
-			\footnotesize	2.999903080879523	&	\footnotesize	0.016810947893843	\\	\hline
-			\footnotesize	2.999999154222051	&	\footnotesize	9.607334252725863e-05	\\	\hline
-			\footnotesize	2.921051830315649	&	\footnotesize	0.078947323906402	\\	\hline
-			\footnotesize	2.997750655427219	&	\footnotesize	0.076698825111570	\\	\hline
-			\footnotesize	2.999998308704638	&	\footnotesize	0.002247653277418	\\	\hline
-			\footnotesize	2.992547985979292	&	\footnotesize	0.007450322725346	\\	\hline
-			\footnotesize	2.999981350990154	&	\footnotesize	0.007433365010863	\\	\hline
-			\footnotesize	3.000103925190753	&	\footnotesize	1.225742005983577e-04	\\	\hline
-			\footnotesize	3.000003933963204	&	\footnotesize	9.999122754900114e-05	\\	\hline
+				\hline
+				\(x_n\)				&	\(E_n=|x_n-x_{n-1}|\)	\\	\hline
+				\footnotesize	2.999869302453229	&	\footnotesize	0.020130697546771	\\	\hline
+				\footnotesize	2.999997846418646	&	\footnotesize	1.285439654177267e-04	\\	\hline
+				\footnotesize	2.983092132985680	&	\footnotesize	0.016905713432966	\\	\hline
+				\footnotesize	2.999903080879523	&	\footnotesize	0.016810947893843	\\	\hline
+				\footnotesize	2.999999154222051	&	\footnotesize	9.607334252725863e-05	\\	\hline
+				\footnotesize	2.921051830315649	&	\footnotesize	0.078947323906402	\\	\hline
+				\footnotesize	2.997750655427219	&	\footnotesize	0.076698825111570	\\	\hline
+				\footnotesize	2.999998308704638	&	\footnotesize	0.002247653277418	\\	\hline
+				\footnotesize	2.992547985979292	&	\footnotesize	0.007450322725346	\\	\hline
+				\footnotesize	2.999981350990154	&	\footnotesize	0.007433365010863	\\	\hline
+				\footnotesize	3.000103925190753	&	\footnotesize	1.225742005983577e-04	\\	\hline
+				\footnotesize	3.000003933963204	&	\footnotesize	9.999122754900114e-05	\\	\hline
 			\end{tabular}
-		\end{subtable}
+			\end{subtable}
+		\fi
+
 		\caption{Comparison of Newton's Method on Iteration at a Root of Order 3}
 		\label{newtoncompare3}
 	\end{table}

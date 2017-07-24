@@ -492,7 +492,11 @@ In particular, they evaluate the quality of the Cholesky decomposition on matric
 
 \subsection{Cholesky Decomposition}
 By Theorem \ref{cholesky}, we can write algorithms to implement Cholesky decomposition.
-\begin{algorithm}[h]
+\ifnum\webview=1
+	\begin{algorithm}[H]
+\else
+	\begin{algorithm}[h]
+\fi
 		\KwIn{Positive definite square matrix \(A\in\R^{n\times n}\)}
 		\KwOut{Lower triangular matrix $L$ such that \(LL^T=A\)}
 		\For{k=1:n-1}
