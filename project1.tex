@@ -493,9 +493,9 @@ In particular, they evaluate the quality of the Cholesky decomposition on matric
 \subsection{Cholesky Decomposition}
 By Theorem \ref{cholesky}, we can write algorithms to implement Cholesky decomposition.
 \ifnum\webview=1
-	\begin{algorithm}[H]
+	\begin{algorithm2e}[H]
 \else
-	\begin{algorithm}[h]
+	\begin{algorithm2e}[ht]
 \fi
 		\KwIn{Positive definite square matrix \(A\in\R^{n\times n}\)}
 		\KwOut{Lower triangular matrix $L$ such that \(LL^T=A\)}
@@ -517,7 +517,7 @@ By Theorem \ref{cholesky}, we can write algorithms to implement Cholesky decompo
 		\(A(n,n)=\sqrt{A(n,n)}\)\;
 		\(L=(a_{ij})_{j\leq i}\)\;
 		\caption{Cholesky Decomposition\cite{tam37}}
-\end{algorithm}
+\end{algorithm2e}
 
 \subsection{Complexity Analysis}
 The Cholesky decomposition algorithm has time complexity \(O\left(n^3\right)\), since there are three contained loop, each of which are of complexity \(O(n)\).

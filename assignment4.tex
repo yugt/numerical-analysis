@@ -85,7 +85,7 @@ This sequence defines the Legendre polynomials.
 	\end{align*}
 	By principle of mathematical induction, this holds for all \(n\in\N^*\).
 	\end{proof}
-	To prove that Legendre polynomials are solution to Legendre differential equation, let \(y=\left(x^2-1\right)^n\), so that \(y'=2nx\left(x^2-1\right)^{n-1}\), and 
+	To prove that Legendre polynomials are solution to Legendre differential equation, let \(y=\left(x^2-1\right)^n\), so that \sloppy \(y'=2nx\left(x^2-1\right)^{n-1}\), and 
 	\[ \left(x^2-1\right)y'-2nxy=0 \]
 	Differentiate this expression \(n+1\) times using the general Leibniz rule, we obtain
 	\begin{small}
@@ -253,17 +253,17 @@ So the interpolating polynomial is
 Plug in $x=2$, we get the estimate
 \[ f(2) \approx p(2) = 11 \]
 The MATLAB\texttrademark\ code is attached here.
-\begin{lstlisting}
-	x = [-5 -1 0 1 3 5 10 12];
-	X = [x.^0;x.^1;x.^2;x.^3;x.^4;x.^5;x.^6;x.^7]';
-	y = [781 5 1 1 61 521 9091 19141]';
-	X\y
+\begin{lstlisting}[style=Matlab-editor]
+x = [-5 -1 0 1 3 5 10 12];
+X = [x.^0;x.^1;x.^2;x.^3;x.^4;x.^5;x.^6;x.^7]';
+y = [781 5 1 1 61 521 9091 19141]';
+X\y
 \end{lstlisting}
 \end{proof}
 
 
 \section{Newton's form of the interpolation polynomial}
-Let \(f\) be a continuous function, \(P^n\) be its interpolation polynomial in the points \(x_0,\cdots,x_n\).
+Let \(f\) be a continuous function, \(P^n\) be its interpolation polynomial in the points  \(x_0\), \(\cdots\), \(x_n\).
 \begin{enumerate}
 	\item Let \(P^0(x)=f(x_0)\) be the interpolation polynomial in a single point $x_0$.
 	\begin{enumerate}[(a)]
@@ -336,9 +336,9 @@ Let \(f\) be a continuous function, \(P^n\) be its interpolation polynomial in t
 	We prove by induction.
 	For \(n=1\), we have proved in the previous step that 
 	\[ f[x_0,x_1]=\frac{f(x_1)-f(x_0)}{x_1-x_0} \]
-	Suppose this is true for \(k=n\), then according to the previous result, we have the interpolating polynomial with degree at most $n$ passing \((x_0,f(x_0)),(x_1,f(x_1)),\cdots,\\ (x_{n},f(x_{n}))\)
+	Suppose this is true for \(k=n\), then according to the previous result, we have the interpolating polynomial with degree at most $n$ passing \((x_0,f(x_0))\), \((x_1,f(x_1))\), \(\cdots\), \((x_{n},f(x_{n}))\)
 	\[ P_1^n(x)=f(x_0)+\sum_{j=1}^{n} f[x_0,\cdots, x_j] \prod_{k=0}^{j-1}(x-x_k) \]
-	When \(k=n+1\), we also have another polynomial of degree at most $n$ interpolating \((x_1,f(x_1)),(x_2,f(x_2)), \cdots, (x_{n+1},f(x_{n+1}))\)
+	When \(k=n+1\), we also have another polynomial of degree at most $n$ interpolating \sloppy \((x_1,f(x_1)),(x_2,f(x_2)), \cdots, (x_{n+1},f(x_{n+1}))\)
 	\[ P_2^n(x)=f(x_1)+\sum_{j=2}^{n+1} f[x_1,\cdots, x_j] \prod_{k=1}^{j}(x-x_k) \]
 	We can express \(P^{n+1}(x)\) by these two interpolating polynomials
 	\[ P^{n+1}(x)=\frac{x-x_0}{x_{n+1}-x_0}P_2^n(x)+\frac{x_{n+1}-x}{x_{n+1}-x_0}P_1^n(x) \]
@@ -351,9 +351,9 @@ Let \(f\) be a continuous function, \(P^n\) be its interpolation polynomial in t
 	\end{proof}
 	\item Write the pseudocode of a clear algorithm to compute \(P^n(x)\) when given $n+1$ nodes \(x_0,\cdots,x_n\) and the value of $f$ at those nodes.
 	\ifnum\webview=1
-		\begin{algorithm}[H]
+		\begin{algorithm2e}[H]
 	\else
-		\begin{algorithm}[htbp]
+		\begin{algorithm2e}[htbp]
 	\fi
 	\KwIn{$n+1$ nodes: \((x_0,f(x_0)),\cdots,(x_n,f(x_n))\), \(x_0,\cdots,x_n\) stored in vector $x$ and  \(f(x_0),\cdots,f(x_n)\) stored in vector $y$}
 	\KwOut{Coefficients of \(P^n(x)\): \(a_0,\cdots,a_n\), stored in vector $a$}
@@ -372,7 +372,7 @@ Let \(f\) be a continuous function, \(P^n\) be its interpolation polynomial in t
 		\(a(j)=A(j,j)\)\;
 	}
 	\caption{Newton's interpolation}
-	\end{algorithm}
+	\end{algorithm2e}
 \end{enumerate}
 
 We now consider the case of equidistant nodes, \textit{i.e.}, \(x_i = x_0 + ih\), for any \(0\leq i\leq n\), and some \(h\in\R^+\).
@@ -412,9 +412,9 @@ Denoting \(f[x_i]\) by $f_i$ , \(0\leq i\leq n\), we recursively define the oper
 	\item Write the pseudocode of an algorithm which takes a step $h$ as input, a number of nodes, the value of $f$ at each of those nodes, and a value $x$.
 	The algorithm should return \(P^{n}(x)\approx f(x)\).
 	\ifnum\webview=1
-		\begin{algorithm}[H]
+		\begin{algorithm2e}[H]
 	\else
-		\begin{algorithm}[htbp]
+		\begin{algorithm2e}[htbp]
 	\fi
 		\KwIn{Step length $h$, number of nodes $n+1$, the value of $f$ at those nodes, stored in vector $y$, and a value $x$}
 		\KwOut{Estimation of $f$ at $x$ using interpolation with polynomial of degree at most $n$, denoted as $f_x$}
@@ -438,5 +438,5 @@ Denoting \(f[x_i]\) by $f_i$ , \(0\leq i\leq n\), we recursively define the oper
 			\( f_x=f_x+a(i)x^i \)
 		}
 		\caption{Newton's interpolation with evaluation}
-	\end{algorithm}
+	\end{algorithm2e}
 \end{enumerate}

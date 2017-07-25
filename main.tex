@@ -1,5 +1,5 @@
 \documentclass[12pt,oneside]{book}
-\usepackage[a4paper, margin=1in, headheight=105pt]{geometry}
+\usepackage[letterpaper, margin=1in, headheight=105pt]{geometry}
 \usepackage{subcaption}
 \usepackage{enumerate}
 \usepackage{mathtools}
@@ -12,14 +12,15 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{caption}
+\usepackage{titling}
 \usepackage{xparse}
 \usepackage{amsthm}
 \usepackage{ifpdf}
 \usepackage{float}
-\usepackage[backend=biber,backref=true]{biblatex}
-\usepackage[linesnumbered,boxed,algochapter]{algorithm2e}
-\usepackage[titletoc]{appendix}
+\usepackage[linesnumbered,boxed,algochapter,algo2e,lined]{algorithm2e}
 \usepackage[numbered,framed]{matlab-prettifier}
+\usepackage[backend=biber,backref=true]{biblatex}
+\usepackage[titletoc]{appendix}
 % \usepackage[numbered,framed]{mcode}
 % \usepackage{xcolor}
 % \usepackage{minted}
@@ -29,12 +30,10 @@
 \@addtoreset{chapter}{part}
 \makeatother
 
-\pagestyle{fancy}
-\lhead{{\chaptername\/} \thechapter}
-\chead{\href{http://www-personal.umich.edu/~yugtmath}{\calligra{Guangting Yu}}}
-\rhead{\href{https://mcommunity.umich.edu/\#search:yugtmath}{5133709016}}
-\lfoot{\href{http://umji.sjtu.edu.cn/}{\textbf{UM-SJTU Joint Institute}}}
-\rfoot{\href{https://umji.famousedu.com/courses/38}{\textbf{VV570 Numerical Analysis}}}
+\title{{\textbf{VV570 Numerical Analysis}}}
+\author{\href{http://www-personal.umich.edu/~yugtmath}{\calligra{Guangting Yu}}}
+\date{\today}
+
 
 \newcommand{\webview}{0}
 
@@ -56,9 +55,24 @@
 
 \graphicspath{{./graphics/}}
 
+\setlength{\algomargin}{2em}
+\lstset{xleftmargin=.1\textwidth, xrightmargin=.1\textwidth}
+
+
 
 \begin{document}
 \tableofcontents
+\listoftables
+\listoffigures
+\listofalgorithmes
+
+\pagestyle{fancy}
+\lhead{{\chaptername\/} \thechapter}
+\chead{\theauthor}
+\rhead{\href{https://mcommunity.umich.edu/\#search:yugtmath}{5133709016}}
+\lfoot{\href{http://umji.sjtu.edu.cn/}{\textbf{UM-SJTU Joint Institute}}}
+\rfoot{\href{https://umji.famousedu.com/courses/38}{\textbf{VV570 Numerical Analysis}}}
+
 \part{Assignments}
 \input{assignment1.tex}
 \input{assignment2.tex}
@@ -68,7 +82,7 @@
 \input{assignment6.tex}
 \input{assignment7.tex}
 \input{assignment8.tex}
-% \part{Projects}
-% \input{project1.tex}
-% \printbibliography
+\part{Projects}
+\input{project1.tex}
+\printbibliography
 \end{document}
