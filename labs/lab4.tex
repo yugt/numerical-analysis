@@ -17,22 +17,20 @@ z = eval(vectorize(y));
 plot(x,z)
 	\end{lstlisting}
 	Run the above commands and write down the exact solution below.
-	\item Study and use the M-function butcher and euler to estimate the convergence rate of Euler's method for the above IVP over the interval \([0, 1]\).
+	\item Study and use the M-function \hyperref[butcher]{butcher} and \hyperref[euler]{euler} to estimate the convergence rate of Euler's method for the above IVP over the interval \([0, 1]\).
 	In addition, compute the error as the difference between your approximation and the exact solution at \(t = 1\).
-	\lstinputlisting[style=Matlab-editor]{mcode/butcher.m}
-	\lstinputlisting[style=Matlab-editor]{mcode/euler.m}
 	\item Repeat part (b), but this time do it for Heun's method.
 	The M-function heun is given.
-	\lstinputlisting[style=Matlab-editor]{mcode/heun.m}
+
 	\item Repeat to part (b), but this time do it for Aadms-Bashforth's method.
 	The M-function ab2 is given.
-	\lstinputlisting[style=Matlab-editor]{mcode/ab2.m}
+
 	\item Repeat to part (b), but this time do it for the classic 4-order Runge Kutta's method.
 	The M-function rk4 is given.
-	\lstinputlisting[style=Matlab-editor]{mcode/rk4.m}
+
 	\item Repeat to part (b), but this time do it for the classic 4-order Taylor's method.
 	The M-function taylor is given.
-	\lstinputlisting[style=Matlab-editor]{mcode/taylor.m}
+
 \end{enumerate}
 
 
