@@ -102,12 +102,18 @@ This sequence defines the Legendre polynomials.
 	\end{proof}
 	Now we can prove that two different Legendre polynomials are mutually orthogonal.
 	With the Legendre differential equation, we multiply both sides by \(Q_k(x)\), where \(n\neq k\), and integrate it in \([-1,1]\).
-	\[ \int_{-1}^{1} Q_k(x)\left[\left(1-x^2\right)Q_n'(x)\right]'\ud x + \int_{-1}^{1}Q_k(x)n(n+1)Q_n(x)\ud x=0 \tag{*} \]
+	\begin{equation}
+	\label{eqn4.1}
+	\int_{-1}^{1} Q_k(x)\left[\left(1-x^2\right)Q_n'(x)\right]'\ud x + \int_{-1}^{1}Q_k(x)n(n+1)Q_n(x)\ud x=0
+	\end{equation}
 	We also have the Legendre differential equation for \(Q_k(x)\):
 	\[ \left[\left(1-x^2\right)Q_k'(x)\right]'+k(k+1)Q_k(x)=0 \]
 	Multiply both sides by \(Q_n(x)\), where \(n\neq k\), and integrate it in \([-1,1]\), we get a dual form
-	\[ \int_{-1}^{1} Q_n(x)\left[\left(1-x^2\right)Q_k'(x)\right]'\ud x + \int_{-1}^{1}Q_n(x)k(k+1)Q_k(x)\ud x=0 \tag{**} \]
-	Integrate by part on first term of both (*) and (**), we get
+	\begin{equation}
+	\label{eqn4.2}
+	\int_{-1}^{1} Q_n(x)\left[\left(1-x^2\right)Q_k'(x)\right]'\ud x + \int_{-1}^{1}Q_n(x)k(k+1)Q_k(x)\ud x=0.
+	\end{equation}
+	Integrate by part on first term of both (\ref{eqn4.1}) and (\ref{eqn4.2}), we get
 	\[\begin{cases}
 	-\int_{-1}^{1}Q_k'(x)\left[\left(1-x^2\right)Q_n'(x)\right]\ud x+\int_{-1}^{1}Q_k(x)n(n+1)Q_n(x)\ud x=0\\
 	-\int_{-1}^{1}Q_n'(x)\left[\left(1-x^2\right)Q_k'(x)\right]\ud x+\int_{-1}^{1}Q_n(x)k(k+1)Q_k(x)\ud x=0
@@ -146,14 +152,17 @@ This sequence defines the Legendre polynomials.
 		&=\frac{n+1}{2^{n}n!}\D{n}{x}\left[x\left(x^2-1\right)^{n}\right]
 	\end{align*}
 	Apply the general Leibniz rule on the differential,
-	\[ \D{n}{x}\left[x\left(x^2-1\right)^{n}\right]=x\D{n}{x}\left[\left(x^2-1\right)^{n}\right]+n\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right] \tag{***} \]
+	\begin{equation}
+	\label{eqn4.3}
+	\D{n}{x}\left[x\left(x^2-1\right)^{n}\right]=x\D{n}{x}\left[\left(x^2-1\right)^{n}\right]+n\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right]
+	\end{equation}
 	Apply the substitution to get
 	\begin{align*}
 	(n+1)Q_{n+1}(x)&=\frac{n+1}{2^{n}n!}x\D{n}{x}\left[\left(x^2-1\right)^{n}\right]+\frac{n+1}{2^{n}n!}n\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right]\\
 	&=x(n+1)Q_n(x)+\frac{n(n+1)}{2^{n}n!}\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right]\\
 	&=x(2n+1)Q_n(x)-nxQ_n(x)-\frac{n}{2^n n!}x\D{n}{x}\left[\left(x^2-1\right)^{n}\right]
 	\end{align*}
-	The last term without its coefficient is already in (***), so
+	The last term without its coefficient is already in (\ref{eqn4.3}), so
 	\[ x\D{n}{x}\left[\left(x^2-1\right)^{n}\right]=\D{n}{x}\left[x\left(x^2-1\right)^{n}\right]-n\D{n-1}{x}\left[\left(x^2-1\right)^{n}\right] \]
 	Apply substitution,
 	\begin{align*}

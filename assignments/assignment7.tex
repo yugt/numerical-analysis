@@ -30,7 +30,7 @@ A function \(f:\R\to\R\) is differentiable in some open interval \(\mathcal{I}\s
 	&\iff r(b-a)=f(b)-f(a) \\
 	&\iff r=\frac{f(b)-f(a)}{b-a}.
 	\end{align*}
-	By Rolle's theorem \ref{rolle}, since $g$ is differentiable and \(g(a)=g(b)\), there is some \(\xi\in(a,b)\) for which \(g'(\xi)=0\) and thus 
+	By \hyperref[rolle]{Rolle's theorem}, since $g$ is differentiable and \(g(a)=g(b)\), there is some \(\xi\in(a,b)\) for which \(g'(\xi)=0\) and thus
 	\[ f'(\xi)=g'(\xi)+r=\frac{f(b)-f(a)}{b-a}\]
 	as required.
 	\end{proof}
@@ -80,7 +80,7 @@ Show the followings are true.
 	\[ h'(x)=g'(x)-1\in(-2,0), \quad \forall x\in[a,b]. \]
 	Thus, \(h(x)=0\) has at most one solution, and so is \(g(x)=x\).
 	This proves the uniqueness of \(x^*\).
-	Then apply Cauchy's Mean Value Theorem \ref{cauchymean},
+	Then apply \hyperref[cauchymean]{Cauchy's Mean Value Theorem},
 	\[ |g(x_{k+1})-g(x_k)|=|g'(\xi)|\cdot|x_{k+1}-x_k|\leq c\cdot|x_{k+1}-x_k|. \]
 	Apply the iteration relation,
 	\[ x_{k+1}=g(x_k), \qquad x_k=g(x_{x-1}), \]
@@ -111,7 +111,7 @@ Show the followings are true.
 	Define the Lipschitz constant to be
 	\[ c=\inf_{\xi\in(a,b)} |g'(\xi)|. \]
 	It comes from definition that \(c>1\).
-	Then apply Cauchy's Mean Value Theorem \ref{cauchymean},
+	Then apply \hyperref[cauchymean]{Cauchy's Mean Value Theorem},
 	\[ |g(x_{k+1})-g(x_k)|=|g'(\xi)|\cdot|x_{k+1}-x_k|\geq c\cdot|x_{k+1}-x_k|. \]
 	Apply the iteration relation,
 	\[ x_{k+1}=g(x_k), \qquad x_k=g(x_{x-1}), \]

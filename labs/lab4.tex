@@ -4,7 +4,7 @@
 \section{}
 In this question we compare the convergence of a few methods we have done in class.
 \[ \dot{y}=\frac{y+t}{y-t}, \quad y(0)=1. \]
-\begin{enumerate}
+\begin{enumerate}[(a)]
 	\item Matlab can solve simple differential equations symbolically.
 	For example,
 	\begin{lstlisting}[style=Matlab-editor]
@@ -20,20 +20,28 @@ plot(x,z)
 	\item Study and use the M-function \hyperref[butcher]{butcher} and \hyperref[euler]{euler} to estimate the convergence rate of Euler's method for the above IVP over the interval \([0, 1]\).
 	In addition, compute the error as the difference between your approximation and the exact solution at \(t = 1\).
 	\item Repeat part (b), but this time do it for Heun's method.
-	The M-function heun is given.
-
+	The M-function \hyperref[heun]{heun} is given.
 	\item Repeat to part (b), but this time do it for Aadms-Bashforth's method.
-	The M-function ab2 is given.
-
+	The M-function \hyperref[ab2]{ab2} is given.
 	\item Repeat to part (b), but this time do it for the classic 4-order Runge Kutta's method.
-	The M-function rk4 is given.
-
+	The M-function \hyperref[rk4]{rk4} is given.
 	\item Repeat to part (b), but this time do it for the classic 4-order Taylor's method.
-	The M-function taylor is given.
-
+	The M-function \hyperref[taylor]{taylor} is given.
 \end{enumerate}
 
 
 \section{}
 Matlab has its implementation of Runge-Kutta.
-This question looks at the build-in functions ode23 and ode45, which implement versions of 2nd/3rd-order Runge-Kutta and 4th/5th-order Runge Kutta, respectively.
+This question looks at the build-in functions {\color{blue}ode23} and {\color{blue}ode45}, which implement versions of 2nd/3rd-order Runge-Kutta and 4th/5th-order Runge Kutta, respectively.
+\begin{enumerate}[(a)]
+	\item ) Study and use {\color{blue}ode23} to solve the following
+	\[ \dot{y}=\frac{y+t}{y-t}, \quad y(0)=1. \]
+	Compare and comment the convergence with the methods we considered in Task 1.
+	\item Write an M-function for the vector-valued function
+	\[ \Phi(t,x)=\begin{bmatrix} 10(x_2-x_1) \\ 28x_1-x_2-x_1x_3 \\ -8/3x_3+x_2x_2 \end{bmatrix} \]
+	The input of your function shall be a scalar \(t\) and a vector in \(\R^3\).
+	The output of your function shall be a column vector.
+	\item  Study and use {\color{blue}ode45} to solve the following IVP over \([0, 20]\).
+	\[ \dot{x}=\Phi(x), \quad x(0)=\begin{bmatrix} -8 \\ 8 \\ 27 \end{bmatrix}. \]
+	\item 
+\end{enumerate}
