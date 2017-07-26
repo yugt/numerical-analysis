@@ -1,7 +1,6 @@
 \documentclass[12pt,letterpaper]{book}
+\usepackage[letterpaper, margin=1in, headheight=105pt]{geometry}
 \usepackage[active,tightpage,floats]{preview}
-\usepackage[backend=biber,backref=true]{biblatex}
-\usepackage[linesnumbered,boxed,algochapter]{algorithm2e}
 \usepackage{subcaption}
 \usepackage{enumerate}
 \usepackage{mathtools}
@@ -14,12 +13,16 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{caption}
-\usepackage{float}
+\usepackage{titling}
 \usepackage{xparse}
 \usepackage{amsthm}
+\usepackage{float}
 \usepackage{ifpdf}
+\usepackage{float}
+\usepackage[linesnumbered,boxed,algochapter,algo2e,lined]{algorithm2e}
+\usepackage[numbered,framed]{matlab-prettifier}
+\usepackage[backend=biber,backref=true]{biblatex}
 \usepackage[titletoc]{appendix}
-\usepackage{matlab-prettifier}
 \addbibresource{reference.bib}
 
 \makeatletter
@@ -28,6 +31,9 @@
 
 \newcommand{\webview}{1}
 
+\title{{\textbf{VV570 Numerical Analysis}}}
+\author{\href{http://www-personal.umich.edu/~yugtmath}{\calligra{Guangting Yu}}}
+\date{\today}
 
 \renewcommand{\PreviewBorder}{2in}
 \newcommand{\ud}{~\mathrm{d}}
@@ -50,33 +56,37 @@
 
 \thispagestyle{empty}
 
+\setlength{\algomargin}{2em}
+\lstset{xleftmargin=.1\textwidth, xrightmargin=.1\textwidth}
+
+
 \begin{document}
 \begin{preview}
 \part{Assignments}
 \end{preview}
 \begin{preview}
-\input{assignment1.tex}
+\input{./assignments/assignment1.tex}
 \end{preview}
 \begin{preview}
-\input{assignment2.tex}
+\input{./assignments/assignment2.tex}
 \end{preview}
 \begin{preview}
-\input{assignment3.tex}
+\input{./assignments/assignment3.tex}
 \end{preview}
 \begin{preview}
-\input{assignment4.tex}
+\input{./assignments/assignment4.tex}
 \end{preview}
 \begin{preview}
-\input{assignment5.tex}
+\input{./assignments/assignment6.tex}
 \end{preview}
 \begin{preview}
-\input{assignment6.tex}
+\input{./assignments/assignment6.tex}
 \end{preview}
 \begin{preview}
-\input{assignment7.tex}
+\input{./assignments/assignment7.tex}
 \end{preview}
 \begin{preview}
-\input{assignment8.tex}
+\input{./assignments/assignment8.tex}
 \end{preview}
 \begin{preview}
 \part{Projects}
