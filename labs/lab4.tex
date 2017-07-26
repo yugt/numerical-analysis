@@ -43,5 +43,34 @@ This question looks at the build-in functions {\color{blue}ode23} and {\color{bl
 	The output of your function shall be a column vector.
 	\item  Study and use {\color{blue}ode45} to solve the following IVP over \([0, 20]\).
 	\[ \dot{x}=\Phi(x), \quad x(0)=\begin{bmatrix} -8 \\ 8 \\ 27 \end{bmatrix}. \]
-	\item 
+	\item Let \(X\) denote the matrix that contains approximations you have found in part (c) for \(x_1\), \(x_2\) and \(x_3\) as its columns at various tk values.
+	Plot the following
+	\begin{lstlisting}[style=Matlab-editor]
+plot(X(:,1), X(:,2))
+plot(X(:,1), X(:,3))
+plot(X(:,2), X(:,3))
+subplot(3,1,1)
+plot(t,X(:,1))
+subplot(3,1,2)
+plot(t,X(:,2))
+subplot(3,1,3)
+plot(t,X(:,3))
+	\end{lstlisting}
+	What do those graphs suggest?
+	What happens if we change the initial condition \(x_0\)?
+\end{enumerate}
+
+
+\section{}
+There are IVPs that defeat the explicit Adams-Bashforth and Runge-Kutta methods.
+In fact, for such problems, the higher order method perform even more poorly than the low
+order methods.
+These problems are call ``stiff'' ODEs.
+Consider
+\[ y' = \lambda(-y+\sin x),\quad y(0) = 0. \]
+whose exact solution is
+\[ y(x)=\frac{\lambda}{1+\lambda^2}e^{-\lambda x}+\frac{\lambda^2}{1+\lambda^2}\sin x-\frac{\lambda}{1+\lambda^2}\cos x. \]
+\begin{enumerate}
+	\item Run the following commands.
+	The M-functions stiff2ode and stiff2solution are given.
 \end{enumerate}
