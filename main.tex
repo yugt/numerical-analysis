@@ -21,9 +21,6 @@
 \usepackage[numbered,framed]{matlab-prettifier}
 \usepackage[backend=biber,backref=true]{biblatex}
 \usepackage[titletoc]{appendix}
-% \usepackage[numbered,framed]{mcode}
-% \usepackage{xcolor}
-% \usepackage{minted}
 \addbibresource{reference.bib}
 
 \makeatletter
@@ -59,7 +56,6 @@
 \lstset{xleftmargin=.1\textwidth, xrightmargin=.1\textwidth}
 
 
-
 \begin{document}
 \tableofcontents
 \listoftables
@@ -74,6 +70,7 @@
 \rfoot{\href{https://umji.famousedu.com/courses/38}{\textbf{VV570 Numerical Analysis}}}
 
 \part{Assignments}
+\renewcommand{\chaptername}{Assignment}
 \input{./assignments/assignment1.tex}
 \input{./assignments/assignment2.tex}
 \input{./assignments/assignment3.tex}
@@ -82,7 +79,12 @@
 \input{./assignments/assignment6.tex}
 \input{./assignments/assignment7.tex}
 \input{./assignments/assignment8.tex}
+
+\part{Labs}
+\renewcommand{\chaptername}{Lab}
+
 \part{Projects}
+\renewcommand{\chaptername}{Projects}
 \input{project1.tex}
 \printbibliography
 \end{document}
