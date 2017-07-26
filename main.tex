@@ -71,17 +71,19 @@
 
 \part{Assignments}
 \renewcommand{\chaptername}{Assignment}
-\input{./assignments/assignment1.tex}
-\input{./assignments/assignment2.tex}
-\input{./assignments/assignment3.tex}
-\input{./assignments/assignment4.tex}
-\input{./assignments/assignment5.tex}
-\input{./assignments/assignment6.tex}
-\input{./assignments/assignment7.tex}
-\input{./assignments/assignment8.tex}
+\input{assignments/assignment1.tex}
+\input{assignments/assignment2.tex}
+\input{assignments/assignment3.tex}
+\input{assignments/assignment4.tex}
+\input{assignments/assignment5.tex}
+\input{assignments/assignment6.tex}
+\input{assignments/assignment7.tex}
+\input{assignments/assignment8.tex}
 
 \part{Labs}
 \renewcommand{\chaptername}{Lab}
+\renewcommand{\thesection}{\arabic{section}}
+\titleformat{\section}{\normalfont\Large\bfseries}{Task \thesection}{1em}{}
 \input{labs/lab1.tex}
 \input{labs/lab2.tex}
 \input{labs/lab3.tex}
@@ -89,6 +91,7 @@
 
 \part{Projects}
 \renewcommand{\chaptername}{Projects}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
 \input{project1.tex}
 \printbibliography
 \end{document}
