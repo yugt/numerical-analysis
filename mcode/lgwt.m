@@ -1,5 +1,5 @@
 function [x,w]=lgwt(N,a,b)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % lgwt.m
 %
 % This script is for computing definite integrals using Legendre-Gauss 
@@ -14,7 +14,7 @@ function [x,w]=lgwt(N,a,b)
 % Written by Greg von Winckel - 02/25/2004
 % Copyright (c) 2009, Greg von Winckel
 % All rights reserved.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 N=N-1;
 N1=N+1; N2=N+2;

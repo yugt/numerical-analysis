@@ -1,3 +1,144 @@
 %!TEX root = ../main.tex
 \titleformat{\section}{\normalfont\Large\bfseries}{Task \thesection}{1em}{}
 \chapter{Interpolation}
+
+
+\section*{Task 1}
+This question is to provide you with some experience on Lagrange interpolation, and some MATLAB\texttrademark\ commands you might find useful when comes polynomial approximation.
+\begin{enumerate}[(a)]
+	\item Use the given M-function \hyperref[lagrinterpol]{lagrinterpol} to perform a Lagrange interpolation to estimate the \(y\)-value at \(x = 4.5\) for the following data.
+	\begin{center}
+	\begin{tabular}{ccccccc}
+	\(x\)	&	1	&	2	&	3	&	4	&	5	&	6	\\
+	\(y\)	&	66	&	66	&	65	&	64	&	63	&	63	\\
+	\end{tabular}
+	\end{center}
+	\item Study and write down the output of the following command.
+	\begin{lstlisting}[style=Matlab-editor]
+poly([2,3,5,7,9])
+	\end{lstlisting}
+	\item ind the coefficient for the cubic term \(x^3\) of the polynomial
+	\[ f(x)=(x-2)(x-7)(x-1)(x-8)(x-2)(x-8) \]
+	\item Study and write down the output of the following commands.
+	\begin{lstlisting}[style=Matlab-editor]
+a = [ 2, 7, 1, 8, 2, 8];
+P = poly([a(1), a(2), a(3)]);
+Q = poly([a(4), a(5), a(6)]);
+conv(P, Q)
+	\end{lstlisting}
+	\item  Study and write down the output of the following commands.
+	\begin{lstlisting}[style=Matlab-editor]
+coeff = [a(1), a(2), a(3)]; % vector a from above
+polyval(coeff, [a(4), a(5), a(6)])
+	\end{lstlisting}
+	\item Write an M-function which outputs the coefficients of the derivative function of the interpolating polynomial for a set of distinct points \((x_i, y_i)\).
+	Use your function on the data in part (a) to obtain a plot of the derivative function over \([1, 6]\).
+	Write down the coefficients.
+\end{enumerate}
+
+
+\section*{Task 2}
+This question is to use the given M-functions \hyperref[lagrinterpolde]{lagrinterpolde} and \hyperref[newpoly]{newpoly} to study and compare Lagrange's form of interpolation with Newton's form.
+\begin{enumerate}[(a)]
+	\item Study and write down the output of the following commands.
+	\begin{lstlisting}[style=Matlab-editor]
+clear all;
+close all;
+N = 5;
+xdata = linspace(0,1000, N+1);
+ydata = randn([1,N+1]);
+Cnewton = newpoly(xdata,ydata)
+Clagrange = lagrinterpolde(xdata,ydata)
+	\end{lstlisting}
+	\item Study and run the following commands. What can you conclude from it?
+	\begin{lstlisting}[style=Matlab-editor]
+N = 100;
+xdata = linspace(0,1000, N+1);
+ydata = randn([1,N+1]);
+tic
+Cnewton = newpoly(xdata,ydata);
+toc
+tic
+Clagrange = lagrinterpolde(xdata,ydata);
+toc
+	\end{lstlisting}
+	\item Run the following commands.
+	What do the two graphs suggest?
+	\begin{lstlisting}[style=Matlab-editor]
+N = 10;
+xdata = linspace(0,1000, N+1);
+rng(0)
+ydata = randn([1,N+1]);
+Cnewton = newpoly(xdata,ydata);
+Clagrange = lagrinterpolde(xdata,ydata);
+x_plot_points = linspace(0,1000,500);
+plot(xdata, ydata,'.')
+hold on
+plot(x_plot_points, polyval(Cnewton, x_plot_points ),'b')
+plot(x_plot_points, polyval(Clagrange, x_plot_points), '-.r')
+hold off
+N = 30;
+xdata = linspace(0,1000, N+1);
+rng(0)
+ydata = randn([1,N+1]);
+Cnewton = newpoly(xdata,ydata);
+Clagrange = lagrinterpolde(xdata,ydata);
+x_plot_points = linspace(0,1000,500);
+plot(xdata, ydata,'.')
+hold on
+plot(x_plot_points, polyval(Cnewton, x_plot_points ),'b')
+plot(x_plot_points, polyval(Clagrange, x_plot_points), '-.r')
+hold off
+	\end{lstlisting}
+\end{enumerate}
+
+
+\section*{Task 3}
+In this question, we will investigate so-called the Runge's Phenomenon, and employ what you have learnt in class to minimize it.
+Consider the following so-called Runge's function
+\[ f(x)=\frac{1}{1+25x^2},\quad x\in[-1,1]. \]
+\begin{enumerate}[(a)]
+	\item Study and write down the output of the following commands.
+	\begin{lstlisting}[style=Matlab-editor]
+clear all;
+close all;
+syms x
+f = symfun(1/(1+25*x^2), x);
+N = 10;
+xdata = linspace(-1,1,N+1);
+ydata = double(f(xdata));
+polyfit(xdata,ydata,N)
+	\end{lstlisting}
+	\item Construct a polynomial of degree 20 that minimises the sum of squared distances to approximate \(f\) using \emph{equally spaced nodes}.
+	Then instead of degree 20, do it again using a 40th degree polynomial.
+	Plot both polynomials with \(f\) on the same graph.
+	Write down what you see in your graph.
+	Use the following restriction.
+	\begin{lstlisting}[style=Matlab-editor]
+axis([-1 1 -5 5]);
+	\end{lstlisting}
+	\item Now instead of using \emph{equally spaced nodes}, do part (b) again using Chebyshev nodes.
+	\item Use interpolating polynomials, of degrees \(n = 5, \cdots, 20\) on equally spaced nodes using Newton's form, to approximate \(f(x)\).
+	Plot all approximations on the same graph.
+	Use the following restriction.
+	\begin{lstlisting}[style=Matlab-editor]
+axis([-1 1 0 1]);
+	\end{lstlisting}
+	\item Now repeat part (d) using Chebyshev nodes.
+	\item Suppose evaluations of \(y = f(x)\) are very inaccurate due to random errors in \(y\).
+	Shall we use interpolation to approximate \(f(x)\)?
+	Briefly explain your rationale.
+\end{enumerate}
+
+
+\section*{Task 4}
+\begin{enumerate}
+	\item Find a rational function of the following form
+	\[ g(x)=\frac{a+bx}{c+dx} \]
+	that interpolates \(y = \arctan(x)\) at the points \(x = 1, 2, 3\).
+	Plot \(g\) with \(y = \arctan(x)\).
+	\item Consider the function
+	\[ h(x)=\sin x+\sin 5x, \quad x\in[0,2\pi]. \]
+	Study and then use the Matlab command spline to find an approximation for \(h(x)\).
+	Briefly outline the strength of this method in comparison with other methods.
+\end{enumerate}

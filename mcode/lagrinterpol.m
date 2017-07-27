@@ -1,5 +1,5 @@
 function [p]=lagrinterpol(x,y,z)
-%--------------------------------------------------------------------------
+%------------------------------------------------
 %LAGRINTERPOL   Lagrange polynomial interpolation 
 % Inputs 
 %   x   vector of interpolation nodes
@@ -9,7 +9,7 @@ function [p]=lagrinterpol(x,y,z)
 % Outpus
 %   p   vector of polynomial values at z
 %% NUMERICAL METHODS: MATLAB Programs, Mathews & Fink 2004 
-%--------------------------------------------------------------------------
+%------------------------------------------------
 [m n] = size(y);
 for j = 1:m
     a (:,1) = y (j,:)';

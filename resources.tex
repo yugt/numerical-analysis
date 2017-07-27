@@ -1,20 +1,51 @@
 %!TEX root = main.tex
 \chapter{MATLAB\texttrademark\ Codes}
 
-\section{Butcher's method\label{butcher}}
-\lstinputlisting[style=Matlab-editor]{mcode/butcher.m}
 
-\section{Euler's method\label{euler}}
+\section{Interpolation}
+\subsection{Lagrange polynomial interpolation\label{lagrinterpol}}
+\lstinputlisting[style=Matlab-editor]{mcode/lagrinterpol.m}
+\subsubsection{Coefficients of Lagrange polynomial interpolation\label{lagrinterpolde}}
+\lstinputlisting[style=Matlab-editor]{mcode/lagrinterpolde.m}
+
+\subsection{Newton polynomial interpolation\label{newpoly}}
+\lstinputlisting[style=Matlab-editor]{mcode/newpoly.m}
+
+
+\section{Numerical Quadrature}
+\subsection{Fast Clenshaw Curtis Quadrature\label{fclencurt}}
+\lstinputlisting[style=Matlab-editor]{mcode/fclencurt.m}
+
+\subsection{Legendre-Gauss Quadrature\label{lgwt}}
+\lstinputlisting[style=Matlab-editor]{mcode/lgwt.m}
+
+
+\section{Root Finding}
+\subsection{Bisection method\label{bisect}}
+\lstinputlisting[style=Matlab-editor]{mcode/bisect.m}
+
+\subsection{Newton's method\label{newton}}
+\lstinputlisting[style=Matlab-editor]{mcode/newton.m}
+
+\subsection{Secant method\label{secant}}
+\lstinputlisting[style=Matlab-editor]{mcode/secant.m}
+
+\subsection{Fixed point iteration\label{fixpt}}
+\lstinputlisting[style=Matlab-editor]{mcode/fixpt.m}
+
+
+\section{Differential Equation}
+\subsection{Euler's method\label{euler}}
 \lstinputlisting[style=Matlab-editor]{mcode/euler.m}
 
-\section{Heun's method\label{heun}}
+\subsection{Heun's method\label{heun}}
 \lstinputlisting[style=Matlab-editor]{mcode/heun.m}
 
-\section{Aadms-Bashforth's method\label{ab2}}
+\subsection{Aadms-Bashforth's method\label{ab2}}
 \lstinputlisting[style=Matlab-editor]{mcode/ab2.m}
 
-\section{4-order Runge Kutta's method\label{rk4}}
+\subsection{4-order Runge Kutta's method\label{rk4}}
 \lstinputlisting[style=Matlab-editor]{mcode/rk4.m}
 
-\section{4-order Taylor's method\label{taylor}}
+\subsection{4-order Taylor's method\label{taylor}}
 \lstinputlisting[style=Matlab-editor]{mcode/taylor.m}

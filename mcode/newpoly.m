@@ -1,5 +1,5 @@
 function [C,D] = newpoly(X,Y)
-%---------------------------------------------------------------------------
+%----------------------------------------
 %newpoly   Construction of the collocation polynomial.
 %          The method is Newton interpolation.
 % Inputs
@@ -10,7 +10,7 @@ function [C,D] = newpoly(X,Y)
 %   D   divided difference table
 %
 %% NUMERICAL METHODS: MATLAB Programs, Mathews & Fink 2004 
-%---------------------------------------------------------------------------
+%-----------------------------------------
 
 n = length(X);
 D = zeros(n,n);

@@ -16,7 +16,8 @@
 \usepackage{amsthm}
 \usepackage{ifpdf}
 \usepackage{float}
-\usepackage[colorlinks,linkcolor=blue,anchorcolor=red,citecolor=green,urlcolor=violet,filecolor=brown,menucolor=pink]{hyperref}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=WildStrawberry,anchorcolor=red,citecolor=green,urlcolor=RoyalBlue,filecolor=brown,menucolor=pink]{hyperref}
 \usepackage[linesnumbered,boxed,algochapter,algo2e,lined]{algorithm2e}
 \usepackage[numbered,framed]{matlab-prettifier}
 \usepackage[backend=biber,backref=true]{biblatex}
@@ -27,8 +28,8 @@
 \@addtoreset{chapter}{part}
 \makeatother
 
-\title{{\textbf{VV570 Numerical Analysis}}}
-\author{\href{http://www-personal.umich.edu/~yugtmath}{\calligra{Guangting Yu}}}
+\title{\textbf{VV570 Numerical Analysis}}
+\author{\calligra{Guangting Yu}}
 \date{\today}
 
 
@@ -64,7 +65,7 @@
 
 \pagestyle{fancy}
 \lhead{{\chaptername\/} \thechapter}
-\chead{\theauthor}
+\chead{\href{http://www-personal.umich.edu/~yugtmath}{\calligra{Guangting Yu}}}
 \rhead{\href{https://mcommunity.umich.edu/\#search:yugtmath}{5133709016}}
 \lfoot{\href{http://umji.sjtu.edu.cn/}{\textbf{UM-SJTU Joint Institute}}}
 \rfoot{\href{https://umji.famousedu.com/courses/38}{\textbf{VV570 Numerical Analysis}}}
@@ -79,6 +80,7 @@
 \input{assignments/assignment6.tex}
 \input{assignments/assignment7.tex}
 \input{assignments/assignment8.tex}
+\input{assignments/assignment9.tex}
 
 \part{Labs}
 \renewcommand{\chaptername}{Lab}

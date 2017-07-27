@@ -1,3 +1,132 @@
 %!TEX root = ../main.tex
 \titleformat{\section}{\normalfont\Large\bfseries}{Task \thesection}{1em}{}
 \chapter{Intergration}
+
+\section*{Task 1}
+In this question, we will investigate the convergence of some common quadrature rules.
+\begin{enumerate}[(a)]
+	\item Study and write down the output of the following commands.
+	\begin{lstlisting}[style=Matlab-editor]
+syms x
+fsym = symfun(1/(1+25*x^2), x); %Symbolic f
+fsym( -1:1:1 )
+fano = @(x) 1./(1+25*x.^2); %Anonymous f
+fano( -1:1:1 )
+exactf = int(fsym,-1,1);
+format longE
+eval(exactf)
+format short
+	\end{lstlisting}
+	\item Write an M-function to implement the so-called midpoint quadrature rule
+	\[ \int_{a}^{b}f(x)\ud x\approx \sum_{k=1}^n(x_k-x_{k-1})f\left(\frac{x_{k-1}+x_k}{2}\right),\]
+	where \(a=x_0\) and \(b=x_n\).
+	The code for you m-file might look like the following:
+	\begin{lstlisting}[style=Matlab-editor]
+function quad = midpointquad( f, a, b, n)
+%---------------------------------------------
+%MIDPOINTQUAD Midpoint Quadrature Rule
+% Input
+% f integrand
+% a, b upper and lower limits of integration
+% n the number of equally spaced subintervals
+% Output
+% quad quadrature value
+%
+% If f is defined as an M-function use the @ notation to call
+% quad=midpointquad(@f,a,b,n)
+% If f is defined as an anonymous/symbolic function then simply call
+% quad=midpointquad(f,a,b,n)
+%---------------------------------------------
+xpts = linspace( ??? ) ;
+h = ??? ;
+xmidpts = zeros(1, ??? );
+for i = 1: ???
+	xmidpts(i) = ??? ;
+end
+quad = h * sum ( ??? );
+	\end{lstlisting}
+	\item Run the following commands and study the output of it.
+	\begin{lstlisting}[style=Matlab-editor]
+N = 5;
+nvec = (2 * 10 .^ (1:1:N));
+result = zeros(1, N);
+error = zeros(1,N);
+for i = 1:N
+	result(i) = midpointquad(fano,-1,1,nvec(i));
+	error(i) = eval(result(i) - exactf);
+end
+format longE
+T = table( categorical(nvec'), categorical(2./nvec'), result', error', 'VariableNames', {'n' 'h' 'Midpoint' 'Error'})
+format short
+	\end{lstlisting}
+	Use the output to estimate the convergence rate of the midpoint rule in terms of \(h\).
+	\item Write an M-function to implement the so-called trapezoidal quadrature rule
+	\[ \int_{a}^{b}f(x)\ud x\approx \sum_{k=1}^n(x_k-x_{k-1})\frac{f(x_{k-1})+f(x_k)}{2}, \]
+	using equally spaced subintervals, where \(a=x_0\) and \(b=x_n\).
+	Name this M-function \texttt{trapezoidalquad}, then estimate the convergence rate of the trapezoidal rule in terms of h using Runge's function.
+	\item Write an M-function to implement the so-called Simpson's quadrature rule
+	\[ \int_{a}^{b}f(x)\ud x\approx \sum_{k=1}^n\frac{x_k-x_{k-1}}{6}\left[ f(x_{k-1})+4\left(\frac{x_{k-1}+x_k}{2}\right)+f(x_k)\right], \]
+	using equally spaced subintervals.
+	Name this M-function \texttt{simpsonquad}, then estimate the convergence rate of the Simpson's rule in terms of \(h\) using Runge's function.
+	\item Consider applying the midpoint quadrature rule to the following integral
+	\[ \int_0^1\ln x\ud x=-1. \]
+	Estimate the rate of convergence of the midpoint quadrature rule using this integral.
+\end{enumerate}
+
+
+\section*{Task 2}
+In this question, we will test Newton-Cotes, Clenshaw-Curtis, Gaussian quadrature rules.
+\begin{enumerate}[(a)]
+	\item Use the given M-function \hyperref[newpoly]{newpoly} to construct interpolating polynomials in Newton's form of degree \(n=1,2,3,4,5,10,15,20\) on equally spaced nodes for Gaussian function
+	\[ f(x)=e^{x^2} \]
+	then integrate the polynomials symbolically over \([-1, 1]\) to approximate
+	\[ \int_{-1}^{1}e^{x^2}\ud x. \]
+	Note this approach does NOT break \([-1, 1]\) into subintervals.
+	\item Repeat part (a), but this time, do it for Runge's function
+	\[ \int_{-1}^{1}\frac{1}{1+25x^2}\ud x. \]
+	\item Repeat part (b), but this time, do it using Chebyshev nodes instead.
+	Study and compare the accuracy of it with the approximation in part (b).
+	\item Repeat part (b), but this time, do it using the given M-function \hyperref[fclencurt]{fclencurt} 	and \hyperref[lgwt]{lgwt}, which output the Clenshaw-Curtis and Gauss-Legendre nodes and weights, respectively.
+	Compare the accuracy of those two quadrature rules with the approximations in part (b) and part (c).
+\end{enumerate}
+
+
+
+\section*{Task 3}
+This question is to investigate the so-called {\color{blue}degree of exactness} of a quadrature rule.
+\begin{enumerate}[(a)]
+	\item Run the following commands and study the output of it
+	\begin{lstlisting}[style=Matlab-editor]
+clear all
+syms x
+N = 5;
+miderror = zeros(1,N);
+traperror = zeros(1,N);
+simerror = zeros(1,N);
+for i = 1:N
+	fsym = symfun(i*x^(i-1), x);
+	miderror(i) = midpointquad(fsym,0,1,1) - 1;
+	traperror(i) = trapezoidalquad(fsym,0,1,1) - 1;
+	simerror(i) = simpsonquad(fsym,0,1,1) - 1 ;
+end
+format long
+monomial = {'$1$';'$2x$';'$3x^2$';'$4x^3$';'$5x^4$'};
+T = table(monomial , miderror', traperror', simerror', 'VariableNames', {'func' 'MidpointError' 'TrapezoidalError' 'SimpsonError' })
+format short
+	\end{lstlisting}
+	What can you conclude from the output?
+	\item Do a similar investigation for Clenshaw-Curtis and Gauss-Legendre.
+\end{enumerate}
+
+
+\section*{Task 4}
+This question is to combine and extend what we have learnt about quadrature rules so far.
+\begin{enumerate}
+	\item Based on Task 1-3, propose an algorithm by writing an M-function that
+performs a numerical integration, and test it using the following integral
+	\[ \int_{-1}^{1}\frac{1}{1+25x^2}\ud x. \]
+	\item  Suggest two additional techniques that can be used to numerically solve the
+following integrals, or integrals that have similar features.
+	\[ \int_{0}^{\infty}\frac{1}{1+25x^2}\ud x \quad \text{and} \quad \int_{-1}^{1}\sqrt{\left|x-\frac{1}{2}\right|}\ud x . \]
+
+\end{enumerate}

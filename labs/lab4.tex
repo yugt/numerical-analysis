@@ -1,11 +1,11 @@
 %!TEX root = ../main.tex
 \chapter{Differential Equations}
 
-\section{}
+\section*{Task 1}
 In this question we compare the convergence of a few methods we have done in class.
 \[ \dot{y}=\frac{y+t}{y-t}, \quad y(0)=1. \]
 \begin{enumerate}[(a)]
-	\item Matlab can solve simple differential equations symbolically.
+	\item MATLAB\texttrademark\ can solve simple differential equations symbolically.
 	For example,
 	\begin{lstlisting}[style=Matlab-editor]
 equation = 'Dy = (y+t)/(y-t)';
@@ -17,7 +17,7 @@ z = eval(vectorize(y));
 plot(x,z)
 	\end{lstlisting}
 	Run the above commands and write down the exact solution below.
-	\item Study and use the M-function \hyperref[butcher]{butcher} and \hyperref[euler]{euler} to estimate the convergence rate of Euler's method for the above IVP over the interval \([0, 1]\).
+	\item Study and use the M-function {\color{blue}{butcher}} and \hyperref[euler]{euler} to estimate the convergence rate of Euler's method for the above IVP over the interval \([0, 1]\).
 	In addition, compute the error as the difference between your approximation and the exact solution at \(t = 1\).
 	\item Repeat part (b), but this time do it for Heun's method.
 	The M-function \hyperref[heun]{heun} is given.
@@ -30,8 +30,8 @@ plot(x,z)
 \end{enumerate}
 
 
-\section{}
-Matlab has its implementation of Runge-Kutta.
+\section*{Task 2}
+MATLAB\texttrademark\ has its implementation of Runge-Kutta.
 This question looks at the build-in functions {\color{blue}ode23} and {\color{blue}ode45}, which implement versions of 2nd/3rd-order Runge-Kutta and 4th/5th-order Runge Kutta, respectively.
 \begin{enumerate}[(a)]
 	\item ) Study and use {\color{blue}ode23} to solve the following
@@ -61,7 +61,7 @@ plot(t,X(:,3))
 \end{enumerate}
 
 
-\section{}
+\section*{Task 3}
 There are IVPs that defeat the explicit Adams-Bashforth and Runge-Kutta methods.
 In fact, for such problems, the higher order method perform even more poorly than the low
 order methods.
@@ -70,7 +70,42 @@ Consider
 \[ y' = \lambda(-y+\sin x),\quad y(0) = 0. \]
 whose exact solution is
 \[ y(x)=\frac{\lambda}{1+\lambda^2}e^{-\lambda x}+\frac{\lambda^2}{1+\lambda^2}\sin x-\frac{\lambda}{1+\lambda^2}\cos x. \]
-\begin{enumerate}
+\begin{enumerate}[(a)]
 	\item Run the following commands.
-	The M-functions stiff2ode and stiff2solution are given.
+	The M-functions {\color{blue}{stiff2ode}} and {\color{blue}{stiff2solution}} are given.
+	\begin{lstlisting}[style=Matlab-editor]
+clear all
+h = 0.1; % mesh size
+[x,y] = meshgrid ( 0:h:2*pi, -1:h:1 );
+px = ones ( size ( x ) );
+py = stiff2ode ( x, y );
+quiver ( x, y, px, py )
+axis tight equal
+hold on
+x1=(0:h:2*pi);
+y1=stiff2solution(x1);
+plot(x1,y1,'r')
+hold off
+	\end{lstlisting}
+	What does the direction field seem to suggest?
+	What happens if \(\lambda\) increases?
+	Describe your understanding of stiffness.
+	\item Use \hyperref[euler]{euler} to solve the IVP when \(\lambda = 10000\) for 40 steps over the interval \([0, 2\pi]\).
+	Comment your solution and provide an explanation of it.
+	\item Use \hyperref[rk4]{rk4} to solve the IVP when \(\lambda = 10000\) for 40 steps over the interval \([0, 2\pi]\).
+	Is it better than Euler's?
+	What happens if we increase the number of steps?
+	\item Study and use the build-in function ode15s to solve the IVP when \(\lambda = 10000\).
+	Write down the estimated value of \(y(2\pi)\).
+\end{enumerate}
+
+
+\section*{Task 4}
+Consider the following boundary value problem.
+\[ \ddot{y}-3\dot{y}+2y=0, \quad y(0)=0, \quad y(1)=10. \]
+\begin{enumerate}[(a)]
+	\item Study and use the built-in function {\color{blue}{bvp4c}} to solve the above BVP over \([0, 1]\).
+	Write the estimated value of \(y(1/\pi)\).
+	\item Write an M-function to solve the above BVP using the shooting method.
+	\item Write an M-function to solve the above BVP using the finite-difference.
 \end{enumerate}

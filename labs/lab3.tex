@@ -1,3 +1,111 @@
 %!TEX root = ../main.tex
 \titleformat{\section}{\normalfont\Large\bfseries}{Task \thesection}{1em}{}
 \chapter{Root Finding}
+
+\section*{Task 1}
+In this question, we will continue our study on how to write an M-function.
+\begin{enumerate}[(a)]
+	\item Study the M-function {\color{blue}{myplot}} and write down what the variable varargin in an M-function does.
+	\begin{lstlisting}[style=Matlab-editor]
+n = 20; xmin = -2; xmax = 2;
+x = linspace( xmin, xmax, n);
+y = x.^2 - 2;
+myplot(x, y,'$$y=x^2-\ln(x^2+2)$$', 'color', 'b', 'linestyle', '-.')
+	\end{lstlisting}
+	\item  Write down what the variables {\color{blue} nargin}, {\color{blue} argout} and {\color{blue} varargout} in an M-function do.
+	\item  Study and write down the output of the following commands.
+	\begin{lstlisting}[style=Matlab-editor]
+n = 5; a = 1; b = 2;
+f = @(x) x.^2 - log(x.^2+2);
+xvec = zeros(1,n);
+for j = 1:n
+	xvec(j) = (a+b)/2;
+	if f(a)*f(xvec(j)) < 0
+		b = xvec(j);
+	else
+		a = xvec(j);
+	end
+end
+format long
+table( (1:n)', xvec', 'VariableNames', {'n', 'x_n'})
+format short
+	\end{lstlisting}
+	\item Study the M-function {\color{blue}naiveFP}, then add comments to the main body of it.
+	\item Run the following, then explain why fixed point iteration can be used here.
+	\begin{lstlisting}[style=Matlab-editor]
+ clear all; close all;
+ g = @(x) sqrt(log(x.^2+2));
+ xvec = naiveFP(g, 1, 1e-6, 10, 'Numerical solutions to $x^2=\ln(x^2+2)$', 'b--o');
+	\end{lstlisting}
+	\item The absolute error, or simply error, is defined as
+	\[ E_k=|x_k-x^*|, \]
+	where \(x^∗\) is the true root.
+	The relative error is defined as
+	\[ \epsilon_k=\left|\frac{x_k-x^*}{x^*}\right|, \]
+	In practice, the true root is not known, we estimate the errors by
+	\[ E_k=|x_k-x_{k-1}| \quad \text{and} \quad  \epsilon_k=\left|\frac{x_k-x_{n-1}}{x_{n-1}}\right|\]
+	Estimate the errors in part (e).
+	Write down your estimates below.
+	Based on this empirical data, does the sequence \(\{x_k\}\) converge linearly or quadratically?
+	\item Instead of the regular fixed point iteration \(x_{k+1} = g(x_k)\), implement
+	\begin{align*}
+	\alpha &= g(x_k), \quad \beta = g(\alpha), \\
+	x_{k+1}&=x_k-\frac{(\alpha-x_k)^2}{\beta-2\alpha+x_k}\\
+		&=\frac{\beta x_k-\alpha^2}{\beta-2\alpha+x_k}, \quad \text{for } k=0,1,\cdots,n
+	\end{align*}
+	Does this iteration scheme converges fast?
+	\item Add a warning message to your code for part (g) for dividing a small number.
+\end{enumerate}
+
+
+\section*{Task 2}
+Use what you have learnt in Task 1 to find the root of
+\[ f(x)=\tan(x)-(x-0.4)(x-0.7) \]
+near \(x = 0\).
+Use \(tol= 10^{-10}\) and \(nmax = 50\).
+
+
+\section*{Task 3}
+Consider the function
+\[ f(x) = e^x - 4x^2. \]
+\begin{enumerate}[(a)]
+	\item Plot \(f(x)\) over various intervals to confirm that the function has 3 roots:
+	\[ x_1^*\in(-1,0), \quad x_2^*\in(0,1), \quad x_3^*\in(4,4.5). \]
+	\item Study and use the M-function \hyperref[bisect]{bisect} to find \(x_1^*\).
+	\item Study and use the M-function \hyperref[newton]{newton} to find \(x_1^*\).
+	\item Study and use the M-function \hyperref[fixpt]{fixpt} to find \(x_1^*\).
+\end{enumerate}
+
+
+\section*{Task 4}
+Newton's method converges slowly when derivative/s are zero at the root.
+In assignment 7, there is a question on how to speed up Newton's method when the order \(m\) is known in advance.
+However, this information is unlikely to be available in practice.
+This question illustrates how to estimate the order \(m\).
+Consider
+\[ f(x)=(x-2)^3 e^x, \quad x\in[0,3]. \]
+\begin{enumerate}[(a)]
+	\item Plot \(f(x)\) and its derivatives over the interval \([0, 3]\) to determine the order.
+	\item Implement the following iteration scheme for the function
+	\[ m_k=\frac{x_{k-1}-x_{k-2}}{2x_{k-1}-x_k-x_{k-2}}, \quad k\geq 2, \]
+	where \(\{x_k\}\) are the sequence computed by Newton's method.
+	What do you notice?
+\end{enumerate}
+
+
+\section*{Task 5}
+In MATLAB\texttrademark\ there exist functions for finding roots of a function: {\color{blue}roots, fzero, fsolve}.
+Consider the following function
+\[ f(x)=x^2-\sin(x+1). \]
+\begin{enumerate}[(a)]
+	\item Use the M-function \hyperref[newton]{newton} to find the root/s of \(f\).
+	\item Use the M-function \hyperref[secant]{secant} to find the root/s of \(f\).
+	\item Study and {\color{blue}fzero} to find the root/s.
+\end{enumerate}
+
+
+\section*{Task 6}
+Find \(y\) that satisfies the following equation
+\[ 0.7=1-\frac{2}{a}\left[\frac{1}{a}\int_0^a\frac{x}{\exp(x)-1}\ud x+\frac{a}{6}-1 \right]. \]
+State and compare your solution with the solution from {\color{blue}fsolve}.
+Explain your method.

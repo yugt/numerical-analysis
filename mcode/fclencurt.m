@@ -1,6 +1,6 @@
 function [x,w]=fclencurt(N1,a,b)
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % fclencurt.m - Fast Clenshaw Curtis Quadrature
 %
@@ -15,7 +15,7 @@ function [x,w]=fclencurt(N1,a,b)
 % Written by: Greg von Winckel - 02/12/2005
 % Copyright (c) 2009, Greg von Winckel
 % All rights reserved.%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 N=N1-1; bma=b-a;
 c=zeros(N1,2);

@@ -1,0 +1,46 @@
+%!TEX root = ../main.tex
+\titleformat{\section}{\normalfont\large\bfseries}{Exercise \thesection\ --- }{1pt}{}
+\chapter{Differential Equations}
+
+\section{Initial value problem}
+Recall if \(\Phi\) is continuous and satisfies a Lipschitz condition in \(y\) on the set
+\[ \mathcal{D} = \Set{(t, y)}{t_0 \leq t \leq T, y\in\R}, \]
+then
+\[ \dot{y} = \Phi(t, y), \quad  y(t_0) = y_0, \text{ where } t_0 \leq t \leq T \]
+has a unique solution.
+\begin{enumerate}
+	\item Show \(\Phi\) satisfies a Lipschitz condition in \(y\) on \(\mathcal{A}\) with Lipschitz constant \(c\) if \(\mathcal{A}\) is convex and there exists a \(c > 0\) such that
+	\[ \left|\partial_{y}\Phi(t,y)\right|\leq c, \quad \forall (t,y)\in\mathcal{A} \]
+	\item Show for any constants \(t_0\) and \(T\), the set \(\mathcal{D}\) is convex.
+	\item Use the above to show the following IVP has a unique solution.
+	\[ \dot{y}=\frac{4t^3y}{1+t^4}, \quad y(0)=1, \quad t\in[0,1]. \]
+	\item Do you think it is a good idea to solve the following IVP numerically?
+	\[ \dot{y}=1+y^2, \quad y(0)=0, \quad t\in[0,3]. \]
+	Justify your answer.
+	Show Euler's method is going to fail miserably for this IVP.
+\end{enumerate}
+
+
+\section{}
+Consider the following IVP
+\[ \dot{y} = \arctan(y), \quad y(0) = y_0, \quad t_0\leq t\leq T \]
+\begin{enumerate}
+	\item Find a Lipschitz constant for \(\arctan(y)\).
+	\item Find an upper bound on \(|\ddot{y}|\) without solving the IVP.
+	\item Find an upper bound on the absolute global error
+	\[ |e_k|=|\hat{y}_k-y(t_k), \]
+	where \(\hat{y}_k\) is the Euler's approximation to \(y(t_k)\), in terms of step size and \(t_k\).
+\end{enumerate}
+
+
+\section{}
+Solve the following IVP using the step size \(h = 1\)
+\[ \dot{y}=\left(2+0.01t^2\right)y, \quad y(0)=4, \quad t\in[0,15]. \]
+\begin{enumerate}
+	\item By Euler's method.
+	\item By the backward Euler's method.
+	\item  By the second-order Taylor's method.
+	\item By the Heun's method.
+	\item By the two-step Adams-Bashforth method.
+	\item It was mentioned in class that Heun's method, which is derived by applying the trapezoidal rule
+\end{enumerate}
