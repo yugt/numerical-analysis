@@ -17,9 +17,20 @@
 \usepackage{ifpdf}
 \usepackage{float}
 \usepackage[dvipsnames]{xcolor}
-\usepackage[colorlinks=true,linkcolor=WildStrawberry,anchorcolor=red,citecolor=green,urlcolor=RoyalBlue,filecolor=brown,menucolor=pink]{hyperref}
-\usepackage[linesnumbered,boxed,algochapter,algo2e,lined]{algorithm2e}
-\usepackage[numbered,framed]{matlab-prettifier}
+\usepackage[colorlinks=true,
+			linkcolor=WildStrawberry,
+			anchorcolor=red,
+			citecolor=green,
+			urlcolor=RoyalBlue,
+			filecolor=brown,
+			menucolor=pink]{hyperref}
+\usepackage[linesnumbered,
+			boxed,
+			algochapter,
+			algo2e,
+			lined]{algorithm2e}
+\usepackage[numbered,
+			framed]{matlab-prettifier}
 \usepackage[backend=biber,backref=true]{biblatex}
 \usepackage[titletoc]{appendix}
 \addbibresource{reference.bib}
@@ -72,35 +83,37 @@
 
 \part{Assignments}
 \renewcommand{\chaptername}{Assignment}
-\input{assignments/assignment1.tex}
-\input{assignments/assignment2.tex}
-\input{assignments/assignment3.tex}
-\input{assignments/assignment4.tex}
-\input{assignments/assignment5.tex}
-\input{assignments/assignment6.tex}
-\input{assignments/assignment7.tex}
-\input{assignments/assignment8.tex}
-\input{assignments/assignment9.tex}
+\titleformat{\section}{\normalfont\large\bfseries}{Exercise \thesection\ --- }{1pt}{}
+\input{assignments/assignment1}
+\input{assignments/assignment2}
+\input{assignments/assignment3}
+\input{assignments/assignment4}
+\input{assignments/assignment5}
+\input{assignments/assignment6}
+\input{assignments/assignment7}
+\input{assignments/assignment8}
+\input{assignments/assignment9}
 
 \part{Labs}
 \renewcommand{\chaptername}{Lab}
 \renewcommand{\thesection}{\arabic{section}}
 \titleformat{\section}{\normalfont\Large\bfseries}{Task \thesection}{1em}{}
-\input{labs/lab1.tex}
-\input{labs/lab2.tex}
-\input{labs/lab3.tex}
-\input{labs/lab4.tex}
+\input{labs/lab1}
+\input{labs/lab2}
+\input{labs/lab3}
+\input{labs/lab4}
 
 \part{Projects}
-\renewcommand{\chaptername}{Projects}
+\renewcommand{\chaptername}{Project}
 \titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
-\input{project1.tex}
+\input{project1}
+\input{project2}
 
 
 \part{External Resources}
 \renewcommand{\chaptername}{External Resource}
 \lstset{xleftmargin=.05\textwidth, xrightmargin=0.01\textwidth}
-\input{resources.tex}
+\input{resources}
 
 \printbibliography
 \end{document}
