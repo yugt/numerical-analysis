@@ -7,7 +7,8 @@ T=a:h:b;
 Y(1)=ya;
 
 for j=1:M
-   Y(j+1)=Y(j)+h*f(T(j),Y(j));
+   %Y(j+1)=Y(j)+h*f(T(j),Y(j));
+   Y(j+1)=solve('Y(j)-x+h*f(T(j+1),x)==0','Real','x');
 end
 
 BE=[T' Y'];
