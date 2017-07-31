@@ -2,21 +2,61 @@
 \chapter{Differential Equations}
 
 \section{Uniqueness of initial value problem}
-Recall if \(\Phi\) is continuous and satisfies a Lipschitz condition in \(y\) on the set
+Recall
+\begin{theorem}[Uniqueness of initial value problem]
+\label{uniqueivp}
+If \(\Phi\) is continuous and satisfies a Lipschitz condition in \(y\) on the set
 \[ \mathcal{D} = \Set{(t, y)}{t_0 \leq t \leq T, y\in\R}, \]
 then
 \[ \dot{y} = \Phi(t, y), \quad  y(t_0) = y_0, \text{ where } t_0 \leq t \leq T \]
 has a unique solution.
+\end{theorem}
 \begin{enumerate}
 	\item Show \(\Phi\) satisfies a Lipschitz condition in \(y\) on \(\mathcal{A}\) with Lipschitz constant \(c\) if \(\mathcal{A}\) is convex and there exists a \(c > 0\) such that
 	\[ \left|\partial_{y}\Phi(t,y)\right|\leq c, \quad \forall (t,y)\in\mathcal{A} \]
 	\item Show for any constants \(t_0\) and \(T\), the set \(\mathcal{D}\) is convex.
 	\item Use the above to show the following IVP has a unique solution.
 	\[ \dot{y}=\frac{4t^3y}{1+t^4}, \quad y(0)=1, \quad t\in[0,1]. \]
+	\begin{proof}
+	\[ |\Phi(t,y_1)-\Phi(t,y_2)|=\frac{4|t|^3}{1+t^4}\cdot|y_1-y_2|. \]
+	So we can find a Lipschitz constant \(L\) as
+	\[ L\geq \sup_{t\in[0,1]} \frac{4t^3}{1+t^4}=2. \]
+	So we proved that \(\Phi(t,y)\) is Lipschitz continuous in \(y\).
+	According to the \hyperref[uniqueivp]{uniqueness of initial value problem}, this IVP has a unique solution.
+	\end{proof}
 	\item Do you think it is a good idea to solve the following IVP numerically?
 	\[ \dot{y}=1+y^2, \quad y(0)=0, \quad t\in[0,3]. \]
 	Justify your answer.
 	Show Euler's method is going to fail miserably for this IVP.
+	\begin{proof}[Answer]
+	No. The function \(\Phi(y)=1+y^2\) is not Lipschitz continuous on \(\R\), so Euler's method will fail.
+	In practice, if we choose \(h=1\), then \(\hat{y}(3)=13\).
+	If \(h=0.5\), then \(\hat{y}(3)=218.1344\).
+	Table \ref{eulerdiverge} shows the estimation of \(y(3)\) from Euler's method with \(h\to0\).
+	\ifnum\webview=1
+		\begin{table}[H]
+	\else
+		\begin{table}[htbp]
+	\fi
+		\centering
+		\begin{tabular}{|c|c|}
+		\hline
+		Steps & \(\hat{y}(3)\)	\\	\hline
+		1	&	3	\\	\hline
+		2	&	6.375000000000000	\\	\hline
+		3	&	13	\\	\hline
+		4	&	28.404234389774501	\\	\hline
+		5	&	71.073212236802789	\\	\hline
+		6	&	2.181344382569777e+02	\\	\hline
+		7	&	8.937891513340965e+02	\\	\hline
+		8	&	5.455818281020568e+03	\\	\hline
+		9	&	5.729541345952547e+04	\\	\hline
+		\end{tabular}
+		\caption{Divergence of Euler's method on non-Lipschitz functions}
+		\label{eulerdiverge}
+	\end{table}
+	Clearly, when \(h\to0\), \(\hat{y}(3)\) diverges quickly.
+	\end{proof}
 \end{enumerate}
 
 
@@ -25,10 +65,28 @@ Consider the following IVP
 \[ \dot{y} = \arctan(y), \quad y(0) = y_0, \quad t_0\leq t\leq T \]
 \begin{enumerate}
 	\item Find a Lipschitz constant for \(\arctan(y)\).
+	\begin{proof}[Answer]
+	Obviously,
+	\[ L\leq\max_{y}\frac{\ud}{\ud y}\arctan(y)=\max_{y}\frac{1}{1+y^2}=1. \]
+	So a Lipschitz constant can be \(L=1\).
+	\end{proof}
 	\item Find an upper bound on \(|\ddot{y}|\) without solving the IVP.
+	\begin{proof}[Answer]
+	Differentiate both sides of the equation,
+	\[ \ddot{y}=\frac{1}{1+y^2}, \]
+	so an upper bound is
+	\[ \sup_{y\in\R}\frac{1}{1+y^2}=1. \]
+	\end{proof}
 	\item Find an upper bound on the absolute global error
-	\[ |e_k|=|\hat{y}_k-y(t_k), \]
+	\[ |e_k|=|\hat{y}_k-y(t_k)|, \]
 	where \(\hat{y}_k\) is the Euler's approximation to \(y(t_k)\), in terms of step size and \(t_k\).
+	\begin{proof}[Answer]
+	Since \(\Phi(y)=\arctan(y)\in\mathcal{C}^2(\R)\), we have
+	\[ |e_k|\leq h\cdot\frac{\sup_{t}|\ddot{y}|}{2c}\left[e^{c(T-t_0)}-1 \right]. \]
+	According to the previous result, the second derivative is bounded by 1, and the Lipschitz constant is also \(c=1\).
+	Thus, the global error is bounded by
+	\[ |e_k|\leq \frac{h}{2}\left[e^{T-t_0}-1 \right]. \]
+	\end{proof}
 \end{enumerate}
 
 
