@@ -18,6 +18,7 @@ temp=backwardeuler(0,15,4,15);
 BEuler=temp(:,2);
 
 
+
 temp=taylor2nd(dy,@(t,y)0.02*t*y,@(t,y)2+0.01*t^2,0,15,4,15);
 Taylor2nd=temp(:,2);
 
@@ -37,7 +38,10 @@ temp=rk4(dy,0,15,4,15);
 RK4=temp(:,2);
 
 
+Exact=4*exp(x.^3/300+2*x);
 
+% set(gca(), 'LooseInset', get(gca(), 'TightInset'));
 
-semilogy(x,Euler,x,BEuler,x,Taylor2nd,x,Heun,x,AB2,x,RK2,x,RK4)
-legend('Euler','Backward Euler','Taylor 2nd order','Heun','Adams-Bashforth','Runge-Kutta 2nd order','Runge-Kutta 4th order','Location','NorthWest')
+semilogy(x,Exact,x,Euler,x,BEuler,x,Taylor2nd,x,Heun,x,AB2,x,RK2,x,RK4)
+legend('Exact','Euler','Backward Euler','Taylor 2nd order','Heun','Adams-Bashforth','Runge-Kutta 2nd order','Runge-Kutta 4th order','Location','NorthWest')
+axis([0 15 1 1e20]);
