@@ -124,6 +124,14 @@ Solve the following IVP using the step size \(h = 1\)
 	\item Use the approximation from Euler's method to find the value of \(y\) at \(t=9.625\) by interpolation in Newton's form.
 \end{enumerate}
 \begin{proof}[Answer]
+The table of \(y\) values solved by Euler's method, backward Euler's method, second-order Taylor's method, Heun's method, two-step Adams-Bashforth method are second-order Runge-Kutta method based on mid-point rule are listed in Table \ref{odecomparisontab}.
+And the result from 4\(\text{th}\) order Runge-Kutta method is in Table \ref{rungekutta4}.
+All the solutions are plotted in Figure \ref{odecomparisonfig}.
+Since this function increases too fast, the normal plot cannot present much inforamtion.
+Thus, it is in log scale.
+Even in log scale, the function increases cubically, since the exact solution is
+\[ y(t)=4 e^{\frac{t^3}{300}+2 t} \]
+
 
 \ifnum\webview=1
 	\begin{table}[H]
@@ -273,12 +281,39 @@ Solve the following IVP using the step size \(h = 1\)
 		14	&	2440754089236.66	\\	\hline
 		15	&	32280071169495.0	\\	\hline
 		\end{tabular}
-		\caption{2\(^\text{nd}\) order Runge-Kutta method}
+		\caption{2\(^\text{nd}\) order Runge-Kutta method based on mid-point rule}
 	\end{subtable}
 
 	\caption{Comparison of different methods to solve ODE}
 	\label{odecomparisontab}
 \end{table}
+
+
+\ifnum\webview=1
+	\begin{algorithm2e}[H]
+\else
+	\begin{algorithm2e}[htbp]
+\fi
+	\KwIn{function \(\Phi\), endpoints \(t_0,T\), initial condition \(y_0\), number of steps\(n\)}
+	\KwOut{\(t\) contains \(n+1\) equally spaced mesh points, starting from \(t_0\) to \(T\).\\
+	\(y\) contains \(y_0\) and approximations to the solution at the corresponding \(t\)}
+	\SetKwFunction{KwFn}{Runge-Kutta-2\(^\text{nd}\)-order}
+	\KwFn(\(\Phi,t_0,T,y_0\)){:\\ }
+	{
+		\(h=(T-t_0)/n\)\;
+		\(t[0]=t_0\)\;
+		\(y[0]=y_0\)\;
+		\For{\(i=1:n\)}
+		{
+			\(y[i]=y[i-1]+h\cdot\Phi\left(t[i-1]+h/2,y[i-1]+h/2\cdot\Phi(t[i-1],y[i-1])\right)\)\;
+		}
+	}
+
+	\Return{\((t,y)\)}
+	\caption{2\(^\text{nd}\) order Runge-Kutta method}
+\end{algorithm2e}
+
+
 
 \ifnum\webview=1
 	\begin{table}[H]
@@ -307,6 +342,7 @@ Solve the following IVP using the step size \(h = 1\)
 		15	&	217588947569641000	\\	\hline
 		\end{tabular}
 		\caption{4\(^\text{th}\) order Runge-Kutta method}
+		\label{rungekutta4}
 	\end{table}
 
 
@@ -324,6 +360,13 @@ Solve the following IVP using the step size \(h = 1\)
 	\caption{Comparison of different methods to solve ODE}
 	\label{odecomparisonfig}
 \end{figure}
+
+
+From the figure, we can see that 4\(^\text{th}\) order Runge-Kutta method is the most accurate.
+Second-order Taylor's method, Heun's method, two-step Adams-Bashforth method are nearly the same.
+Two-step Adams-Bashforth method is worse.
+Euler's method is much worse, and backward Euler's method is the worst, since it has negative values and cannot be shown on the graph.
+
 
 
 \end{proof}
