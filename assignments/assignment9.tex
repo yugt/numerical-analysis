@@ -125,6 +125,190 @@ Solve the following IVP using the step size \(h = 1\)
 \end{enumerate}
 \begin{proof}[Answer]
 
+\ifnum\webview=1
+	\begin{table}[H]
+\else
+	\begin{table}[htbp]
+\fi
+	\centering
+	\begin{subtable}[t]{0.32\textwidth}
+		\centering
+		\begin{tabular}[t]{|c|c|}
+		\hline
+		\(t\)	&	\(\hat{y}(t)\)	\\	\hline
+		0	&	4					\\	\hline
+		1	&	12					\\	\hline
+		2	&	36.1200000000000	\\	\hline
+		3	&	109.804800000000	\\	\hline
+		4	&	339.296832000000	\\	\hline
+		5	&	1072.17798912000	\\	\hline
+		6	&	3484.57846464000	\\	\hline
+		7	&	11708.1836411904	\\	\hline
+		8	&	40861.5609077545	\\	\hline
+		9	&	148736.081704226	\\	\hline
+		10	&	566684.471293103	\\	\hline
+		11	&	2266737.88517241	\\	\hline
+		12	&	9542966.49657585	\\	\hline
+		13	&	42370771.2447968	\\	\hline
+		14	&	198718917.138097	\\	\hline
+		15	&	985645829.004960	\\	\hline
+		\end{tabular}
+		\caption{Euler's method}
+	\end{subtable}
+	\begin{subtable}[t]{0.32\textwidth}
+		\centering
+		\begin{tabular}[t]{|c|c|}
+		\hline
+		\(t\)	&	\(\hat{y}(t)\)	\\	\hline
+		0	&	4					\\	\hline
+		1	&	-3.960396039603961	\\	\hline
+		2	&	3.808073115003809	\\	\hline
+		3	&	-3.493645059636522	\\	\hline
+		4	&	3.011762982445278	\\	\hline
+		5	&	-2.409410385956222	\\	\hline
+		6	&	1.771625283791340	\\	\hline
+		7	&	-1.189010257578080	\\	\hline
+		8	&	0.725006254620781	\\	\hline
+		9	&	-0.400555941779437	\\	\hline
+		10	&	0.200277970889718	\\	\hline
+		11	&	-0.090623516239692	\\	\hline
+		12	&	0.037140785344136	\\	\hline
+		13	&	-0.013806983399307	\\	\hline
+		14	&	0.004664521418685	\\	\hline
+		15	&	-0.001435237359595	\\	\hline
+		\end{tabular}
+		\caption{Backward Euler's method}
+	\end{subtable}
+	\begin{subtable}[t]{0.32\textwidth}
+		\centering
+		\begin{tabular}[t]{|c|c|}
+		\hline
+		\(t\)	&	\(\hat{y}(t)\)	\\	\hline
+		0	&	4					\\	\hline
+		1	&	20					\\	\hline
+		2	&	100.801000000000	\\	\hline
+		3	&	518.197780800000	\\	\hline
+		4	&	2748.54693925224	\\	\hline
+		5	&	15207.1605054948	\\	\hline
+		6	&	88676.7546976665	\\	\hline
+		7	&	550221.527548081	\\	\hline
+		8	&	3664502.88454660	\\	\hline
+		9	&	26402010.3825813	\\	\hline
+		10	&	207204297.583017	\\	\hline
+		11	&	1781956959.21395	\\	\hline
+		12	&	16878785415.5225	\\	\hline
+		13	&	176835659041.346	\\	\hline
+		14	&	2056253885115.72	\\	\hline
+		15	&	26609570276505.6	\\	\hline
+		\end{tabular}
+		\caption{2\(^\text{nd}\) order Taylor's method}
+	\end{subtable}
+	\begin{subtable}[t]{0.32\textwidth}
+		\centering
+		\begin{tabular}[t]{|c|c|}
+		\hline
+		\(t\)	&	\(\hat{y}(t)\)	\\	\hline
+		0	&	4					\\	\hline
+		1	&	20.0600000000000	\\	\hline
+		2	&	101.808512000000	\\	\hline
+		3	&	529.078475161600	\\	\hline
+		4	&	2847.60616901476	\\	\hline
+		5	&	16046.2607623982	\\	\hline
+		6	&	95635.7141438932	\\	\hline
+		7	&	608549.176240422	\\	\hline
+		8	&	4169657.24576412	\\	\hline
+		9	&	30998065.8964596	\\	\hline
+		10	&	251704295.079252	\\	\hline
+		11	&	2245202312.10693	\\	\hline
+		12	&	22106711005.4672	\\	\hline
+		13	&	241224009149.457	\\	\hline
+		14	&	2926336699793.90	\\	\hline
+		15	&	39564072181213.5	\\	\hline
+		\end{tabular}
+		\caption{Heun's method}
+	\end{subtable}
+	\begin{subtable}[t]{0.32\textwidth}
+		\centering
+		\begin{tabular}[t]{|c|c|}
+		\hline
+		\(t\)	&	\(\hat{y}(t)\)	\\	\hline
+		0	&	4					\\	\hline
+		1	&	20.0200000000000	\\	\hline
+		2	&	76.3803000000000	\\	\hline
+		3	&	289.983918000000	\\	\hline
+		4	&	1121.17559493000	\\	\hline
+		5	&	4450.75132819320	\\	\hline
+		6	&	18261.1674183208	\\	\hline
+		7	&	77898.6048349593	\\	\hline
+		8	&	347301.716339914	\\	\hline
+		9	&	1625632.75002645	\\	\hline
+		10	&	8019236.52581924	\\	\hline
+		11	&	41821786.8782187	\\	\hline
+		12	&	231164835.908113	\\	\hline
+		13	&	1356851421.25443	\\	\hline
+		14	&	8469420520.13577	\\	\hline
+		15	&	56274387537.5278	\\	\hline
+		\end{tabular}
+		\caption{Adams-Bashforth method}
+	\end{subtable}
+	\begin{subtable}[t]{0.32\textwidth}
+		\centering
+		\begin{tabular}[t]{|c|c|}
+		\hline
+		\(t\)	&	\(\hat{y}(t)\)	\\	\hline
+		0	&	4					\\	\hline
+		1	&	20.0200000000000	\\	\hline
+		2	&	101.203352250000	\\	\hline
+		3	&	522.841818561562	\\	\hline
+		4	&	2792.24326755076	\\	\hline
+		5	&	15584.0681248543	\\	\hline
+		6	&	91833.9914469929	\\	\hline
+		7	&	576813.891978135	\\	\hline
+		8	&	3895116.05992360	\\	\hline
+		9	&	28497448.1176130	\\	\hline
+		10	&	227424240.920712	\\	\hline
+		11	&	1991383509.56199	\\	\hline
+		12	&	19227031815.4658	\\	\hline
+		13	&	205536970107.329	\\	\hline
+		14	&	2440754089236.66	\\	\hline
+		15	&	32280071169495.0	\\	\hline
+		\end{tabular}
+		\caption{2\(^\text{nd}\) order Runge-Kutta method}
+	\end{subtable}
+
+	\caption{Comparison of different methods to solve ODE}
+	\label{odecomparisontab}
+\end{table}
+
+\ifnum\webview=1
+	\begin{table}[H]
+\else
+	\begin{table}[htbp]
+\fi
+		\centering
+		\begin{tabular}[t]{|c|c|}
+		\hline
+		\(t\)	&	\(\hat{y}(t)\)	\\	\hline
+		0	&	4					\\	\hline
+		1	&	28.0867667083333	\\	\hline
+		2	&	200.811414623582	\\	\hline
+		3	&	1488.36689161515	\\	\hline
+		4	&	11639.8029402688	\\	\hline
+		5	&	97724.8224291606	\\	\hline
+		6	&	895709.119604343	\\	\hline
+		7	&	9107895.98380737	\\	\hline
+		8	&	104325021.246580	\\	\hline
+		9	&	1365504205.66836	\\	\hline
+		10	&	20695551888.4852	\\	\hline
+		11	&	367596581036.202	\\	\hline
+		12	&	7735004488651.82	\\	\hline
+		13	&	194653712486918		\\	\hline
+		14	&	5906440410736200	\\	\hline
+		15	&	217588947569641000	\\	\hline
+		\end{tabular}
+		\caption{4\(^\text{th}\) order Runge-Kutta method}
+	\end{table}
+
 
 \ifnum\webview=1
 	\begin{figure}[H]
@@ -132,15 +316,14 @@ Solve the following IVP using the step size \(h = 1\)
 	\begin{figure}[htbp]
 \fi
 	\centering
-		\ifpdf
-			\includegraphics[width=\textwidth]{A9p3.pdf}
-		\else
-			\includegraphics[width=\textwidth]{A9p3.eps}
-		\fi
-		\caption{Comparison of different methods to solve ODE}
-		\label{odecomparison}
-	\end{figure}
-
+	\ifpdf
+		\includegraphics[width=\textwidth]{A9p3.pdf}
+	\else
+		\includegraphics[width=\textwidth]{A9p3.eps}
+	\fi
+	\caption{Comparison of different methods to solve ODE}
+	\label{odecomparisonfig}
+\end{figure}
 
 
 \end{proof}
