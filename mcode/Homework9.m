@@ -11,6 +11,8 @@ format long
 dy=@(t,y) (2+0.01*t^2)*y;
 temp=euler(dy,0,15,4,15);
 
+Euler=temp(:,2);
+
 % 1.0e+08 *
 % 
 %                    0   0.000000040000000
@@ -30,7 +32,8 @@ temp=euler(dy,0,15,4,15);
 %    0.000000140000000   1.987189171380968
 %    0.000000150000000   9.856458290049600
 
-% backwardeuler(0,15,4,15)
+temp=backwardeuler(0,15,4,15);
+BEuler=temp(:,2);
 % 
 % 
 %          0    4.0000
@@ -52,7 +55,8 @@ temp=euler(dy,0,15,4,15);
 
 
 
-% taylor2nd(dy,@(t,y)0.02*t*y,@(t,y)2+0.01*t^2,0,15,4,15)
+temp=taylor2nd(dy,@(t,y)0.02*t*y,@(t,y)2+0.01*t^2,0,15,4,15);
+Taylor2nd=temp(:,2);
 % 
 %  1.0e+13 *
 % 
@@ -73,7 +77,8 @@ temp=euler(dy,0,15,4,15);
 %    0.000000000001400   0.205625388511572
 %    0.000000000001500   2.660957027650555
 
-% heun(dy,0,15,4,15)
+temp=heun(dy,0,15,4,15);
+Heun=temp(:,2);
 % 
 %  1.0e+13 *
 % 
@@ -97,7 +102,7 @@ temp=euler(dy,0,15,4,15);
 
 
 
-% [x y]=ab2 ( dy, [0, 15], 4, 15 )
+[x,AB2]=ab2 ( dy, [0, 15], 4, 15 );
 % 
 %  1.0e+10 *
 % 
@@ -120,7 +125,8 @@ temp=euler(dy,0,15,4,15);
 
 
 
-% rk2(dy,0,15,4,15)
+temp=rk2(dy,0,15,4,15);
+RK2=temp(:,2);
 
 
 %   1.0e+13 *
@@ -144,7 +150,8 @@ temp=euler(dy,0,15,4,15);
 
 
 
-% rk4(dy,0,15,4,15)
+temp=rk4(dy,0,15,4,15);
+RK4=temp(:,2);
 
 
 
@@ -166,3 +173,7 @@ temp=euler(dy,0,15,4,15);
 %    0.000000000000000   0.001946537124869
 %    0.000000000000000   0.059064404107362
 %    0.000000000000000   2.175889475696406
+
+
+semilogy(x,Euler,x,BEuler,x,Taylor2nd,x,Heun,x,AB2,x,RK2,x,RK4)
+legend('Euler','Backward Euler','Taylor 2nd order','Heun','Adams-Bashforth','Runge-Kutta 2nd order','Runge-Kutta 4th order','Location','NorthWest')
