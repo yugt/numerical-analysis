@@ -344,8 +344,7 @@ Even in log scale, the function increases cubically, since the exact solution is
 		\caption{4\(^\text{th}\) order Runge-Kutta method}
 		\label{rungekutta4}
 	\end{table}
-
-
+	
 \ifnum\webview=1
 	\begin{figure}[H]
 \else
@@ -360,15 +359,12 @@ Even in log scale, the function increases cubically, since the exact solution is
 	\caption{Comparison of different methods to solve ODE}
 	\label{odecomparisonfig}
 \end{figure}
-
-
-From the figure, we can see that 4\(^\text{th}\) order Runge-Kutta method is the most accurate.
+From Figure \ref{odecomparisonfig}, we can see that 4\(^\text{th}\) order Runge-Kutta method is the most accurate.
 Second-order Taylor's method, Heun's method, two-step Adams-Bashforth method are nearly the same.
 Two-step Adams-Bashforth method is worse.
 Euler's method is much worse, and backward Euler's method is the worst, since it has negative values and cannot be shown on the graph.
-
-
-
+By interpolation, the function value at 9.625 is estimated to be
+\[ \hat{y}(9.625)=340846.7993708422. \]
 \end{proof}
 
 
