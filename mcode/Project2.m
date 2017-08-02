@@ -27,13 +27,14 @@
 
 %%%%%% Task 2
 f=@(t) 3*sec(t)-2*cos(tan(t)/1000*(1-10*pi/3-exp(-sec(t)*tan(t)/100)))-1;
-df=@(t) tan(t)*sec(t)+(sec(t)*exp(-(1/100)*tan(t)*sec(t))*(3*tan(t)^3+3*tan(t)*sec(t)^2-100*sec(t)*((10*pi-3)*exp(1/100*tan(t)*sec(t))+3))*sin((tan(t)*(-exp(-(1/100)*tan(t)*sec(t))+1-(10*pi)/3))/1000))/150000;
-newton(f,df,1.23,1e-16,1e-16,10)
+df=@(t) 3*tan(t)*sec(t)+(sec(t)*exp(-(1/100)*tan(t)*sec(t))*(3*tan(t)^3+3*tan(t)*sec(t)^2-100*sec(t)*((10*pi-3)*exp(1/100*tan(t)*sec(t))+3))*sin((tan(t)*(-exp(-(1/100)*tan(t)*sec(t))+1-(10*pi)/3))/1000))/150000;
+newton(f,df,1,1e-16,1e-16,10)
 
 
+fplot(@(t) df(t),[-1,1])
 
-fplot(@(t) 3*sec(t)-2*cos(tan(t)/1000*(1-10*pi/3-exp(-sec(t)*tan(t)/100)))-1,[-1.3,1.3])
-axis([-1.3 1.3 -2 1]);
+% fplot(@(t) 3*sec(t)-2*cos(tan(t)/1000*(1-10*pi/3-exp(-sec(t)*tan(t)/100)))-1,[-1.3,1.3])
+% axis([-1.3 1.3 -2 1]);
 
 
 % syms t
