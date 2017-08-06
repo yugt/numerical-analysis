@@ -74,8 +74,8 @@ The reduction of dimensions is implemented by the idea to apply substitutions to
 The best scenerio is that the system of equations can be reduced to only one equation with only one unknown. 
 Then the problem can be solved by the methods in one dimension.
 
-Specifically, the two systems (\ref{eqn1}) and (\ref{eqn2}) can both be reduced to one dimension.
-In (\ref{eqn1}), we apply the substitution
+Specifically, the \hyperref[eqn1]{system in \(\R^2\)} and the \hyperref[eqn3]{system in \(\R^3\)} can both be reduced to one dimension.
+In the \hyperref[eqn1]{system in \(\R^2\)}, we apply the substitution
 \[ x_2=x_1^2, \]
 and the system is reduced to
 \begin{equation}\label{eqn1reduce}
@@ -85,7 +85,7 @@ which can be solved algebraically.
 The real roots are
 \[ x_1=\pm\sqrt{\frac{\sqrt{5}-1}{2}}, \quad x_2=\frac{\sqrt{5}-1}{2}. \]
 Two other roots exist, but \(x_1\) is a complex number, so we don't list them here, since the numerical methods we discuss cannot find them.
-In (\ref{eqn2}), we apply the trignometric substitution
+In the \hyperref[eqn2]{system in \(\R^3\)}, we apply the trignometric substitution
 \[ \begin{aligned} x_1&=\frac{1}{2}\sec t \\ x_2&=\frac{1}{50}\tan t\\
 x_3&=\frac{1}{20}-\frac{\pi}{6}-\frac{1}{20}\exp\left(-\frac{\sec t\tan t}{100} \right) \end{aligned}. \]
 Then the system of equations is reduced to
@@ -168,7 +168,7 @@ Thus, in order to find a root of system of equations, the attempt by all three m
 \subsection{Solving System of Equations}
 The solution to (\ref{eqn2reduce}) is easy to obtain.
 Start with inital guess \(t=0\) and the solution happens to be found.
-Thus the solution to (\ref{eqn2}) is
+Thus the solution to the \hyperref[eqn2]{system in \(\R^3\)} is
 \[ x^*=\begin{pmatrix} \frac{1}{2} \\ 0 \\ -\frac{\pi}{6} \end{pmatrix}. \]
 And the solution is also unique.
 
@@ -176,7 +176,7 @@ And the solution is also unique.
 
 
 \subsubsection{Fixed-point Iteration}
-Apply fixed-point iteration to (\ref{eqn1reduce}) near a root,
+Apply fixed-point iteration to \hyperref[eqn1reduce]{reduced system} near a root,
 \[ G\begin{pmatrix} x_1\\ x_2\end{pmatrix}=\begin{pmatrix} x_1^2+x_1-x_2 \\ x_1^2+x_2^2+x_2-1 \end{pmatrix}, \]
 we have the log in Table \ref{logeqn1fp}.
 \ifnum\webview=1
@@ -209,7 +209,7 @@ we have the log in Table \ref{logeqn1fp}.
 	19	&	-3.50732462503746e+128	&	1.65586537685195e+260	\\	\hline
 	20	&	-1.65463524424941e+260	&	Inf						\\	\hline
 	\end{tabular}
-	\caption{Log of fixed-point iteration on (\ref{eqn1reduce})}
+	\caption{Log of fixed-point iteration on \hyperref[eqn1reduce]{the reduced system}}
 	\label{logeqn1fp}
 	\end{table}
 
@@ -219,7 +219,7 @@ This is a direct result from the norm of the Jacobian matrix \(||J_G||_2=3.05847
 
 
 \subsubsection{Newton's method}
-Apply Newton's method to (\ref{eqn1reduce}) near a root,
+Apply Newton's method to \hyperref[eqn1reduce]{reduced system} near a root,
 \[ F\begin{pmatrix} x_1\\ x_2\end{pmatrix}=\begin{pmatrix} x_1^2-x_2 \\ x_1^2+x_2^2-1 \end{pmatrix}, \]
 with its Jacobian matrix
 \[ J_F\begin{pmatrix} x_1\\ x_2\end{pmatrix}=\begin{pmatrix} 2x_1 & -1 \\ 2x_1 & 2x_2 \end{pmatrix}\]
@@ -246,7 +246,7 @@ Since we have already obtained the accurate solution, we can compare the numeric
 		8	&	\footnotesize	0.786151380529131	&	\footnotesize	0.618033988749895	&	\footnotesize	2.77170719709119e-09	&	\footnotesize	0						\\	\hline
 		9	&	\footnotesize	0.786151377757423	&	\footnotesize	0.618033988749895	&	\footnotesize	0						&	\footnotesize	0						\\	\hline
 		\end{tabular}
-	\caption{Log of Newton's method on (\ref{eqn1reduce}) near the positive root}
+	\caption{Log of Newton's method on \hyperref[eqn1reduce]{the reduced system} near the positive root}
 	\label{logeqn1nt+}
 	\end{subtable}	
 	\begin{subtable}[t]{\textwidth}
@@ -264,10 +264,10 @@ Since we have already obtained the accurate solution, we can compare the numeric
 		8	&	\footnotesize	-0.786151380851963	&	\footnotesize	0.618033988749895	&	\footnotesize	3.09453951352623e-09	&	\footnotesize	0						\\	\hline
 		9	&	\footnotesize	-0.786151377757423	&	\footnotesize	0.618033988749895	&	\footnotesize	0						&	\footnotesize	0						\\	\hline
 		\end{tabular}
-		\caption{Log of Newton's method on (\ref{eqn1reduce}) near the negative root}
+		\caption{Log of Newton's method on \hyperref[eqn1reduce]{the reduced system} near the negative root}
 		\label{logeqn1nt-}
 	\end{subtable}
-	\caption{Log of Newton's method on (\ref{eqn1reduce})}
+	\caption{Log of Newton's method on \hyperref[eqn1reduce]{the reduced system}}
 	\label{logeqn1nt}
 	\end{table}
 
@@ -275,7 +275,7 @@ Since we have already obtained the accurate solution, we can compare the numeric
 
 
 \subsubsection{Secant method}
-Apply secant method to (\ref{eqn1reduce}) near a root, we have the log in Table \ref{logeqn1se+} and \ref{logeqn1se-}, which correspond to the root with positive \(x_1\) and the root with negative \(x_1\).
+Apply secant method to \hyperref[eqn1reduce]{reduced system} near a root, we have the log in Table \ref{logeqn1se+} and \ref{logeqn1se-}, which correspond to the root with positive \(x_1\) and the root with negative \(x_1\).
 \ifnum\webview=1
 	\begin{table}[H]
 \else
@@ -302,7 +302,7 @@ Apply secant method to (\ref{eqn1reduce}) near a root, we have the log in Table 
 		13	&	\footnotesize	0.786151377758197		&	\footnotesize	0.618033988750217	&	\footnotesize	7.73936470466197e-13	&	\footnotesize	3.21631610233908e-13	\\	\hline
 		14	&	\footnotesize	0.786151377757423		&	\footnotesize	0.618033988749895	&	\footnotesize	0						&	\footnotesize	0						\\	\hline
 		\end{tabular}
-		\caption{Log of secant method on (\ref{eqn1reduce}) near the positive root}
+		\caption{Log of secant method on \hyperref[eqn1reduce]{the reduced system} near the positive root}
 		\label{logeqn1se+}
 	\end{subtable}	
 	\begin{subtable}[t]{\textwidth}
@@ -328,10 +328,10 @@ Apply secant method to (\ref{eqn1reduce}) near a root, we have the log in Table 
 		16	&	\footnotesize	-0.786151377757421		&	\footnotesize	0.618033988749901	&	\footnotesize	1.99840144432528e-15	&	\footnotesize	6.43929354282591e-15	\\	\hline
 		17	&	\footnotesize	-0.786151377757423		&	\footnotesize	0.618033988749895	&	\footnotesize	0						&	\footnotesize	1.11022302462516e-16	\\	\hline
 		\end{tabular}
-		\caption{Log of secant method on (\ref{eqn1reduce}) near the negetive root}
+		\caption{Log of secant method on \hyperref[eqn1reduce]{the reduced system} near the negetive root}
 		\label{logeqn1se-}
 	\end{subtable}
-	\caption{Log of secant method on (\ref{eqn1reduce})}
+	\caption{Log of secant method on \hyperref[eqn1reduce]{the reduced system}}
 	\label{logeqn1se}
 	\end{table}
 
@@ -393,7 +393,7 @@ So the least square estimator is
 
 
 \section{Discussion}
-The solutions to \ref{eqn1} and \ref{eqn2} are very accurate, and here Newton's method works well because the dimension is reduced to one.
+The solutions to the \hyperref[eqn1]{system in \(\R^2\)} and the \hyperref[eqn2]{system in \(\R^3\)} are very accurate, and here Newton's method works well because the dimension is reduced to one.
 And we can see Newton's method converges faster than secant method.
 
 However, in solving the non-linear regression, Newton's method is too sensitive to the initial value.
