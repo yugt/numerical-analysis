@@ -19,8 +19,14 @@
 \usepackage{float}
 \usepackage{ifpdf}
 \usepackage{float}
-\usepackage[linesnumbered,boxed,algochapter,algo2e,lined]{algorithm2e}
-\usepackage[numbered,framed]{matlab-prettifier}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[linesnumbered,
+			boxed,
+			algochapter,
+			algo2e,
+			lined]{algorithm2e}
+\usepackage[numbered,
+			framed]{matlab-prettifier}
 \usepackage[backend=biber,backref=true]{biblatex}
 \usepackage[titletoc]{appendix}
 \addbibresource{reference.bib}
@@ -28,6 +34,15 @@
 \makeatletter
 \@addtoreset{chapter}{part}
 \makeatother
+
+
+\hypersetup{colorlinks=true,
+			linkcolor=WildStrawberry,
+			anchorcolor=red,
+			citecolor=green,
+			urlcolor=RoyalBlue,
+			filecolor=brown,
+			menucolor=pink}
 
 \newcommand{\webview}{1}
 
@@ -62,9 +77,17 @@
 
 \begin{document}
 \begin{preview}
-\part{Assignments}
-\renewcommand{\chaptername}{Assignment}
+\tableofcontents
+\listoftables
+\listoffigures
+\listofalgorithmes
 \end{preview}
+\begin{preview}
+\part{Assignments}
+\end{preview}
+
+\renewcommand{\chaptername}{Assignment}
+\titleformat{\section}{\normalfont\large\bfseries}{Exercise \thesection\ --- }{1pt}{}
 \begin{preview}
 \input{./assignments/assignment1.tex}
 \end{preview}
@@ -90,12 +113,49 @@
 \input{./assignments/assignment8.tex}
 \end{preview}
 \begin{preview}
-\part{Projects}
-\renewcommand{\chaptername}{Projects}
+\input{./assignments/assignment9.tex}
 \end{preview}
+
+\begin{preview}
+\part{Labs}
+\end{preview}
+\renewcommand{\chaptername}{Lab}
+\renewcommand{\thesection}{\arabic{section}}
+\titleformat{\section}{\normalfont\Large\bfseries}{Task \thesection}{1em}{}
+\begin{preview}
+\input{labs/lab1}
+\end{preview}
+\begin{preview}
+\input{labs/lab2}
+\end{preview}
+\begin{preview}
+\input{labs/lab3}
+\end{preview}
+\begin{preview}
+\input{labs/lab4}
+\end{preview}
+
+\begin{preview}
+\part{Projects}
+\end{preview}
+\renewcommand{\chaptername}{Projects}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
 \begin{preview}
 \input{project1.tex}
 \end{preview}
+\begin{preview}
+\input{project2.tex}
+\end{preview}
+
+\begin{preview}
+\part{External Resources}
+\end{preview}
+\renewcommand{\chaptername}{External Resource}
+\lstset{xleftmargin=.05\textwidth, xrightmargin=0.01\textwidth}
+\begin{preview}
+\input{resources}
+\end{preview}
+
 \begin{preview}
 \printbibliography
 \end{preview}
